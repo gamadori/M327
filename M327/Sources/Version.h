@@ -10,6 +10,6 @@
 
 #define deviceName	"M327"
 #define hwVersion   "M327 V0.1 2016-01-04"	
-#define swVersion   "AG 0.0.4 2016-11-16"
+#define swVersion   "AG 0.0.3 2016-08-15"
 
 #endif /* VERSION_H_ */
