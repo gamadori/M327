@@ -1,0 +1,42 @@
+  /*!
+\dontinclude cpu.c
+\dontinclude cpu.h
+\dontinclude IO_Map.h
+
+
+
+\page page_pinalloc Pins allocation 
+\page page_memorymap Memory map 
+<table>
+  <tr><td colspan="2" class="ttitle1">Processor Memory Map</td></tr>
+  <tr><td class="ttitle2">Address</td><td class="ttitle2">Type</td></tr>
+  <tr><td>0x00067FFF<br>0x00000000</td><td class="memtypeReserved"></td>
+  <tr><td>0x0006BFFF<br>0x00068000</td><td class="memtypeFLASH">FLASH</td>
+  <tr><td>0x00063FFF<br>0x00060000</td><td class="memtypeRAM">RAM</td>
+  <tr><td>0x0001FFFF<br>0x00000208</td><td class="memtypeFLASH">FLASH</td>
+  <tr><td>0x00000207<br>0x00000200</td><td class="memtypeRAM">FLASH_CONFIG</td>
+  <tr><td>0x000001FF<br>0x00000000</td><td class="memtypeFLASH">FLASH</td>
+  <tr><td>0x00020207<br>0x00000200</td><td class="memtypeReserved"></td>
+  <tr><td>0x0003FFFF<br>0x00020208</td><td class="memtypeFLASH">FLASH</td>
+  <tr><td>0x00020207<br>0x00020200</td><td class="memtypeRAM">FLASH_CONFIG</td>
+  <tr><td>0x000201FF<br>0x00020000</td><td class="memtypeFLASH">FLASH</td>
+  <tr><td>0x0001E3FF<br>0x0001E000</td><td class="memtypeRAM">RAM</td>
+  <tr><td>0x0000FFFF<br>0x0000C000</td><td class="memtypeIO">I/O</td>
+  <tr><td>0x0000BFFF<br>0x00008000</td><td class="memtypeFLASH">FLASH</td>
+  <tr><td>0x00003FFF<br>0x00000000</td><td class="memtypeRAM">RAM</td>
+</table>
+<br/>
+
+
+*/
+/*!
+** @}
+*/
+/*
+** ###################################################################
+**
+**     This file was created by Processor Expert 10.3 [05.09]
+**     for the Freescale 56800 series of microcontrollers.
+**
+** ###################################################################
+*/
