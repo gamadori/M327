@@ -9,6 +9,7 @@
 #include "CAN1.h"
 #include "CAN.h"
 #include "CanFifo.h"
+#include "Slave.h"
 #include "plc.h"
 
 #define MB0ID	0x100
@@ -80,6 +81,7 @@ void CanInit()
 	short i;
 	
 	//deviceNodeId = inpDipSwitchStation;
+	SlaveInitIDBoards();
 	
 	for (i = 0; i < CAN_FIFO_NUM_CHANNEL; ++i)
 	{

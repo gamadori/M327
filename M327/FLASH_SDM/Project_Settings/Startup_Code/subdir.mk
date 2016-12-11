@@ -30,7 +30,7 @@ OBJS_OS_FORMAT += \
 # Each subdirectory must supply rules for building sources it contributes
 Project_Settings/Startup_Code/56F83x_init_asm.obj: ../Project_Settings/Startup_Code/56F83x_init.asm
 	@echo 'Building file: $<'
-	@echo 'Executing target #28 $<'
+	@echo 'Executing target #30 $<'
 	@echo 'Invoking: DSC Assembler'
 	"$(DSC_ToolsDirEnv)/mwasm56800e" @@"Project_Settings/Startup_Code/56F83x_init.args" -o "Project_Settings/Startup_Code/56F83x_init_asm.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'

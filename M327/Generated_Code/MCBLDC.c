@@ -6,7 +6,7 @@
 **     Component   : MC_BldcHallSensor
 **     Version     : Component 01.009, Driver 01.16, CPU db: 3.50.001
 **     Compiler    : CodeWarrior DSP C Compiler
-**     Date/Time   : 2016-06-12, 19:41, # CodeGen: 10
+**     Date/Time   : 2016-11-16, 17:56, # CodeGen: 171
 **     Abstract    :
 **          These functions, named bldchs, determine which transistors
 **          must be enabled for PWM modulation according to signals from

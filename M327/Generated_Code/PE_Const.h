@@ -6,7 +6,7 @@
 **     Component   : PE_Const
 **     Version     : Driver 01.02
 **     Compiler    : CodeWarrior DSP C Compiler
-**     Date/Time   : 2016-06-12, 15:52, # CodeGen: 0
+**     Date/Time   : 2016-11-16, 17:56, # CodeGen: 171
 **     Abstract    :
 **         This component "PE_Const" contains internal definitions
 **         of the constants.

@@ -130,8 +130,8 @@ void CopyBitsFromCan(byte *buffOr, byte *buffDest, byte byteInit, byte numBits)
 	short destWord = 0;
 	short destBit = 0;
 	
-	orWord = byteInit / 16;
-	orBit = (word)(byteInit % 16);
+	orWord = byteInit / 8;
+	orBit = (word)(byteInit % 8);
 
 	for (i = 0; i < numBits; ++i)
 	{
@@ -143,13 +143,13 @@ void CopyBitsFromCan(byte *buffOr, byte *buffDest, byte byteInit, byte numBits)
 		else
 			buffDest[destWord] &= ~(1 << destBit);
 		
-		if (++orBit >= 16)
+		if (++orBit >= 8)
 		{
 			orBit = 0;
 			orWord++;
 		}
 		
-		if (++destBit >= 16)
+		if (++destBit >= 8)
 		{
 			destBit = 0;
 			destWord++;

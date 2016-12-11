@@ -6,7 +6,7 @@
 **     Component   : Init_TMR
 **     Version     : Component 01.161, Driver 02.09, CPU db: 3.50.001
 **     Compiler    : CodeWarrior DSP C Compiler
-**     Date/Time   : 2016-07-04, 14:29, # CodeGen: 52
+**     Date/Time   : 2016-11-16, 17:56, # CodeGen: 171
 **     Abstract    :
 **         This "Init_TMR" Peripheral Inspector implements the
 **         Quad Timer module (TMR), basic initialization

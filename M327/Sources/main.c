@@ -112,12 +112,16 @@ void main(void)
 	PlcInit();
 	PidInit();
 	CurrInit();
-	CanInit();
+	CanInit();	
 	NMTInit();
 	AnalogicInit();
+	
 	CAN1_Enable();
+	
+	
 	for(;;)
 	{
+	
 		CanServerTrasmit();
 		
 		FlashVariableServer();

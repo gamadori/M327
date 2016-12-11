@@ -3823,11 +3823,11 @@ autoselected pull
       <group name="Timing">
         <CAN_timing_wizard v="click to run timing wizard -&amp;gt;" />
         <Propagation_segment v="1" />
-        <Time_segment_1 v="2" />
-        <Time_segment_2 v="3" />
-        <RSJ v="1" />
+        <Time_segment_1 v="1" />
+        <Time_segment_2 v="0" />
+        <RSJ v="0" />
         <Samples_per_bit v="Three samples" />
-        <Time_quanta_per_bit v="10" />
+        <Time_quanta_per_bit v="6" />
         <Bit_rate v="1000 kbit/s" />
       </group>
       <group name="Initialization">

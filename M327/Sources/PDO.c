@@ -19,7 +19,7 @@
 
 typedef struct td_s_variable_mapping
 {
-	word* pObject;	// pointer to the object of the corresponding variable for this mapping entry
+	byte* pObject;	// pointer to the object of the corresponding variable for this mapping entry
 	
 	word bitsIni;	// value for the variable defined with pObject
 	
@@ -113,9 +113,10 @@ void processSendPDO(word idBoard, short typeBoard, short nGroup)
 	dword nByte;
 	
 	byte  *pMappingCount; // number of available mapping parameters
-	dword *pMappedAppObject; // e.g. 60000108
+	byte *pMappedAppObject; // e.g. 60000108
 	byte *pObject; // the object to send (the pointer to the object)
-	word *pwCobId; // cob-id of the variable
+	byte *pwCobId; // cob-id of the variable
+
 	byte *pbTransmissionType; // e.g. 255
 	word *pbCommParamCount; // count of pdo communication parameter (subindex 0)
 	word *inhibitTime;
@@ -165,7 +166,7 @@ void processSendPDO(word idBoard, short typeBoard, short nGroup)
 						if (*pbCommParamCount >= (byte)0x02)
 						{
 							if (getODEntry((word)0x1800 | (byte)psp_i, (byte)2, (byte **)&pbTransmissionType, pSize, &nByte) == SUCCESSFUL) // gets the tranmission type
-								TxPDOTransferTable[idBoard - 1][psp_i].transmissionType = *pbTransmissionType;
+								TxPDOTransferTable[idBoard - 1][psp_i].transmissionType = *((dword *)pbTransmissionType);
 							
 							TxPDOTransferTable[idBoard - 1][psp_i].sent = TRUE; // normally this command will be executed (except the first time)
 
@@ -208,7 +209,7 @@ void processSendPDO(word idBoard, short typeBoard, short nGroup)
 							// workaround: SUCCESSFUL was deleted and (dword)0x8 written instead...
 							
 							if (getODEntry((word)0x1800 | (byte)psp_i, (byte)0x01, (byte **)&pwCobId, pSize, &nByte) == SUCCESSFUL) // gets the cob_id
-								TxPDOTransferTable[idBoard - 1][psp_i].canMessage.cob_id = (*pwCobId & 0x1FFFFFFF) | idBoard;
+								TxPDOTransferTable[idBoard - 1][psp_i].canMessage.cob_id = ((*(dword *)pwCobId) & 0x1FFFFFFF) | idBoard;
 							
 							TxPDOTransferTable[idBoard - 1][psp_i].canMessage.rtr = 0x00;
 							// sets the can-rtr bit to 0
@@ -265,13 +266,14 @@ void processReceivedPDO(CanMessage* m)
 	byte prp_i; // number of the acutal processed pdo-nr.
 	byte prp_j;
 	short nBoard = 0;
-	word *pMappingCount = NULL; // count of mapped objects...
-	word *pMappedAppObject = NULL; // pointer to the var which is mapped to a pdo...
-	dword *pMappingParameter = NULL; // pointer fo the var which holds the mapping parameter of an mapping entry
+	byte *pMappingCount = NULL; // count of mapped objects...
+	byte *pMappedAppObject = NULL; // pointer to the var which is mapped to a pdo...
+	byte *pMappingParameter = NULL; // pointer fo the var which holds the mapping parameter of an mapping entry
+	dword mappingParameter;
+	byte *pTransmissionType = NULL; // pointer to the transmissiontype...
+	byte *pwCobId = NULL;
+	dword wCobId;
 	
-	word *pTransmissionType = NULL; // pointer to the transmissiontype...
-	word *pwCobId = NULL;
-
 	byte writtenBits = (byte)0x00;
 	byte writtenMappingEntries = (byte)0x00;
 
@@ -291,8 +293,8 @@ void processReceivedPDO(CanMessage* m)
 		{ // check wheter the received COBs are interesting for us01:
 			if (getODEntry((word)0x1400 + prp_i, (byte)1, (byte **)&pwCobId, pSize, &nByte) == SUCCESSFUL)
 			{
-			
-				if (*pwCobId == (m->cob_id & 0xFF0))
+				wCobId = *((dword *)pwCobId);
+				if (wCobId == (m->cob_id & 0xFF0))
 				{
 					idBoard = (m->cob_id) & 0x0F;
 					
@@ -327,8 +329,9 @@ void processReceivedPDO(CanMessage* m)
 								// Per ciasun parametro mappato: recupero l'indice e il subindice
 								if (getODEntry((word)0x1600 + prp_i, prp_j + (byte)1, (byte **)&pMappingParameter, pSize, &nByte) == SUCCESSFUL)
 								{
+									mappingParameter = *((dword *)pMappingParameter);
 									// Recupero il parametro
-									if (getODEntry((*pMappingParameter) >> (byte)16, ((*pMappingParameter) >> (byte)8) & (dword)0x000000FF, (byte **)&pMappedAppObject, pSize, &nByte) == SUCCESSFUL)
+									if (getODEntry(mappingParameter >> (byte)16, (mappingParameter >> (byte)8) & (dword)0x000000FF, (byte **)&pMappedAppObject, pSize, &nByte) == SUCCESSFUL)
 									{
 										pMappedAppObject = pMappedAppObject + ((nBoard) * *pSize);
 										// now copy: the value of the mapped var. the count of bits. the pointre of the destination var.
@@ -336,10 +339,10 @@ void processReceivedPDO(CanMessage* m)
 										
 											
 										RxPDOTransferTable[idBoard - 1][prp_i].mappingEntry[prp_j].bitsIni = writtenBits;
-										RxPDOTransferTable[idBoard - 1][prp_i].mappingEntry[prp_j].size = (*pMappingParameter & 0x000000FF);
+										RxPDOTransferTable[idBoard - 1][prp_i].mappingEntry[prp_j].size = (mappingParameter & 0x000000FF);
 										
 										// increase writteBits to the new value.
-										writtenBits += *pMappingParameter & 0x000000FF;
+										writtenBits += mappingParameter & 0x000000FF;
 										writtenMappingEntries++;
 									}
 								}
@@ -355,7 +358,7 @@ void processReceivedPDO(CanMessage* m)
 					// getting the transmissiontype...
 					if (getODEntry((word)0x1400 + prp_i, (byte)2, (byte **)&pTransmissionType, pSize, &nByte) == SUCCESSFUL)
 					{
-						RxPDOTransferTable[idBoard - 1][prp_i].transmissionType = *pTransmissionType;
+						RxPDOTransferTable[idBoard - 1][prp_i].transmissionType = *((dword *)pTransmissionType);
 					}
 					else
 					{ // getting of the correct transmissiontype failed: so assign a standard transmissiontype 255

@@ -6,7 +6,7 @@
 **     Component   : Init_eFlexPWM
 **     Version     : Component 01.000, Driver 01.00, CPU db: 3.50.001
 **     Compiler    : CodeWarrior DSP C Compiler
-**     Date/Time   : 2016-08-11, 08:49, # CodeGen: 124
+**     Date/Time   : 2016-11-16, 17:56, # CodeGen: 171
 **     Abstract    :
 **          This file implements the eFlexPWM (PWMA) module initialization
 **          according to the Peripheral Initialization settings, and

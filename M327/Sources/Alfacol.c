@@ -34,6 +34,7 @@
 #include "Tuning.h"
 #include "Current.h"
 #include "Sdo.h"
+#include "Slave.h"
 
 #define ALFACOL_NMAX_PARAM	16
 
@@ -54,64 +55,66 @@ typedef struct
 
 PtlRoadMap AlfaRoadMap[] =
 {
-	//	Address,							Type,	Size,			ReadOnly, EEprom, CMD
-		{&rpos,								Long,	NUM_AXES,		FALSE,	FALSE,	0x0001},
-		{&vpos,								Long,	NUM_AXES,		FALSE,	FALSE,	0x0002},
+	//	Address,							Type,	Size,				ReadOnly, EEprom, CMD
+		{&rpos,								Long,	NUM_AXES,			FALSE,	FALSE,	0x0001},
+		{&vpos,								Long,	NUM_AXES,			FALSE,	FALSE,	0x0002},
+		{slvPosReal,						Long,	SLAVES_NUM_AXIS,	TRUE, 	FALSE, 	0x0003},		
+		{slvPosVirt,						Long,	SLAVES_NUM_AXIS,	TRUE, 	FALSE, 	0x0004},
 		
-		{&flashCmdVar,						Short,	1,				FALSE,	FALSE,	0x0021},  
-		{&outputBuffer,						Long,	1,				TRUE,	FALSE,	0x0024},
-		{&outValue,							Long,	1,				TRUE,	FALSE,	0x0025},	
-		{&outFrz,							Long,	1,				FALSE,	FALSE,	0x0026},
-		{&outFrzValue,						Long,	1,				FALSE,	FALSE,	0x0027},
+		{&flashCmdVar,						Short,	1,					FALSE,	FALSE,	0x0021},  
+		{&outputBuffer,						Long,	1,					TRUE,	FALSE,	0x0024},
+		{&outValue,							Long,	1,					TRUE,	FALSE,	0x0025},	
+		{&outFrz,							Long,	1,					FALSE,	FALSE,	0x0026},
+		{&outFrzValue,						Long,	1,					FALSE,	FALSE,	0x0027},
 			
-		{&inputBuffer,						Long,	1,				TRUE,	FALSE,	0x0028},
-		{&inpValue,							Long,	1,				TRUE,	FALSE,	0x0029},
-		{&inpFrz,							Long,	1,				FALSE,	FALSE,	0x002A},
-		{&inpFrzValue,						Long,	1,				FALSE,	FALSE,	0x002B},		
-		{bldcSensoresState,					Byte,	NUM_AXES,		TRUE,	FALSE,	0x002F},
+		{&inputBuffer,						Long,	1,					TRUE,	FALSE,	0x0028},
+		{&inpValue,							Long,	1,					TRUE,	FALSE,	0x0029},
+		{&inpFrz,							Long,	1,					FALSE,	FALSE,	0x002A},
+		{&inpFrzValue,						Long,	1,					FALSE,	FALSE,	0x002B},		
+		{bldcSensoresState,					Byte,	NUM_AXES,			TRUE,	FALSE,	0x002F},
 		
-		{drvAxeRegState,					Short,	NUM_AXES,		TRUE,	FALSE,	0x0030},
-		{drvAxeStatus,						Byte,	NUM_AXES,		TRUE,	FALSE,	0x0031},
+		{drvAxeRegState,					Short,	NUM_AXES,			TRUE,	FALSE,	0x0030},
+		{drvAxeStatus,						Byte,	NUM_AXES,			TRUE,	FALSE,	0x0031},
 		
-		{ADCValues,							Short,	NUM_ANALOGIC,	FALSE,	FALSE,	0x003F},
+		{ADCValues,							Short,	NUM_ANALOGIC,		FALSE,	FALSE,	0x003F},
 		
-		{&pidParam[0].a32PGain,				Long,	1,				FALSE,	TRUE,	0x0040},
-		{&pidParam[0].a32IGain,				Long,	1,				FALSE,	TRUE,	0x0041},
-		{&pidParam[0].a32DGain,				Long,	1,				FALSE,	TRUE,	0x0042},
-		{&pidParam[0].f16UpperLim,			Short,	1,				FALSE,	TRUE,	0x0043},
-		{&pidParam[0].f16LowerLim ,			Short,	1,				FALSE,	TRUE,	0x0044},
+		{&pidParam[0].a32PGain,				Long,	1,					FALSE,	TRUE,	0x0040},
+		{&pidParam[0].a32IGain,				Long,	1,					FALSE,	TRUE,	0x0041},
+		{&pidParam[0].a32DGain,				Long,	1,					FALSE,	TRUE,	0x0042},
+		{&pidParam[0].f16UpperLim,			Short,	1,					FALSE,	TRUE,	0x0043},
+		{&pidParam[0].f16LowerLim ,			Short,	1,					FALSE,	TRUE,	0x0044},
 				
-		{srvErrorStatic,					Long,	NUM_AXES,		FALSE,	TRUE,	0x0050},
-		{srvErrorDynamic,					Long,	NUM_AXES,		FALSE,	TRUE,	0x0051},
-		{srvErrorTimeOut,					Short,	NUM_AXES,		FALSE,	TRUE,	0x0052},
+		{srvErrorStatic,					Long,	NUM_AXES,			FALSE,	TRUE,	0x0050},
+		{srvErrorDynamic,					Long,	NUM_AXES,			FALSE,	TRUE,	0x0051},
+		{srvErrorTimeOut,					Short,	NUM_AXES,			FALSE,	TRUE,	0x0052},
 		
-		{&currentNominal,					Short,	1,				FALSE,	TRUE,	0x0060},
-		{&currentMax,						Short,	1,				FALSE,	TRUE,	0x0061},
-		{&timeOutCurrent,					Short,	1,				FALSE,	TRUE,	0x0062},
-		{&timerOutFaultDisable,				Short,	1,				FALSE,	TRUE,	0x0063},
+		{&currentNominal,					Short,	1,					FALSE,	TRUE,	0x0060},
+		{&currentMax,						Short,	1,					FALSE,	TRUE,	0x0061},
+		{&timeOutCurrent,					Short,	1,					FALSE,	TRUE,	0x0062},
+		{&timerOutFaultDisable,				Short,	1,					FALSE,	TRUE,	0x0063},
 		
-		{&pidCurrentParam[0].a32PGain,		Long,	1,				FALSE,	TRUE,	0x0064},
-		{&pidCurrentParam[0].a32IGain,		Long,	1,				FALSE,	TRUE,	0x0065},		
-		{&pidCurrentParam[0].f16UpperLim,	Short,	1,				FALSE,	TRUE,	0x0066},
-		{&pidCurrentParam[0].f16LowerLim,	Short,	1,				FALSE,	TRUE,	0x0067},
-		{thresholdCurrMaxInf,				Short,	NUM_AXES,		FALSE,	TRUE,	0x0068},
-		{thresholdCurrMaxSup,				Short,	NUM_AXES,		FALSE,	TRUE,	0x0069},
-		{pidCurrTimeOut,					Short,	NUM_AXES,		FALSE,	TRUE,	0x006A},
+		{&pidCurrentParam[0].a32PGain,		Long,	1,					FALSE,	TRUE,	0x0064},
+		{&pidCurrentParam[0].a32IGain,		Long,	1,					FALSE,	TRUE,	0x0065},		
+		{&pidCurrentParam[0].f16UpperLim,	Short,	1,					FALSE,	TRUE,	0x0066},
+		{&pidCurrentParam[0].f16LowerLim,	Short,	1,					FALSE,	TRUE,	0x0067},
+		{thresholdCurrMaxInf,				Short,	NUM_AXES,			FALSE,	TRUE,	0x0068},
+		{thresholdCurrMaxSup,				Short,	NUM_AXES,			FALSE,	TRUE,	0x0069},
+		{pidCurrTimeOut,					Short,	NUM_AXES,			FALSE,	TRUE,	0x006A},
 		
-		{reg,								Short,	3,				FALSE,	FALSE,	0x06E},
-		{&faultOccors,						Byte,	1,				FALSE,	FALSE,	0x06F},
+		{reg,								Short,	3,					FALSE,	FALSE,	0x06E},
+		{&faultOccors,						Byte,	1,					FALSE,	FALSE,	0x06F},
 		
-		{rvel,								Long,	NUM_AXES,		TRUE,	FALSE,	0x0100},
-		{dvel,								Long,	NUM_AXES,		TRUE,	FALSE,	0x0101},
-		{dacc,								Short,	NUM_AXES,		TRUE,	FALSE,	0x0102},
-		{dpos,								Long,	NUM_AXES,		TRUE,	FALSE,	0x0103},
-		{kvel,								Long,	NUM_AXES,		TRUE,	FALSE,	0x0104},
-		{f16Result,							Short,	NUM_AXES,		TRUE,	FALSE,	0x0105},
-		{f16CurrentResult,					Short,	NUM_AXES,		TRUE,	FALSE,	0x0106},
-		{f16CurrentInErr,					Short,	NUM_AXES,		TRUE,	FALSE,	0x0107},
+		{rvel,								Long,	NUM_AXES,			TRUE,	FALSE,	0x0100},
+		{dvel,								Long,	NUM_AXES,			TRUE,	FALSE,	0x0101},
+		{dacc,								Short,	NUM_AXES,			TRUE,	FALSE,	0x0102},
+		{dpos,								Long,	NUM_AXES,			TRUE,	FALSE,	0x0103},
+		{kvel,								Long,	NUM_AXES,			TRUE,	FALSE,	0x0104},
+		{f16Result,							Short,	NUM_AXES,			TRUE,	FALSE,	0x0105},
+		{f16CurrentResult,					Short,	NUM_AXES,			TRUE,	FALSE,	0x0106},
+		{f16CurrentInErr,					Short,	NUM_AXES,			TRUE,	FALSE,	0x0107},
 		
-		{&tngTime,							Short,	1,				FALSE,	TRUE,	0x0110},		
-		{&tngFrq,							Short,	1,				FALSE,	TRUE,	0x0111},
+		{&tngTime,							Short,	1,					FALSE,	TRUE,	0x0110},		
+		{&tngFrq,							Short,	1,					FALSE,	TRUE,	0x0111},
 		
 		{NULL,								0,		0,					0,		0,		0}	
 };

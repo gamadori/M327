@@ -7,6 +7,7 @@
 #include "cpu.h"
 #include "CanDic.h"
 #include "CanObjects.h"
+#include "Can402Objects.h"
 #include "CanOpen.h"
 #include "Utility.h"
 
@@ -57,6 +58,10 @@ td_CommProfileArea DicAreaMapping[] =
 		{0x1800, 	0x1803, (td_indexTable *)transmitPDOParameter},	
 		{0x1A00,	0x1A03,	(td_indexTable *)TxPDOMappingTable},	
 		{0x4000,	0x4001,	(td_indexTable *)IO_MappingTable},	
+		{0x6040,	0x6041,	(td_indexTable *)DSP402MappingTable4},
+		{0x6060,	0x6065,	(td_indexTable *)DSP402MappingTable6},
+		{0x607A,	0x6086,	(td_indexTable *)DSP402MappingTable7},
+		{0x60FD,	0x60FE,	(td_indexTable *)DSP402MappingTableF},
 		{0,			0,		NULL}
 };
 
