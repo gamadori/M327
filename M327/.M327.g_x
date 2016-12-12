@@ -12,111 +12,111 @@
   </ToolchainSettings>
   <GeneratedFilesList>
     <GeneratedByPE>
-      <File Name="Generated_Code/bldcdrv.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406420" FileType="45637" CompNumb="38" />
-      <File Name="Generated_Code/Out11.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406573" FileType="45637" CompNumb="24" />
-      <File Name="Generated_Code/Out9.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406608" FileType="45637" CompNumb="22" />
-      <File Name="Generated_Code/Out10.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406594" FileType="45637" CompNumb="23" />
-      <File Name="Generated_Code/CAN1.c" FileDate="2016-12-11, 13:04:32" FileAge="1481457872465" FileType="45637" CompNumb="119" />
-      <File Name="Generated_Code/portasm.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406339" FileType="45637" CompNumb="38" />
-      <File Name="Generated_Code/Out9.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406602" FileType="45637" CompNumb="22" />
-      <File Name="Generated_Code/Out10.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406588" FileType="45637" CompNumb="23" />
-      <File Name="Generated_Code/assert.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406831" FileType="45637" />
-      <File Name="Generated_Code/Out8.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406621" FileType="45637" CompNumb="21" />
-      <File Name="Generated_Code/Out8.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406615" FileType="45637" CompNumb="21" />
-      <File Name="Generated_Code/Out7.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406635" FileType="45637" CompNumb="20" />
-      <File Name="Generated_Code/CSPot.h" FileDate="2016-11-16, 17:56:45" FileAge="1479315405995" FileType="45637" CompNumb="101" />
-      <File Name="Generated_Code/TI1.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406485" FileType="45637" CompNumb="31" />
-      <File Name="Generated_Code/Out7.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406628" FileType="45637" CompNumb="20" />
-      <File Name="Generated_Code/Out6.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406648" FileType="45637" CompNumb="19" />
-      <File Name="Generated_Code/CSPot.c" FileDate="2016-11-16, 17:56:45" FileAge="1479315405987" FileType="45637" CompNumb="101" />
-      <File Name="Generated_Code/TI1.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406477" FileType="45637" CompNumb="31" />
-      <File Name="Generated_Code/Out6.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406641" FileType="45637" CompNumb="19" />
-      <File Name="Generated_Code/Out5.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406661" FileType="45637" CompNumb="18" />
-      <File Name="Generated_Code/Out5.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406655" FileType="45637" CompNumb="18" />
-      <File Name="Generated_Code/Out4.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406676" FileType="45637" CompNumb="17" />
-      <File Name="Generated_Code/Out4.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406669" FileType="45637" CompNumb="17" />
-      <File Name="Generated_Code/Out3.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406689" FileType="45637" CompNumb="16" />
-      <File Name="Documentation/doxygen/RoutingReport.txt" FileDate="2016-11-16, 09:28:38" FileAge="1479284918540" FileType="45637" CompNumb="2" />
-      <File Name="Generated_Code/PE_Types.h" FileDate="2016-11-16, 17:56:45" FileAge="1479315405865" FileType="45637" />
-      <File Name="Generated_Code/Out3.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406683" FileType="45637" CompNumb="16" />
-      <File Name="Generated_Code/Out2.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406704" FileType="45637" CompNumb="15" />
-      <File Name="Generated_Code/Out2.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406696" FileType="45637" CompNumb="15" />
-      <File Name="Generated_Code/Out1.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406717" FileType="45637" CompNumb="14" />
-      <File Name="Generated_Code/SCL.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406011" FileType="45637" CompNumb="97" />
-      <File Name="Generated_Code/Out1.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406711" FileType="45637" CompNumb="14" />
-      <File Name="Generated_Code/Out0.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406730" FileType="45637" CompNumb="13" />
-      <File Name="Generated_Code/SCL.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406003" FileType="45637" CompNumb="97" />
-      <File Name="Generated_Code/Out0.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406724" FileType="45637" CompNumb="13" />
-      <File Name="Generated_Code/Cpu.h" FileDate="2016-11-16, 17:56:45" FileAge="1479315405816" FileType="45637" CompNumb="2" />
-      <File Name="Generated_Code/PWMA.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406177" FileType="45637" CompNumb="81" />
-      <File Name="Generated_Code/Cpu.c" FileDate="2016-11-16, 17:56:45" FileAge="1479315405807" FileType="45637" CompNumb="2" />
-      <File Name="Generated_Code/PWMA.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406135" FileType="45637" CompNumb="81" />
-      <File Name="Generated_Code/IFsh1.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406239" FileType="45637" CompNumb="56" />
-      <File Name="Generated_Code/SM1.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406756" FileType="45637" CompNumb="9" />
-      <File Name="Generated_Code/port.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406309" FileType="45637" CompNumb="38" />
-      <File Name="Generated_Code/IFsh1.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406232" FileType="45637" CompNumb="56" />
-      <File Name="Generated_Code/CSInput.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406743" FileType="45637" CompNumb="10" />
-      <File Name="Generated_Code/SM1.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406750" FileType="45637" CompNumb="9" />
-      <File Name="Generated_Code/CSInput.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406737" FileType="45637" CompNumb="10" />
-      <File Name="Generated_Code/TMRA2.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406194" FileType="45637" CompNumb="73" />
-      <File Name="Sources/main.c" FileDate="2016-12-11, 20:10:27" FileAge="1481483427833" FileType="128" />
-      <File Name="Generated_Code/TMRA2.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406185" FileType="45637" CompNumb="73" />
-      <File Name="Generated_Code/TMRA1.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406210" FileType="45637" CompNumb="72" />
-      <File Name="Generated_Code/configdefines.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406458" FileType="45637" CompNumb="38" />
-      <File Name="Generated_Code/TMRA1.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406202" FileType="45637" CompNumb="72" />
-      <File Name="Generated_Code/TMRA0.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406224" FileType="45637" CompNumb="71" />
-      <File Name="Generated_Code/PE_Const.h" FileDate="2016-11-16, 17:56:45" FileAge="1479315405848" FileType="45637" />
-      <File Name="Generated_Code/TMRA0.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406217" FileType="45637" CompNumb="71" />
-      <File Name="Generated_Code/Inp1.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406499" FileType="45637" CompNumb="30" />
-      <File Name="Generated_Code/Enc2.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406254" FileType="45637" CompNumb="49" />
-      <File Name="Generated_Code/AD1.h" FileDate="2016-11-16, 17:56:45" FileAge="1479315405912" FileType="45637" CompNumb="131" />
-      <File Name="Generated_Code/Inp1.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406492" FileType="45637" CompNumb="30" />
-      <File Name="Generated_Code/Enc2.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406246" FileType="45637" CompNumb="49" />
-      <File Name="Generated_Code/Enc1.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406267" FileType="45637" CompNumb="47" />
-      <File Name="Generated_Code/AD1.c" FileDate="2016-11-16, 17:56:45" FileAge="1479315405886" FileType="45637" CompNumb="131" />
-      <File Name="Generated_Code/Enc1.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406260" FileType="45637" CompNumb="47" />
-      <File Name="Generated_Code/Inp16.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406513" FileType="45637" CompNumb="29" />
-      <File Name="Generated_Code/IO_Map.h" FileDate="2016-11-16, 17:56:45" FileAge="1479315405838" FileType="45637" />
-      <File Name="Generated_Code/Inp16.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406506" FileType="45637" CompNumb="29" />
-      <File Name="Generated_Code/SDA.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406026" FileType="45637" CompNumb="96" />
-      <File Name="Documentation/doxygen/M327.txt" FileDate="2016-11-16, 09:28:38" FileAge="1479284918249" FileType="45637" CompNumb="2" />
-      <File Name="Generated_Code/SDA.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406019" FileType="45637" CompNumb="96" />
-      <File Name="Generated_Code/MCBLDC.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406471" FileType="45637" CompNumb="38" />
-      <File Name="Sources/Events.h" FileDate="2016-11-16, 09:28:38" FileAge="1479284918348" FileType="131328" />
-      <File Name="Documentation/M327_SIGNALS.txt" FileDate="2016-12-11, 23:13:34" FileAge="1481494414731" FileType="3072" />
-      <File Name="Generated_Code/MCBLDC.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406464" FileType="45637" CompNumb="38" />
-      <File Name="Sources/Events.c" FileDate="2016-11-16, 09:28:38" FileAge="1479284918349" FileType="131328" />
-      <File Name="Generated_Code/CSFlash.h" FileDate="2016-11-16, 17:56:45" FileAge="1479315405959" FileType="45637" CompNumb="116" />
-      <File Name="Generated_Code/types.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406360" FileType="45637" CompNumb="38" />
-      <File Name="Generated_Code/CSFlash.c" FileDate="2016-11-16, 17:56:45" FileAge="1479315405942" FileType="45637" CompNumb="116" />
-      <File Name="Generated_Code/PWMC1.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406094" FileType="45637" CompNumb="80" />
-      <File Name="Documentation/doxygen/pex.doxyfile" FileDate="2016-11-16, 09:28:38" FileAge="1479284918488" FileType="45637" CompNumb="2" />
-      <File Name="Generated_Code/PE_Error.h" FileDate="2016-11-16, 17:56:45" FileAge="1479315405856" FileType="45637" />
-      <File Name="Generated_Code/PWMC1.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406060" FileType="45637" CompNumb="80" />
-      <File Name="Project_Settings/Startup_Code/56F83x_init.asm" FileDate="2016-11-16, 09:28:38" FileAge="1479284918323" FileType="16384" CompNumb="2" />
-      <File Name="Generated_Code/AppConfig.h" FileDate="2016-11-16, 17:56:45" FileAge="1479315405827" FileType="45637" />
-      <File Name="Generated_Code/Out15.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406526" FileType="45637" CompNumb="28" />
-      <File Name="Documentation/M327.txt" FileDate="2016-11-16, 09:28:38" FileAge="1479284918431" FileType="3072" />
-      <File Name="Generated_Code/Out15.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406520" FileType="45637" CompNumb="28" />
-      <File Name="Generated_Code/Out14.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406539" FileType="45637" CompNumb="27" />
-      <File Name="Generated_Code/prototype.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406379" FileType="45637" CompNumb="38" />
-      <File Name="Generated_Code/Out14.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406533" FileType="45637" CompNumb="27" />
-      <File Name="Generated_Code/Out13.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406553" FileType="45637" CompNumb="26" />
-      <File Name="Generated_Code/bldc.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406436" FileType="45637" CompNumb="38" />
-      <File Name="Generated_Code/AS1.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406788" FileType="45637" CompNumb="8" />
-      <File Name="Generated_Code/Out13.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406546" FileType="45637" CompNumb="26" />
-      <File Name="Generated_Code/Out12.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406566" FileType="45637" CompNumb="25" />
-      <File Name="Generated_Code/AS1.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406777" FileType="45637" CompNumb="8" />
-      <File Name="Project_Settings/Linker_Files/FLASH_SDM.cmd" FileDate="2016-11-16, 09:28:38" FileAge="1479284918152" FileType="8" CompNumb="2" />
-      <File Name="Generated_Code/bldcdrv.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406402" FileType="45637" CompNumb="38" />
-      <File Name="Project_Settings/Debugger/MC56F84789.mem" FileDate="2016-11-16, 09:28:38" FileAge="1479284918248" FileType="45637" CompNumb="2" />
-      <File Name="Generated_Code/Out12.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406559" FileType="45637" CompNumb="25" />
-      <File Name="Documentation/M327_Settings.xml" FileDate="2016-12-11, 13:04:32" FileAge="1481457872996" FileType="3072" />
-      <File Name="Generated_Code/Out11.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406580" FileType="45637" CompNumb="24" />
-      <File Name="Generated_Code/Vectors.c" FileDate="2016-11-16, 17:56:45" FileAge="1479315405780" FileType="45637" CompNumb="2" />
-      <File Name="Documentation/doxygen/pex.css" FileDate="2016-11-16, 09:28:37" FileAge="1479284917943" FileType="16384" CompNumb="2" />
-      <File Name="Generated_Code/CAN1.h" FileDate="2016-12-11, 13:04:32" FileAge="1481457872378" FileType="45637" CompNumb="119" />
+      <File Name="Generated_Code/Inp16.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341909" FileType="45637" CompNumb="29" />
+      <File Name="Generated_Code/TMRA1.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341306" FileType="45637" CompNumb="72" />
+      <File Name="Generated_Code/TMRA0.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341955" FileType="45637" CompNumb="71" />
+      <File Name="Generated_Code/Inp16.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341905" FileType="45637" CompNumb="29" />
+      <File Name="Generated_Code/configdefines.h" FileDate="2016-11-16, 09:44:07" FileAge="1479285847066" FileType="45637" CompNumb="38" />
+      <File Name="Generated_Code/TMRA0.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341969" FileType="45637" CompNumb="71" />
+      <File Name="Documentation/doxygen/pex.css" FileDate="2016-11-16, 09:44:06" FileAge="1479285846754" FileType="16384" CompNumb="2" />
+      <File Name="Documentation/M327_Settings.xml" FileDate="2016-12-12, 18:39:44" FileAge="1481564384212" FileType="3072" />
+      <File Name="Generated_Code/SCL.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341501" FileType="45637" CompNumb="97" />
+      <File Name="Generated_Code/assert.h" FileDate="2016-11-16, 09:44:06" FileAge="1479285846955" FileType="45637" />
+      <File Name="Generated_Code/SCL.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341525" FileType="45637" CompNumb="97" />
+      <File Name="Generated_Code/Enc2.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341839" FileType="45637" CompNumb="49" />
+      <File Name="Generated_Code/Inp1.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341442" FileType="45637" CompNumb="30" />
+      <File Name="Generated_Code/Enc2.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341851" FileType="45637" CompNumb="49" />
+      <File Name="Generated_Code/Inp1.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341458" FileType="45637" CompNumb="30" />
+      <File Name="Generated_Code/Enc1.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341949" FileType="45637" CompNumb="47" />
+      <File Name="Generated_Code/Cpu.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341661" FileType="45637" CompNumb="2" />
+      <File Name="Generated_Code/Enc1.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341958" FileType="45637" CompNumb="47" />
+      <File Name="Generated_Code/Cpu.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341650" FileType="45637" CompNumb="2" />
+      <File Name="Generated_Code/PWMC1.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341768" FileType="45637" CompNumb="80" />
+      <File Name="Generated_Code/SM1.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341770" FileType="45637" CompNumb="9" />
+      <File Name="Documentation/doxygen/M327.txt" FileDate="2016-11-16, 09:44:06" FileAge="1479285846967" FileType="45637" CompNumb="2" />
+      <File Name="Generated_Code/PWMC1.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341673" FileType="45637" CompNumb="80" />
+      <File Name="Generated_Code/SM1.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341751" FileType="45637" CompNumb="9" />
+      <File Name="Documentation/M327_SIGNALS.txt" FileDate="2016-12-12, 18:39:43" FileAge="1481564383951" FileType="3072" />
+      <File Name="Documentation/M327.txt" FileDate="2016-11-16, 09:44:07" FileAge="1479285847047" FileType="3072" />
+      <File Name="Generated_Code/types.h" FileDate="2016-11-16, 09:44:07" FileAge="1479285847071" FileType="45637" CompNumb="38" />
+      <File Name="Generated_Code/CSInput.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341509" FileType="45637" CompNumb="10" />
+      <File Name="Generated_Code/CSInput.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341489" FileType="45637" CompNumb="10" />
+      <File Name="Generated_Code/AD1.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341248" FileType="45637" CompNumb="131" />
+      <File Name="Generated_Code/Out15.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341527" FileType="45637" CompNumb="28" />
+      <File Name="Generated_Code/PE_Error.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341930" FileType="45637" />
+      <File Name="Generated_Code/AD1.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341274" FileType="45637" CompNumb="131" />
+      <File Name="Generated_Code/Out15.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341515" FileType="45637" CompNumb="28" />
+      <File Name="Generated_Code/Out14.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341472" FileType="45637" CompNumb="27" />
+      <File Name="Sources/Events.h" FileDate="2016-11-16, 09:44:07" FileAge="1479285847003" FileType="131328" />
+      <File Name="Sources/main.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341429" FileType="128" />
+      <File Name="Generated_Code/Out14.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341478" FileType="45637" CompNumb="27" />
+      <File Name="Generated_Code/Out13.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341462" FileType="45637" CompNumb="26" />
+      <File Name="Sources/Events.c" FileDate="2016-11-16, 09:44:07" FileAge="1479285847005" FileType="131328" />
+      <File Name="Project_Settings/Startup_Code/56F83x_init.asm" FileDate="2016-11-16, 09:44:06" FileAge="1479285846984" FileType="16384" CompNumb="2" />
+      <File Name="Generated_Code/Out13.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341483" FileType="45637" CompNumb="26" />
+      <File Name="Generated_Code/Out12.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341530" FileType="45637" CompNumb="25" />
+      <File Name="Generated_Code/SDA.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341263" FileType="45637" CompNumb="96" />
+      <File Name="Documentation/doxygen/RoutingReport.txt" FileDate="2016-11-16, 09:44:07" FileAge="1479285847090" FileType="45637" CompNumb="2" />
+      <File Name="Generated_Code/Out9.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341819" FileType="45637" CompNumb="22" />
+      <File Name="Generated_Code/Out12.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341546" FileType="45637" CompNumb="25" />
+      <File Name="Generated_Code/SDA.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341239" FileType="45637" CompNumb="96" />
+      <File Name="Generated_Code/Out11.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341544" FileType="45637" CompNumb="24" />
+      <File Name="Generated_Code/Out9.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341837" FileType="45637" CompNumb="22" />
+      <File Name="Generated_Code/Out8.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341811" FileType="45637" CompNumb="21" />
+      <File Name="Generated_Code/bldc.h" FileDate="2016-11-16, 09:44:06" FileAge="1479285846807" FileType="45637" CompNumb="38" />
+      <File Name="Generated_Code/Out11.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341535" FileType="45637" CompNumb="24" />
+      <File Name="Generated_Code/Out10.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341574" FileType="45637" CompNumb="23" />
+      <File Name="Generated_Code/Out8.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341844" FileType="45637" CompNumb="21" />
+      <File Name="Generated_Code/Out7.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341454" FileType="45637" CompNumb="20" />
+      <File Name="Generated_Code/Out10.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341561" FileType="45637" CompNumb="23" />
+      <File Name="Generated_Code/IO_Map.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341384" FileType="45637" />
+      <File Name="Generated_Code/Out7.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341512" FileType="45637" CompNumb="20" />
+      <File Name="Generated_Code/CAN1.h" FileDate="2016-12-12, 18:39:43" FileAge="1481564383786" FileType="45637" CompNumb="119" />
+      <File Name="Generated_Code/Out6.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341475" FileType="45637" CompNumb="19" />
+      <File Name="Generated_Code/CAN1.c" FileDate="2016-12-12, 18:39:43" FileAge="1481564383862" FileType="45637" CompNumb="119" />
+      <File Name="Generated_Code/CSPot.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341927" FileType="45637" CompNumb="101" />
+      <File Name="Generated_Code/Out6.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341496" FileType="45637" CompNumb="19" />
+      <File Name="Generated_Code/Out5.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341891" FileType="45637" CompNumb="18" />
+      <File Name="Generated_Code/CSPot.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341887" FileType="45637" CompNumb="101" />
+      <File Name="Generated_Code/Out5.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341881" FileType="45637" CompNumb="18" />
+      <File Name="Generated_Code/Out4.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341907" FileType="45637" CompNumb="17" />
+      <File Name="Generated_Code/Out4.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341912" FileType="45637" CompNumb="17" />
+      <File Name="Generated_Code/CSFlash.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341556" FileType="45637" CompNumb="116" />
+      <File Name="Generated_Code/Out3.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341590" FileType="45637" CompNumb="16" />
+      <File Name="Generated_Code/CSFlash.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341564" FileType="45637" CompNumb="116" />
+      <File Name="Generated_Code/Out3.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341592" FileType="45637" CompNumb="16" />
+      <File Name="Generated_Code/Out2.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341586" FileType="45637" CompNumb="15" />
+      <File Name="Generated_Code/Out2.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341595" FileType="45637" CompNumb="15" />
+      <File Name="Generated_Code/Out1.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341918" FileType="45637" CompNumb="14" />
+      <File Name="Generated_Code/MCBLDC.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341580" FileType="45637" CompNumb="38" />
+      <File Name="Generated_Code/AS1.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341730" FileType="45637" CompNumb="8" />
+      <File Name="Generated_Code/Out1.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341923" FileType="45637" CompNumb="14" />
+      <File Name="Generated_Code/Out0.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341921" FileType="45637" CompNumb="13" />
+      <File Name="Generated_Code/MCBLDC.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341588" FileType="45637" CompNumb="38" />
+      <File Name="Generated_Code/Vectors.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341712" FileType="45637" CompNumb="2" />
+      <File Name="Generated_Code/AS1.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341719" FileType="45637" CompNumb="8" />
+      <File Name="Generated_Code/IFsh1.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341808" FileType="45637" CompNumb="56" />
+      <File Name="Generated_Code/Out0.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341916" FileType="45637" CompNumb="13" />
+      <File Name="Generated_Code/PE_Types.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341971" FileType="45637" />
+      <File Name="Generated_Code/AppConfig.h" FileDate="2016-11-16, 09:44:07" FileAge="1479285847082" FileType="45637" />
+      <File Name="Generated_Code/IFsh1.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341798" FileType="45637" CompNumb="56" />
+      <File Name="Generated_Code/PWMA.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341816" FileType="45637" CompNumb="81" />
+      <File Name="Generated_Code/portasm.h" FileDate="2016-11-16, 09:44:07" FileAge="1479285847055" FileType="45637" CompNumb="38" />
+      <File Name="Generated_Code/PWMA.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341786" FileType="45637" CompNumb="81" />
+      <File Name="Generated_Code/prototype.h" FileDate="2016-11-16, 09:44:06" FileAge="1479285846975" FileType="45637" CompNumb="38" />
+      <File Name="Project_Settings/Linker_Files/FLASH_SDM.cmd" FileDate="2016-11-16, 09:44:06" FileAge="1479285846925" FileType="8" CompNumb="2" />
+      <File Name="Generated_Code/port.h" FileDate="2016-11-16, 09:44:07" FileAge="1479285847001" FileType="45637" CompNumb="38" />
+      <File Name="Generated_Code/bldcdrv.h" FileDate="2016-11-16, 09:44:06" FileAge="1479285846909" FileType="45637" CompNumb="38" />
+      <File Name="Project_Settings/Debugger/MC56F84789.mem" FileDate="2016-11-16, 09:44:06" FileAge="1479285846964" FileType="45637" CompNumb="2" />
+      <File Name="Generated_Code/bldcdrv.c" FileDate="2016-11-16, 09:44:06" FileAge="1479285846921" FileType="45637" CompNumb="38" />
+      <File Name="Generated_Code/TI1.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341314" FileType="45637" CompNumb="31" />
+      <File Name="Documentation/doxygen/pex.doxyfile" FileDate="2016-11-16, 09:44:07" FileAge="1479285847070" FileType="45637" CompNumb="2" />
+      <File Name="Generated_Code/TI1.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341291" FileType="45637" CompNumb="31" />
+      <File Name="Generated_Code/TMRA2.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341604" FileType="45637" CompNumb="73" />
+      <File Name="Generated_Code/PE_Const.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341559" FileType="45637" />
+      <File Name="Generated_Code/TMRA2.c" FileDate="2016-12-12, 18:39:01" FileAge="1481564341601" FileType="45637" CompNumb="73" />
+      <File Name="Generated_Code/TMRA1.h" FileDate="2016-12-12, 18:39:01" FileAge="1481564341282" FileType="45637" CompNumb="72" />
     </GeneratedByPE>
   </GeneratedFilesList>
-  <CodeGenReference>183</CodeGenReference>
+  <CodeGenReference>172</CodeGenReference>
 </CodeGenerationInfo>

@@ -81,7 +81,7 @@ void CanInit()
 	short i;
 	
 	//deviceNodeId = inpDipSwitchStation;
-	SlaveInitIDBoards();
+	SlvInitIDBoards();
 	
 	for (i = 0; i < CAN_FIFO_NUM_CHANNEL; ++i)
 	{
