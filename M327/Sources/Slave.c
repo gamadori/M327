@@ -79,7 +79,7 @@ void SlvInitCommands()
  *	Ciclo principale 
  *
  *======================*/
-void SlvServer(void)
+void SlvServer()
 {    
 	char asse;
 		

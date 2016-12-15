@@ -35,6 +35,8 @@
 #include "Current.h"
 #include "Sdo.h"
 #include "Slave.h"
+#include "Router.h"
+
 
 #define ALFACOL_NMAX_PARAM	16
 
@@ -163,6 +165,9 @@ void bootExit(void);
 
 void AlfacolCanCommand(byte serial);
 
+bool AlfacolRoute(byte serial);
+
+char AlfacolGetTypeOp(byte cmd);
 
 /*
  * Description:
@@ -423,7 +428,7 @@ byte AlfacolDecode(byte c, byte serial)
 						serial_buff[serial][dec_state[serial] + 1] = ALFACOL_END;	
 						serial_buff[serial][dec_state[serial] + 2] = 0;	
 													
-						AlfacolCanCommand(serial);
+						AlfacolRoute(serial);
 						//TMR_RS_DELAY = MSEC(1);
 					}									
 				}
@@ -1049,6 +1054,36 @@ void AlfacolSendResponse(byte serial, dword resp,  bool error, short size)
 			
 }
 
+bool AlfacolRoute(byte serial)
+{
+	char *p;
+	byte resp;
+	
+	p = (char *)serial_buff[serial] + text_data_pos[serial];
+	if (cmd_type[serial] == eAlfaComand)
+	{
+		resp = RouterFunction(numStation[serial], p, &frame_val[serial]);
+	}
+	else
+	{
+		
+		resp = RouterVariable(numStation[serial], p, &frame_val[serial], AlfacolGetTypeOp(cmd_type[serial]));
+			
+	}
+	
+	switch (resp)
+	{
+	case cmdAlfacol:
+		return AlfacolExecute(serial);
+		
+	case cmdSDO:
+		return TRUE;
+		
+	default:
+		return FALSE;
+	}	
+}
+
 void AlfacolCanCommand(byte serial)
 {
 	char subIndex;
@@ -1061,3 +1096,17 @@ void AlfacolCanCommand(byte serial)
 	SDOCommandDownload(numStation[serial], (byte *)lValue, currSDOFrame, subIndex, 4);
 }
 
+/*
+ * Determina se si tratta di un comando di lettura (get) o scrittura (set)
+ */
+char AlfacolGetTypeOp(byte cmd)
+{
+	switch (cmd)
+	{
+		
+	case eAlfaWrite:
+		return opSet;
+	default:
+		return opGet;
+	}		
+}

@@ -70,6 +70,8 @@ td_subIndex Index6086[] =
 	{dicRW,	tINTEGER16,		SIZEOFW_WORD,	(void *)bus_AxisProfile}
 };
 
+
+
 td_subIndex Index60FD[] = 
 {
 	{dicRO, tINTEGER16, SIZEOFW_WORD, (void *)(bus_IO_InputVal)}

@@ -91,7 +91,7 @@ enum ModesOperation
 
 #define SlvIsAxeHomed(axe)			((slvStatusRegister[axe] & SlvBitAxeHomed) == SlvBitAxeHomed)
 
-void SlvServer(void);
+void SlvServer();
 
 void SlvInitIDBoards();
 
