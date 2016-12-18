@@ -106,7 +106,7 @@ void CanServerTrasmit()
 		{
 			CAN1_SendFrame(i, m.cob_id, DATA_FRAME, m.len, m.data, FALSE);
 						
-			delay = 1000;
+			delay = 2000;
 			do
 			{
 				state = CAN1_GetStateTX();

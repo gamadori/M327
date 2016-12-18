@@ -37,6 +37,9 @@ enum CANChannel
 	CanNMTSendState			//15
 };
 
+#define CAN_BUFF_SDO_TX		0x600
+
+
 /*
  * I messaggi in entrata e in uscita sono caricati in questo datatype
  */

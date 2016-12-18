@@ -120,9 +120,9 @@ void FormattIndexSubIndex(byte *buff, word index, byte subIndex);
 
 void GetIndexSubIndex(byte *buff, word *index, byte *subIndex);
 
-void SendSDO(word *buff, short len);
+void SendSDO(byte *buff, short len);
 
-void SendSDOCobId(byte cobId, word *buff, short len);
+void SendSDOCobId(byte cobId, byte *buff, short len);
 
 void SDOProtocolTerminate();
 
@@ -204,7 +204,7 @@ void SDOAbortTransferProtocol(word index, byte subIndex, dword code)
 	
 	BuffCopyValue(code, buff.d, 4);
 	
-	SendSDO((word *)&buff, 8);
+	SendSDO((byte *)&buff, 8);
 						
 	stepSDOc = 0;
 	sdoCurrProtocol = SDONull;
@@ -404,7 +404,7 @@ void SDOServerDownloadProtocol()
 			
 			
 			
-			SendSDO((word *)&buffConfInit, 8);
+			SendSDO((byte *)&buffConfInit, 8);
 			
 			
 			
@@ -530,7 +530,7 @@ void SDOClientDownloadProtocol()
 				
 				for (i = 0; i < sdoBuffLenght; ++i)
 				{
-					((word *)&buff.d[0])[i] = sdoBuffData[i];
+					((byte *)&buff.d[0])[i] = sdoBuffData[i];
 				}
 				
 				sdoExpedited = TRUE;
@@ -555,7 +555,7 @@ void SDOClientDownloadProtocol()
 					
 			FormattIndexSubIndex(&buff.m0, sdoIndex, sdoSubIndex);			
 			
-			SendSDOCobId(sdoDeviceNodeId, (word*)&buff, 8);
+			SendSDOCobId(sdoDeviceNodeId, (byte*)&buff, 8);
 			stepSDOc += 2;
 			
 			break;
@@ -585,7 +585,7 @@ void SDOClientDownloadProtocol()
 				
 				for (i = 0; i < sdoBuffLenght; ++i)
 				{
-					((word *)buff.d)[i] = sdoBuffData[i];
+					((byte *)buff.d)[i] = sdoBuffData[i];
 				}
 				
 				sdoExpedited = TRUE;
@@ -610,7 +610,7 @@ void SDOClientDownloadProtocol()
 					
 			FormattIndexSubIndex(&buff.m0, sdoIndex, sdoSubIndex);			
 			
-			SendSDO((word*)&buff, 8);
+			SendSDO((byte*)&buff, 8);
 			stepSDOc++;
 			
 			break;
@@ -666,7 +666,7 @@ void SDOClientDownloadProtocol()
 				sdoBuffLenght = 0;
 			}
 			
-			SendSDO((word *)&buffReq, 8);
+			SendSDO((byte *)&buffReq, 8);
 			
 			if (++sdoToggleBit > 1)
 				sdoToggleBit = 0;
@@ -839,7 +839,7 @@ void SDOServerDownloadSendConfirm()
 	buff.byte0.X = 0;
 	
 	
-	SendSDO((word *)&buff, 8);
+	SendSDO((byte *)&buff, 8);
 	
 }
 
@@ -933,7 +933,7 @@ void SDOServerUploadProtocol()
 				
 			}
 			
-			SendSDO((word *)&buffConfInit, 8);			
+			SendSDO((byte *)&buffConfInit, 8);			
 			
 		
 			
@@ -1047,9 +1047,9 @@ void SDOsInitiateUploadRequest()
 	
 	FormattIndexSubIndex(&buff.m0, sdoIndex, sdoSubIndex);
 			
-	SendSDOCobId(sdoDeviceNodeId, (word *)&buff,8);
+	SendSDOCobId(sdoDeviceNodeId, (byte *)&buff,8);
 	
-	TMR_CAN_SDO = MSEC(200);
+	TMR_CAN_SDO = MSEC(2000);
 	stepSDOc++;
 			
 }
@@ -1146,6 +1146,7 @@ void SDOsInitiateUploadConfirm()
 	else if (!TMR_CAN_SDO)
 	{
 		stepSDOc = 0;
+		sdoCurrProtocol = SDONull;
 		
 	}
 }
@@ -1172,7 +1173,7 @@ void SDOUploadRequest()
 	buff.reserved5 = 0;
 	buff.reserved6 = 0;
 	
-	SendSDO((word *) &buff, 8);
+	SendSDO((byte *) &buff, 8);
 	
 	stepSDOc++;
 	
@@ -1281,7 +1282,7 @@ void SDOsUploadResponse()
 		SDOProtocolTerminate();
 	}
 	
-	SendSDO((word *)&buff, 8);
+	SendSDO((byte *)&buff, 8);
 	
 }
 
@@ -1407,7 +1408,7 @@ bool InitSDOBlockDownloadProtocol()
 			*((dword *)buffInitDownloadReq.size) = 0;
 			
 			
-			SendSDO((word*)&buffInitDownloadReq, 8);
+			SendSDO((byte *)&buffInitDownloadReq, 8);
 			stepSDOc++;
 			break;
 			
@@ -1578,29 +1579,29 @@ void GetIndexSubIndex(byte *buff, word *index, byte *subIndex)
  *  	short len: numero di byte del dato
  *
  *========================================*/
-void SendSDO(word *buff, short len)
+void SendSDO(byte *buff, short len)
 {
 	short i;
 	CanMessage m;
 	
-	m.cob_id = deviceNodeId;
+	m.cob_id = CAN_BUFF_SDO_TX | deviceNodeId;
 	m.rtr = 0x00;
 	m.len = len;
 	
 	for (i = 0; i < 8; ++i)
 		m.data[i] = buff[i];
-	
+
 	CanTransmitPush(CanSDOTxChannel, &m);
 	
 	
 }
 
-void SendSDOCobId(byte cobId, word *buff, short len)
+void SendSDOCobId(byte cobId, byte *buff, short len)
 {
 	short i;
 	CanMessage m;
 	
-	m.cob_id = cobId;
+	m.cob_id = CAN_BUFF_SDO_TX | cobId;
 	m.rtr = 0x00;
 	m.len = len;
 	

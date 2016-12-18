@@ -126,8 +126,8 @@ byte RouteGetCmds(MapRouter *map, word frame, word index, word *pFrame, word *pI
 		{
 			if (map[i].sdo)
 			{
-				offset = map[i].cmd;
-				*pFrame = map[i + offset].cmd;
+				offset = frame - map[i].cmd;
+				*pFrame = map[i + offset].sdo;
 				*pIdx = map[i].sdoIndex + offset;
 				return cmdSDO;
 			}

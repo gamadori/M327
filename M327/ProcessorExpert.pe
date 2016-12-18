@@ -3,8 +3,8 @@
   <Header>
     <Name>M327</Name>
     <SavedBy>gianluca</SavedBy>
-    <ModificationStamp>161</ModificationStamp>
-    <Date>2016-12-15</Date>
+    <ModificationStamp>165</ModificationStamp>
+    <Date>2016-12-18</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.9.2.RT6_b1446-0504</PEversion>
   </Header>
@@ -29,7 +29,7 @@
     <UseExistingModules>true</UseExistingModules>
     <RenamePeripheries>false</RenamePeripheries>
     <Autodependency>true</Autodependency>
-    <ProjectCompNumb>147</ProjectCompNumb>
+    <ProjectCompNumb>150</ProjectCompNumb>
     <DelUnusedPreviouslyGenFiles>true</DelUnusedPreviouslyGenFiles>
     <GeneratedCodeFrozen>false</GeneratedCodeFrozen>
     <AssignInitComponentNameToPrph>true</AssignInitComponentNameToPrph>
@@ -41920,7 +41920,7 @@
         <ItemSymbol>Buffer13</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Expanded>false</Expanded>
+        <Expanded>true</Expanded>
       </ItemState>
       <ItemState>
         <ItemSymbol>BufferType13</ItemSymbol>
@@ -42018,7 +42018,7 @@
         <ItemSymbol>Buffer15</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Expanded>false</Expanded>
+        <Expanded>true</Expanded>
       </ItemState>
       <ItemState>
         <ItemSymbol>BufferType15</ItemSymbol>
@@ -42384,7 +42384,7 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>0</Value>
+        <Value>7</Value>
         <Base>DEC</Base>
       </ItemState>
       <ItemState>
@@ -42392,7 +42392,7 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>0</Value>
+        <Value>7</Value>
         <Base>DEC</Base>
       </ItemState>
       <ItemState>
@@ -42400,7 +42400,7 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>0</Value>
+        <Value>7</Value>
         <Base>DEC</Base>
       </ItemState>
       <ItemState>
@@ -42408,7 +42408,7 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>0</Value>
+        <Value>2</Value>
         <Base>DEC</Base>
       </ItemState>
       <ItemState>
@@ -42422,7 +42422,7 @@
       <ItemState>
         <ItemSymbol>NumTimeQuanta</ItemSymbol>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>4</Value>
+        <Value>25</Value>
         <Base>DEC</Base>
       </ItemState>
       <ItemState>

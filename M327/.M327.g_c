@@ -195,7 +195,7 @@
     </GenFiles>
     <SignalListFile>Documentation\M327_SIGNALS.txt</SignalListFile>
     <DestinationCompiler>MetrowerksDSP</DestinationCompiler>
-    <ProjectModificationStamp>162</ProjectModificationStamp>
+    <ProjectModificationStamp>164</ProjectModificationStamp>
   </Options>
   <CpuID_2>
     <Generated>true</Generated>
@@ -3792,8 +3792,8 @@
     <GenComponentVersion>02.366</GenComponentVersion>
     <GenDriverVersion>01.03</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1233997609</HeaderAge>
-    <CodeAge>1233997609</CodeAge>
+    <HeaderAge>1234328260</HeaderAge>
+    <CodeAge>1234328260</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>26</GenNumMethods>
     <Enable>true</Enable>
