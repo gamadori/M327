@@ -258,7 +258,7 @@ typedef struct
 
 typedef struct
 {
-	td_SDOsInitUploadReqB0 byte0;
+	byte byte0;
 	
 	byte m0;
 	byte m1;

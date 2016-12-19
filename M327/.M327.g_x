@@ -16,7 +16,7 @@
       <File Name="Generated_Code/Out11.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406573" FileType="45637" CompNumb="24" />
       <File Name="Generated_Code/Out9.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406608" FileType="45637" CompNumb="22" />
       <File Name="Generated_Code/Out10.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406594" FileType="45637" CompNumb="23" />
-      <File Name="Generated_Code/CAN1.c" FileDate="2016-12-18, 11:22:08" FileAge="1482056528837" FileType="45637" CompNumb="119" />
+      <File Name="Generated_Code/CAN1.c" FileDate="2016-12-19, 01:04:05" FileAge="1482105845585" FileType="45637" CompNumb="119" />
       <File Name="Generated_Code/portasm.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406339" FileType="45637" CompNumb="38" />
       <File Name="Generated_Code/Out9.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406602" FileType="45637" CompNumb="22" />
       <File Name="Generated_Code/Out10.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406588" FileType="45637" CompNumb="23" />
@@ -82,8 +82,8 @@
       <File Name="Documentation/doxygen/M327.txt" FileDate="2016-11-16, 09:28:38" FileAge="1479284918249" FileType="45637" CompNumb="2" />
       <File Name="Generated_Code/SDA.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406019" FileType="45637" CompNumb="96" />
       <File Name="Generated_Code/MCBLDC.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406471" FileType="45637" CompNumb="38" />
+      <File Name="Documentation/M327_SIGNALS.txt" FileDate="2016-12-19, 01:04:05" FileAge="1482105845698" FileType="3072" />
       <File Name="Sources/Events.h" FileDate="2016-11-16, 09:28:38" FileAge="1479284918348" FileType="131328" />
-      <File Name="Documentation/M327_SIGNALS.txt" FileDate="2016-12-18, 11:22:08" FileAge="1482056528989" FileType="3072" />
       <File Name="Generated_Code/MCBLDC.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406464" FileType="45637" CompNumb="38" />
       <File Name="Sources/Events.c" FileDate="2016-11-16, 09:28:38" FileAge="1479284918349" FileType="131328" />
       <File Name="Generated_Code/CSFlash.h" FileDate="2016-11-16, 17:56:45" FileAge="1479315405959" FileType="45637" CompNumb="116" />
@@ -108,15 +108,15 @@
       <File Name="Generated_Code/Out12.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406566" FileType="45637" CompNumb="25" />
       <File Name="Generated_Code/AS1.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406777" FileType="45637" CompNumb="8" />
       <File Name="Project_Settings/Linker_Files/FLASH_SDM.cmd" FileDate="2016-11-16, 09:28:38" FileAge="1479284918152" FileType="8" CompNumb="2" />
-      <File Name="Generated_Code/Out12.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406559" FileType="45637" CompNumb="25" />
-      <File Name="Generated_Code/bldcdrv.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406402" FileType="45637" CompNumb="38" />
       <File Name="Project_Settings/Debugger/MC56F84789.mem" FileDate="2016-11-16, 09:28:38" FileAge="1479284918248" FileType="45637" CompNumb="2" />
+      <File Name="Generated_Code/bldcdrv.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406402" FileType="45637" CompNumb="38" />
+      <File Name="Generated_Code/Out12.c" FileDate="2016-11-16, 17:56:46" FileAge="1479315406559" FileType="45637" CompNumb="25" />
+      <File Name="Documentation/M327_Settings.xml" FileDate="2016-12-19, 01:04:06" FileAge="1482105846027" FileType="3072" />
       <File Name="Generated_Code/Out11.h" FileDate="2016-11-16, 17:56:46" FileAge="1479315406580" FileType="45637" CompNumb="24" />
-      <File Name="Documentation/M327_Settings.xml" FileDate="2016-12-18, 11:22:09" FileAge="1482056529399" FileType="3072" />
       <File Name="Generated_Code/Vectors.c" FileDate="2016-11-16, 17:56:45" FileAge="1479315405780" FileType="45637" CompNumb="2" />
+      <File Name="Generated_Code/CAN1.h" FileDate="2016-12-19, 01:04:05" FileAge="1482105845393" FileType="45637" CompNumb="119" />
       <File Name="Documentation/doxygen/pex.css" FileDate="2016-11-16, 09:28:37" FileAge="1479284917943" FileType="16384" CompNumb="2" />
-      <File Name="Generated_Code/CAN1.h" FileDate="2016-12-18, 11:22:08" FileAge="1482056528729" FileType="45637" CompNumb="119" />
     </GeneratedByPE>
   </GeneratedFilesList>
-  <CodeGenReference>178</CodeGenReference>
+  <CodeGenReference>179</CodeGenReference>
 </CodeGenerationInfo>

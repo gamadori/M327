@@ -1036,10 +1036,13 @@ void SDOClientUploadProtocol()
  
 void SDOsInitiateUploadRequest()
 {
+	td_SDOsInitUploadReqB0 byte0;
 	td_SDOsInitUploadReq buff;
 	
-	buff.byte0.ccs = 2;
-	buff.byte0.X = 0;
+	byte0.ccs = 2;
+	byte0.X = 0; 
+	
+	buff.byte0 = *((byte *)&byte0);
 	buff.reserved0 = 0;
 	buff.reserved1 = 0;
 	buff.reserved2 = 0;
