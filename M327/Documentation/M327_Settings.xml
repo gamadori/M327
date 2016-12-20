@@ -3700,7 +3700,7 @@ autoselected pull
       <CAN_channel v="CAN" />
       <boolgroup name="Interrupt service/event" v="Enabled">
         <Interrupt_Message_Buffers v="INT_MB_OR" />
-        <Interrupt_Message_Buffers_priority v="medium priority" />
+        <Interrupt_Message_Buffers_priority v="high priority" />
         <Interrupt_Message_Buffers_preserve_registers v="yes" />
         <Interrupt_Error v="INT_ERROR" />
         <Interrupt_Error_priority v="medium priority" />
@@ -3825,7 +3825,7 @@ autoselected pull
         <Propagation_segment v="7" />
         <Time_segment_1 v="7" />
         <Time_segment_2 v="7" />
-        <RSJ v="2" />
+        <RSJ v="3" />
         <Samples_per_bit v="Three samples" />
         <Time_quanta_per_bit v="25" />
         <Bit_rate v="1000 kbit/s" />

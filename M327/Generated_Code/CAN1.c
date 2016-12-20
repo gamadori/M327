@@ -6,7 +6,7 @@
 **     Component   : FreescaleCAN
 **     Version     : Component 02.366, Driver 01.03, CPU db: 3.50.001
 **     Compiler    : CodeWarrior DSP C Compiler
-**     Date/Time   : 2016-12-19, 01:03, # CodeGen: 178
+**     Date/Time   : 2016-12-19, 11:12, # CodeGen: 180
 **     Abstract    :
 **         This component "FreescaleCAN" implements a CAN serial channel.
 **     Settings    :
@@ -113,7 +113,7 @@
 **             Propagation segment                         : 7
 **             Time segment 1                              : 7
 **             Time segment 2                              : 7
-**             RSJ                                         : 2
+**             RSJ                                         : 3
 **             Samples per bit                             : Three samples
 **             Time quanta per bit                         : 25
 **             Init baud rate                              : 1000 kbit/s
@@ -770,8 +770,8 @@ void CAN1_Init(void)
   while(getRegBit(CAN_MCR, FRZACK) == 0U){} /* Wait for entering the freeze mode */
   /* CAN_MCR: WRNEN=1,SRXDIS=1,MAXMB|=0x0F */
   setReg32Bits(CAN_MCR, 0x0022000FUL); /* Module configuration register settings */ 
-  /* CAN_CTRL1: PRESDIV|=3,RJW|=2,PSEG1=7,PSEG2=7,SMP=1,PROPSEG=7 */
-  setReg32Bits(CAN_CTRL1, 0x03BF0087UL); /* Set the CTRL1 register */ 
+  /* CAN_CTRL1: PRESDIV|=3,RJW=3,PSEG1=7,PSEG2=7,SMP=1,PROPSEG=7 */
+  setReg32Bits(CAN_CTRL1, 0x03FF0087UL); /* Set the CTRL1 register */ 
   /* CAN_CTRL2: RRS=1 */
   setReg32Bits(CAN_CTRL2, 0x00020000UL); /* Set the CTRL2 register */ 
   /* CAN_RXMGMASK: MG=0x1E00FFFF */

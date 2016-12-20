@@ -116,17 +116,7 @@ typedef struct td_SDOcDownloadSegmentConf
 }SDOcDownlodSegmentDataConf;
 
 
-typedef union td_SDOcDataReq
-{
-	SDOInitDownloadData InitiateDownload;
-	SDOcDownlodSegmentData DownloadSegment;
-}SDOcDataReq;
 
-typedef union td_SDOcDataResp
-{
-	SDOInitDownloadDataConf InitiateDownload;
-	SDOcDownlodSegmentDataConf	DownloadSegment;
-}SDOcDataConf;
 
 
 /* 
@@ -142,7 +132,7 @@ typedef union td_SDOcDataResp
  
  typedef struct
  {
- 	td_SDOAbortSDOB0 byte0;
+ 	byte byte0;
  	byte m0;
  	byte m1;
  	byte m2;
@@ -171,7 +161,7 @@ typedef struct
 
 typedef struct
 {
-	td_SDOsInitDownloadReqB0 byte0;
+	byte byte0;
 	
 	byte m0;
 	byte m1;
@@ -195,7 +185,7 @@ typedef struct
 
 typedef struct
 {
-	td_SDOsInitDownloadConfB0 byte0;
+	byte byte0;
 	
 	byte m0;
 	byte m1;
@@ -221,7 +211,7 @@ typedef struct
  
 typedef struct
 {
-	td_SDOsDownloadReqB0 byte0;
+	byte byte0;
 	byte segData[7];
 	
 }td_SDOsDownloadReq;
@@ -237,7 +227,7 @@ typedef struct
 
 typedef struct
 {
-	td_SDOsDownloadConfB0 byte0;
+	byte byte0;
 	byte reserved[7];
 	
 } td_SDOsDownloadConf;
@@ -286,7 +276,7 @@ typedef struct
 
 typedef struct
 {
-	td_SDOsInitUploadConfB0 byte0;
+	byte byte0;
 	
 	byte m0;
 	byte m1;
@@ -308,7 +298,7 @@ typedef struct
 
 typedef struct
 {
-	td_SDOsUploadReqB0 byte0;
+	byte byte0;
 	byte reserved0;
 	byte reserved1;
 	byte reserved2;
@@ -330,7 +320,7 @@ typedef struct
 
 typedef struct
 {
-	td_SDOsUploadConfB0 byte0;
+	byte byte0;
 	byte segData0;
 	byte segData1;
 	byte segData2;
@@ -356,7 +346,7 @@ typedef struct
 
 typedef struct
 {
-	td_SDObInitDownloadReqB0 byte0;
+	byte byte0;
 	
 	byte m[3];
 	byte size[4];
@@ -378,7 +368,7 @@ typedef struct
 
 typedef struct 
 {
-	td_SDObInitDownloadConfB0 byte0;
+	byte byte0;
 	byte m[3];
 	byte blksize;
 	byte reserved[3];	

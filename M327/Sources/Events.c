@@ -377,7 +377,7 @@ void CAN1_OnFullRxBuffer(void)
 	word bufferMask;
 	byte frameFormat;
 	word state;
-
+	word conta = 0;
 	
 	state = CAN1_GetStateRX();
 	
@@ -386,6 +386,12 @@ void CAN1_OnFullRxBuffer(void)
 	{
 		if ((state & CanFifoMbMask[i]) == CanFifoMbMask[i])
 		{			
+			if (i == 13)
+			{
+				conta++;
+				tmrSDO = MSEC(5500);
+			}
+			
 			CAN1_ReadFrame(i, &ID, &type, &frameFormat, &len, buff);
 			CanReceivedPush(i, ID, len, buff);
 		}

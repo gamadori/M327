@@ -10,7 +10,7 @@
 
 #define	TIMER_TICK	1
 
-#define NUM_TIMERS	10
+#define NUM_TIMERS	20
 
 
 dword tmrs[NUM_TIMERS];

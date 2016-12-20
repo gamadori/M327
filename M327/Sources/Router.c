@@ -35,9 +35,9 @@ MapRouter sdoTableRouter[] =
 		{0x0001,	0x0,	IDX_BLASE,		0x6063,		0,				0},			// Real Position
 		{0x0002,	0x0,	IDX_BLASE,		0x6064,		0,				0},			// Virtual Position
 		
-		{0x0040,	0x4,	IDX_BLASE,		0x60F9,		0,				0},			// Proportional Gain/Integral Gain/Derived Gain/Upper Limit/Lower Limit
-		{0x0050,	0x2,	IDX_BLASE,		0x60F9,		0,				0},			// Static Servo Error, Dynamic Servo Error, Time Out Servo Error 
-		{0x0060,	0xA,	IDX_BLASE,		0x60F9,		0,				0},			// Nominal Current, Max Current, Time Out Current, Time Out Fault
+		{0x0040,	0x4,	IDX_BLASE,		0x60F9,		1,				0},			// Proportional Gain/Integral Gain/Derived Gain/Upper Limit/Lower Limit
+		{0x0050,	0x2,	IDX_BLASE,		0x60F9,		5,				0},			// Static Servo Error, Dynamic Servo Error, Time Out Servo Error 
+		{0x0060,	0xA,	IDX_BLASE,		0x60F9,		7,				0},			// Nominal Current, Max Current, Time Out Current, Time Out Fault
 		
 		{0,			0,		0,				0,			0,				0}
 };

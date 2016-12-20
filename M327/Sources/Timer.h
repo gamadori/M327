@@ -34,7 +34,9 @@
 
 #define TMR_FAULT			tmrs[7]
 
-#define TmrPidCurr(axe)		tmrs[8 + axe]
+#define tmrSDO				tmrs[8]
+
+#define TmrPidCurr(axe)		tmrs[9 + axe]
 
 
 extern dword tmrs[];

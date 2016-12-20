@@ -115,6 +115,7 @@ void Operational()
 	SDOServer();
 	
 	PDOTransmitServer();
+	
 }
 
 void CANOpenSendState(byte state)

@@ -197,9 +197,13 @@ void SDOCommandUpload(int numStation, word index, byte subIndex)
 void SDOAbortTransferProtocol(word index, byte subIndex, dword code)
 {
 	td_SDOAbortSDO buff;
+	td_SDOAbortSDOB0 *byte0;
 	
-	buff.byte0.cs = 4;
-	buff.byte0.X = 0;
+	byte0 = (td_SDOAbortSDOB0 *)&buff.byte0;
+	byte0->cs = 4;
+	byte0->X = 0;
+	
+	
 	FormattIndexSubIndex(&buff.m0, index, subIndex);
 	
 	BuffCopyValue(code, buff.d, 4);
@@ -276,7 +280,7 @@ void SDOServer()
 			break;
 			
 		case SDOsUploadClient:		
-			// SDO Segment Upload Client
+			// SDO Segment Upload Client invio comando seriale
 			SDOClientUploadProtocol();
 			break;
 			
@@ -335,6 +339,9 @@ void SDOServerDownloadProtocol()
 	CanMessage m;
 	short i;
 	dword resp;
+	td_SDOsInitDownloadReqB0 *byte0;
+	td_SDOsInitDownloadConfB0 confbyte0;
+	td_SDOsDownloadReqB0 reqByte0;
 	
 	switch (stepSDOc)
 	{
@@ -349,18 +356,18 @@ void SDOServerDownloadProtocol()
 			// Lettura dell'indice e sub-indice del dato del dizionario in cui si vuole scrivere
 			GetIndexSubIndex(&pReqInit->m0, &sdoIndex, &sdoSubIndex);
 			
+			byte0 = (td_SDOsInitDownloadReqB0 *)&pReqInit->byte0;
 			
-			
-			if (pReqInit->byte0.e == 1)
+			if (byte0->e == 1)
 			{
 				// expedited transfer i dati sono gia presenti nel comando ricevuto
 				
 				sdoExpedited = TRUE;
 				
-				if (pReqInit->byte0.s == 1)
+				if (byte0->s == 1)
 				{
 					// La dimensione del dato è nota
-					sdoBuffLenght = 4 - pReqInit->byte0.n;
+					sdoBuffLenght = 4 - byte0->n;
 					
 				}
 				else
@@ -379,7 +386,7 @@ void SDOServerDownloadProtocol()
 			{
 				sdoExpedited = FALSE;
 				
-				if (pReqInit->byte0.s == 1)
+				if (byte0->s == 1)
 				{
 					// Dimensione del dato la trovo in d
 					sdoLenData = sdoBuffLenght = DWGetValueFromBuff(pReqInit->d);
@@ -394,9 +401,9 @@ void SDOServerDownloadProtocol()
 			
 		case 1:
 			// Trasmissione di Initiate SDO Download Response
-			buffConfInit.byte0.scs = 3;
-			buffConfInit.byte0.X = 0;
-			
+			confbyte0.scs = 3;
+			confbyte0.X = 0;
+			buffConfInit.byte0 = *((byte *)&confbyte0);
 			FormattIndexSubIndex(&buffConfInit.m0 , sdoIndex, sdoSubIndex);
 						
 			
@@ -435,9 +442,12 @@ void SDOServerDownloadProtocol()
 				else
 				{
 					pReq = (td_SDOsDownloadReq *)&m;
-					len = 8 - pReq->byte0.n;		// numero di byte contenuti in segdata
 					
-					sdoToggleBit = pReq->byte0.t;
+					*((byte *)&reqByte0) = pReq->byte0;
+					
+					len = 8 - reqByte0.n;		// numero di byte contenuti in segdata
+					
+					sdoToggleBit = reqByte0.t;
 					
 					if (sdoBuffLenght >= len && sdoIdBuff < SDO_BUFFER_SIZE - len)
 					{							
@@ -450,7 +460,7 @@ void SDOServerDownloadProtocol()
 						SDOServerDownloadSendConfirm();
 						
 						// Verifico se l'ultimo pacchetto dei dati o devo rimanere ancora in attesa
-						if (pReq->byte0.c == 0)
+						if (reqByte0.c == 0)
 						{
 							// terminato la ricezione posso scrivere il dato sul dizionario
 							
@@ -501,6 +511,8 @@ void SDOClientDownloadProtocol()
 	word tmp;
 	short i;
 	dword nByte;
+	td_SDOsInitDownloadReqB0 *byte0;
+	td_SDOsDownloadReqB0 *reqByte0;
 	
 	switch (stepSDOc)
 	{
@@ -514,8 +526,9 @@ void SDOClientDownloadProtocol()
 			//sdoBuffLenght = DicGetSize(sdoIndex, sdoSubIndex);
 			
 			// Invio del Request di download al server
-			buff.byte0.ccs = 1;	// Initiate download request						
-			buff.byte0.X = 0;	// Not used always 0
+			byte0 = (td_SDOsInitDownloadReqB0 *)&buff.byte0;
+			byte0->ccs = 1;	// Initiate download request						
+			byte0->X = 0;	// Not used always 0
 			
 			sdoExpedited = FALSE;
 			
@@ -524,9 +537,9 @@ void SDOClientDownloadProtocol()
 			{
 				// expedited 
 				tmp = 8 - sdoBuffLenght;	// Se non uso questa variabile temporanea va in crash il compilatore	
-				buff.byte0.n = tmp;
-				buff.byte0.e = 1;
-				buff.byte0.s = 1;
+				byte0->n = tmp;
+				byte0->e = 1;
+				byte0->s = 1;
 				
 				for (i = 0; i < sdoBuffLenght; ++i)
 				{
@@ -538,9 +551,9 @@ void SDOClientDownloadProtocol()
 			else if (sdoBuffLenght > 4)
 			{
 				// Indicata la dimensione dei byte per il download
-				buff.byte0.n = 0;
-				buff.byte0.e = 0;
-				buff.byte0.s = 1;
+				byte0->n = 0;
+				byte0->e = 0;
+				byte0->s = 1;
 				
 				BuffCopyValue(sdoBuffLenght, buff.d, 4);
 				
@@ -548,11 +561,12 @@ void SDOClientDownloadProtocol()
 			else 
 			{
 				// Non è indicata la dimensione in byte
-				buff.byte0.n = 0;
-				buff.byte0.e = 0;
-				buff.byte0.s = 0;
+				byte0->n = 0;
+				byte0->e = 0;
+				byte0->s = 0;
 			}
-					
+				
+			
 			FormattIndexSubIndex(&buff.m0, sdoIndex, sdoSubIndex);			
 			
 			SendSDOCobId(sdoDeviceNodeId, (byte*)&buff, 8);
@@ -562,6 +576,7 @@ void SDOClientDownloadProtocol()
 			
 		case 1:
 			
+			byte0 = (td_SDOsInitDownloadReqB0 *)&buff.byte0;
 			sdoToggleBit = 0;
 			
 			getODEntry(sdoIndex, sdoSubIndex, (byte **)&sdoBuffData, &sdoBuffLenght, &nByte);
@@ -569,8 +584,8 @@ void SDOClientDownloadProtocol()
 			//sdoBuffLenght = DicGetSize(sdoIndex, sdoSubIndex);
 			
 			// Invio del Request di download al server
-			buff.byte0.ccs = 1;	// Initiate download request						
-			buff.byte0.X = 0;	// Not used always 0
+			byte0->ccs = 1;	// Initiate download request						
+			byte0->X = 0;	// Not used always 0
 			
 			sdoExpedited = FALSE;
 			
@@ -579,9 +594,9 @@ void SDOClientDownloadProtocol()
 			{
 				// expedited 
 				tmp = 8 - sdoBuffLenght;	// Se non uso questa variabile temporanea va in crash il compilatore	
-				buff.byte0.n = tmp;
-				buff.byte0.e = 1;
-				buff.byte0.s = 1;
+				byte0->n = tmp;
+				byte0->e = 1;
+				byte0->s = 1;
 				
 				for (i = 0; i < sdoBuffLenght; ++i)
 				{
@@ -593,9 +608,9 @@ void SDOClientDownloadProtocol()
 			else if (sdoBuffLenght > 4)
 			{
 				// Indicata la dimensione dei byte per il download
-				buff.byte0.n = 0;
-				buff.byte0.e = 0;
-				buff.byte0.s = 1;
+				byte0->n = 0;
+				byte0->e = 0;
+				byte0->s = 1;
 				
 				BuffCopyValue(sdoBuffLenght, (byte *)buff.d, 4);
 				
@@ -603,11 +618,12 @@ void SDOClientDownloadProtocol()
 			else 
 			{
 				// Non è indicata la dimensione in byte
-				buff.byte0.n = 0;
-				buff.byte0.e = 0;
-				buff.byte0.s = 0;
+				byte0->n = 0;
+				byte0->e = 0;
+				byte0->s = 0;
 			}
-					
+				
+			
 			FormattIndexSubIndex(&buff.m0, sdoIndex, sdoSubIndex);			
 			
 			SendSDO((byte*)&buff, 8);
@@ -651,20 +667,23 @@ void SDOClientDownloadProtocol()
 			
 		case 3:
 			// Download SDO Segment
-			buffReq.byte0.ccs = 0;
-			buffReq.byte0.t = sdoToggleBit;
+			reqByte0 = (td_SDOsDownloadReqB0 *)&buffReq.byte0;
+			
+			reqByte0->ccs = 0;
+			reqByte0->t = sdoToggleBit;
 			
 			if (sdoBuffLenght > 7)
 			{			
-				buffReq.byte0.n = 0;
+				reqByte0->n = 0;
 				sdoBuffLenght -= 7;
 			}
 			else
 			{
-				tmp = 8 - buffReq.byte0.n;
-				buffReq.byte0.n = tmp;
+				tmp = 8 - reqByte0->n;
+				reqByte0->n = tmp;
 				sdoBuffLenght = 0;
 			}
+			
 			
 			SendSDO((byte *)&buffReq, 8);
 			
@@ -719,14 +738,16 @@ void SDOClientDownloadProtocol()
 bool VerSDOInitDownloadReq(CanMessage *m)
 {
 	td_SDOsInitDownloadReq* p; 
-
+	td_SDOsInitDownloadReqB0 *byte0;
 	if (m->len != 8)
 		return FALSE;
 	
 	
 	p = (td_SDOsInitDownloadReq *)m->data;
 	
-	if (p->byte0.ccs != 1 || p->byte0.X != 0 || !VerSDOIndexSubIndex(&p->m0))
+	byte0 = (td_SDOsInitDownloadReqB0 *)&p->byte0;
+	
+	if (byte0->ccs != 1 || byte0->X != 0 || !VerSDOIndexSubIndex(&p->m0))
 		return FALSE;
 	
 	return TRUE;
@@ -748,14 +769,16 @@ bool VerSDOInitDownloadReq(CanMessage *m)
 bool VerSDOInitDownloadConfirm(CanMessage *m)
 {
 	td_SDOsInitDownloadConf* p; 
-
+	td_SDOsInitDownloadConfB0 *byte0;
 	if (m->len != 8)
 		return FALSE;
 	
 	
 	p = (td_SDOsInitDownloadConf *)m->data;
 	
-	if (p->byte0.scs != 3 || p->byte0.X != 0 || !VerSDOIndexSubIndex(&p->m0))
+	byte0 = (td_SDOsInitDownloadConfB0 *)&p->byte0;
+	
+	if (byte0->scs != 3 || byte0->X != 0 || !VerSDOIndexSubIndex(&p->m0))
 		return FALSE;
 	
 	return TRUE;
@@ -777,16 +800,18 @@ bool VerSDOInitDownloadConfirm(CanMessage *m)
 dword VerSDODownloadRequest(CanMessage *m)
 {
 	td_SDOsDownloadReq* p; 
-
+	td_SDOsDownloadReqB0* reqByte0;
+	
 	if (m->len != 8)
 		return FALSE;
 	
 	
 	p = (td_SDOsDownloadReq *)m->data;
+	reqByte0 = (td_SDOsDownloadReqB0 *)&p->byte0;
 	
-	if (p->byte0.ccs != 0)
+	if (reqByte0->ccs != 0)
 		return SDOErrorProtocolTimeOut;
-	else if (p->byte0.t == sdoToggleBit)
+	else if (reqByte0->t == sdoToggleBit)
 		return SDOErrorToggleBit;
 	
 	else 
@@ -809,14 +834,16 @@ dword VerSDODownloadRequest(CanMessage *m)
 bool VerSDODownloadConfirm(CanMessage *m)
 {
 	td_SDOsDownloadConf* p; 
-
+	td_SDOsDownloadConfB0* byte0;
+	
 	if (m->len != 8)
 		return FALSE;
 	
 	
 	p = (td_SDOsDownloadConf *)m->data;
+	byte0 = (td_SDOsDownloadConfB0 *)&p->byte0;
 	
-	if (p->byte0.scs == sdoToggleBit || p->byte0.X != 0)
+	if (byte0->scs == sdoToggleBit || byte0->X != 0)
 		return FALSE;
 	
 	return TRUE;
@@ -833,10 +860,12 @@ bool VerSDODownloadConfirm(CanMessage *m)
 void SDOServerDownloadSendConfirm()
 {
 	td_SDOsDownloadConf buff;
+	td_SDOsDownloadConfB0 *byte0;
 	
-	buff.byte0.scs = 1;
-	buff.byte0.t = sdoToggleBit;
-	buff.byte0.X = 0;
+	byte0 = (td_SDOsDownloadConfB0 *)&buff.byte0;
+	byte0->scs = 1;
+	byte0->t = sdoToggleBit;
+	byte0->X = 0;
 	
 	
 	SendSDO((byte *)&buff, 8);
@@ -869,12 +898,13 @@ void SDOServerUploadProtocol()
 	td_SDOsInitUploadReq *pReqInit;
 	td_SDOsInitUploadConf buffConfInit;
 	td_SDOsUploadReq *pReq;
-	
+	td_SDOsInitUploadConfB0 *confByte0;
 	CanMessage m;
 	short i;
 	dword resp;
 	word tmp;
 
+	confByte0 = (td_SDOsInitUploadConfB0 *)&buffConfInit.byte0;
 	switch (stepSDOc)
 	{
 		case 0:
@@ -898,8 +928,8 @@ void SDOServerUploadProtocol()
 			
 		case 1:
 			// Trasmissione di Initiate SDO Download Confirm
-			buffConfInit.byte0.scs = 2;
-			buffConfInit.byte0.X = 0;
+			confByte0->scs = 2;
+			confByte0->X = 0;
 			
 			FormattIndexSubIndex(&buffConfInit.m0 , sdoIndex, sdoSubIndex);
 						
@@ -909,12 +939,12 @@ void SDOServerUploadProtocol()
 				sdoExpedited = TRUE;
 				
 				// Expedited transfer
-				buffConfInit.byte0.e = 1;
-				buffConfInit.byte0.s = 1;
+				confByte0->e = 1;
+				confByte0->s = 1;
 
 				
 				tmp = 4 - sdoNumByte;
-				buffConfInit.byte0.n = tmp;
+				confByte0->n = tmp;
 				
 				CopyDataToCAN(sdopBuffSeg, buffConfInit.d, sdoLenData);
 				
@@ -922,8 +952,8 @@ void SDOServerUploadProtocol()
 			else
 			{
 				sdoExpedited = FALSE;
-				buffConfInit.byte0.e = 0;
-				buffConfInit.byte0.s = (sdoLenData > 0);
+				confByte0->e = 0;
+				confByte0->s = (sdoLenData > 0);
 				
 				if (sdoLenData > 0)
 				{
@@ -1070,6 +1100,7 @@ void SDOsInitiateUploadConfirm()
 {
 	CanMessage m;
 	td_SDOsInitUploadConf *buff;
+	td_SDOsInitUploadConfB0 *confByte0;
 	dword resp;
 	
 	
@@ -1084,17 +1115,18 @@ void SDOsInitiateUploadConfirm()
 			
 			// Dimensione del dato la trovo in d
 			sdoLenData = sdoBuffLenght = DWGetValueFromBuff((byte *)buff->d);
+			confByte0 = (td_SDOsInitUploadConfB0 *)&buff->byte0;
 			
-			if (buff->byte0.e == 1)
+			if (confByte0->e == 1)
 			{
 				// expedited transfer i dati sono gia presenti nel comando ricevuto
 				
 				sdoExpedited = TRUE;
 				
-				if (buff->byte0.s == 1)
+				if (confByte0->s == 1)
 				{
 					// La dimensione del dato è nota
-					sdoBuffLenght = 4 - buff->byte0.n;
+					sdoBuffLenght = 4 - confByte0->n;
 					
 				}
 				else
@@ -1124,7 +1156,7 @@ void SDOsInitiateUploadConfirm()
 			{
 				sdoExpedited = FALSE;
 				
-				if (buff->byte0.s == 1)
+				if (confByte0->s == 1)
 				{
 					// Dimensione del dato la trovo in d
 					sdoLenData = sdoBuffLenght = DWGetValueFromBuff(buff->d);
@@ -1164,10 +1196,12 @@ void SDOsInitiateUploadConfirm()
 void SDOUploadRequest()
 {
 	td_SDOsUploadReq buff;
+	td_SDOsUploadReqB0 *byte0;
 	
-	buff.byte0.ccs = 3;
-	buff.byte0.t = sdoToggleBit;
-	buff.byte0.X = 0;
+	byte0 = (td_SDOsUploadReqB0 *)&buff.byte0;
+	byte0->ccs = 3;
+	byte0->t = sdoToggleBit;
+	byte0->X = 0;
 	buff.reserved0 = 0;
 	buff.reserved1 = 0;
 	buff.reserved2 = 0;
@@ -1193,6 +1227,7 @@ void SDOUploadRequest()
 void SDOUploadConfirm()
 {
 	td_SDOsUploadConf *buff;
+	td_SDOsUploadConfB0 *confByte0;
 	CanMessage m;
 	dword resp;
 	word len;
@@ -1206,9 +1241,11 @@ void SDOUploadConfirm()
 		{			
 			
 			buff = (td_SDOsUploadConf *)&m;
-			len = 8 - buff->byte0.n;
+			confByte0 = (td_SDOsUploadConfB0 *)&buff->byte0;
+			
+			len = 8 - confByte0->n;
 					
-			sdoToggleBit = buff->byte0.t;
+			sdoToggleBit = confByte0->t;
 					
 			if (sdoBuffLenght >= len && sdoIdBuff < SDO_BUFFER_SIZE - len)
 			{							
@@ -1217,7 +1254,7 @@ void SDOUploadConfirm()
 							
 				sdoBuffLenght -= len;
 				// Verifico se l'ultimo pacchetto dei dati o devo rimanere ancora in attesa
-				if (buff->byte0.c == 0)
+				if (confByte0->c == 0)
 				{
 					// terminato la ricezione posso scrivere il dato sul dizionario
 				//	DicWrite(sdoIndex, sdoSubIndex, (word *)sdoBuffSegments, sdoLenData, sdoLenData);
@@ -1260,26 +1297,28 @@ void SDOUploadConfirm()
 void SDOsUploadResponse()
 {
 	td_SDOsUploadConf buff;
+	td_SDOsUploadConfB0 *byte0;
 	word *pDic;
 	word size;
 	dword resp;
 	word tmp;
 	
-	buff.byte0.scs = 0;
-	buff.byte0.t = sdoToggleBit;
+	byte0 = (td_SDOsUploadConfB0 *)&buff.byte0;
+	byte0->scs = 0;
+	byte0->t = sdoToggleBit;
 	
 	
 	if (sdoBuffLenght > 7)
 	{			
-		buff.byte0.n = 0;
-		buff.byte0.c = 1;
+		byte0->n = 0;
+		byte0->c = 1;
 		sdoBuffLenght -= 7;
 	}
 	else
 	{
-		tmp = 8 - buff.byte0.n;
-		buff.byte0.n = tmp;
-		buff.byte0.c = 0;
+		tmp = 8 - byte0->n;
+		byte0->n = tmp;
+		byte0->c = 0;
 		sdoBuffLenght = 0;
 		
 		SDOProtocolTerminate();
@@ -1305,24 +1344,25 @@ void SDOsUploadResponse()
 dword VerSDOUploadRequest(CanMessage *m)
 {
 	td_SDOsUploadReq* p; 
-
+	td_SDOsUploadReqB0 *byte0;
 	if (m->len != 8)
 		return FALSE;
 	
 	
 	p = (td_SDOsUploadReq *)m->data;
+	byte0 = (td_SDOsUploadReqB0 *)&p->byte0;
 	
-	if (p->byte0.ccs != 3)
+	if (byte0->ccs != 3)
 		return SDOErrorProtocolTimeOut;
 	
-	else if (p->byte0.t != sdoToggleBit)
+	else if (byte0->t != sdoToggleBit)
 	
 		return SDOErrorToggleBit;
 	
 	else 
 	{
 		
-		sdoToggleBit = p->byte0.t;
+		sdoToggleBit = byte0->t;
 		return SDOErrorOK;
 	}
 		
@@ -1341,15 +1381,15 @@ dword VerSDOUploadRequest(CanMessage *m)
  *=======================================================*/
 dword VerSDOInitUploadConfirm(CanMessage *m)
 {
-	td_SDOsInitUploadConf* p; 
-
+	td_SDOsInitUploadConf *p; 
+	td_SDOsInitUploadConfB0 *byte0;
 	if (m->len != 8)
 		return FALSE;
 	
 	
 	p = (td_SDOsInitUploadConf *)m->data;
-	
-	if (p->byte0.scs != 2 || p->byte0.X != 0)
+	byte0 = (td_SDOsInitUploadConfB0 *)&p->byte0;
+	if (byte0->scs != 2 || byte0->X != 0)
 		return SDOErrorProtocolTimeOut;
 	else
 		return SDOErrorOK;
@@ -1370,14 +1410,15 @@ dword VerSDOInitUploadConfirm(CanMessage *m)
 dword VerSDOUploadConfirm(CanMessage *m)
 {
 	td_SDOsUploadConf* p; 
-
+	td_SDOsUploadConfB0 *byte0;
 	if (m->len != 8)
 		return FALSE;
 	
 	
 	p = (td_SDOsUploadConf *)m->data;
+	byte0 = (td_SDOsUploadConfB0 *)&p->byte0;
 	
-	if (p->byte0.scs != 4 || p->byte0.t == sdoToggleBit)
+	if (byte0->scs != 4 || byte0->t == sdoToggleBit)
 		return SDOErrorProtocolTimeOut;
 	else
 		return SDOErrorOK;
@@ -1395,17 +1436,19 @@ dword VerSDOUploadConfirm(CanMessage *m)
 bool InitSDOBlockDownloadProtocol()
 {
 	CanMessage m;
+	td_SDObInitDownloadReqB0 *byte0;
 	
+	byte0 = (td_SDObInitDownloadReqB0 *)&buffInitDownloadReq.byte0;
 	switch (stepSDOc)
 	{
 		case 0:
 			
 			// Invio del Request di download al server
-			buffInitDownloadReq.byte0.ccs = 6;	// Block download specifer
-			buffInitDownloadReq.byte0.X = 0;		// not used, always 0
-			buffInitDownloadReq.byte0.cc = 0;		// 0: client does not support generating CRC on data, 1: Client supports generating CRC on data			
-			buffInitDownloadReq.byte0.s = 0;
-			buffInitDownloadReq.byte0.cs = 0;
+			byte0->ccs = 6;	// Block download specifer
+			byte0->X = 0;		// not used, always 0
+			byte0->cc = 0;		// 0: client does not support generating CRC on data, 1: Client supports generating CRC on data			
+			byte0->s = 0;
+			byte0->cs = 0;
 			 
 			FormattIndexSubIndex(buffInitDownloadReq.m, sdoIndex, sdoSubIndex);
 			*((dword *)buffInitDownloadReq.size) = 0;
@@ -1468,15 +1511,16 @@ void CmdSDOBlockDownload(byte nodeId, word ptc, word index, byte subIndex)
  *=======================================================*/
 bool VerSDOBlockDownloadConfirm(CanMessage *m)
 {
-	td_SDObInitDownloadConf* p; 
-
+	td_SDObInitDownloadConf *p; 
+	td_SDObInitDownloadConfB0 *byte0;
 	if (m->len != 8)
 		return FALSE;
 	
 	
 	p = (td_SDObInitDownloadConf *)m->data;
+	byte0 = (td_SDObInitDownloadConfB0 *)&p->byte0;
 	
-	if (p->byte0.scs != 5 || p->byte0.X != 0 || p->byte0.ss != 0 || !VerSDOIndexSubIndex(p->m) || p->reserved != 0)
+	if (byte0->scs != 5 || byte0->X != 0 || byte0->ss != 0 || !VerSDOIndexSubIndex(p->m) || p->reserved != 0)
 		return FALSE;
 	
 	sdoBlkSize = p->blksize;

@@ -6,7 +6,7 @@
 **     Component   : FreescaleCAN
 **     Version     : Component 02.366, Driver 01.03, CPU db: 3.50.001
 **     Compiler    : CodeWarrior DSP C Compiler
-**     Date/Time   : 2016-12-19, 01:03, # CodeGen: 178
+**     Date/Time   : 2016-12-19, 11:12, # CodeGen: 180
 **     Abstract    :
 **         This component "FreescaleCAN" implements a CAN serial channel.
 **     Settings    :
@@ -113,7 +113,7 @@
 **             Propagation segment                         : 7
 **             Time segment 1                              : 7
 **             Time segment 2                              : 7
-**             RSJ                                         : 2
+**             RSJ                                         : 3
 **             Samples per bit                             : Three samples
 **             Time quanta per bit                         : 25
 **             Init baud rate                              : 1000 kbit/s

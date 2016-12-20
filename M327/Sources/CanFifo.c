@@ -62,7 +62,7 @@ void CanFifoPushOne(tCanFifo *fifo, word id, byte len, byte *buff)
 {
 	short i;
 	
-	if (len < 8 && CanMsgFifoInitOk(fifo))
+	if (len <= 8 && CanMsgFifoInitOk(fifo))
 	{
 		
 		if (!CanFifoPutData(fifo, id, len, buff))

@@ -139,6 +139,7 @@ byte text_data_pos[NUM_SERIAL];		// Position of the Data Type field on the recei
 byte frame_idx[NUM_SERIAL];		// Frame's Number of bytes received
 	
 
+
 byte AlfacolCheckBCD(byte *buff, byte pos);
 
 byte GetSizeVariable(short idx);
@@ -168,6 +169,11 @@ void AlfacolCanCommand(byte serial);
 bool AlfacolRoute(byte serial);
 
 char AlfacolGetTypeOp(byte cmd);
+
+bool AlfacolSDO(byte serial);
+
+bool AlfacolSDOVariable(byte serial, byte subIndex, long value);
+
 
 /*
  * Description:
@@ -427,8 +433,8 @@ byte AlfacolDecode(byte c, byte serial)
 						//AlfacolSendBuffer(SCI1, SCI0);
 						serial_buff[serial][dec_state[serial] + 1] = ALFACOL_END;	
 						serial_buff[serial][dec_state[serial] + 2] = 0;	
-													
-						AlfacolRoute(serial);
+						AlfacolSDO(serial);							
+						//AlfacolRoute(serial);
 						//TMR_RS_DELAY = MSEC(1);
 					}									
 				}
@@ -1054,6 +1060,40 @@ void AlfacolSendResponse(byte serial, dword resp,  bool error, short size)
 			
 }
 
+bool AlfacolSDO(byte serial)
+{
+	char subIndex;
+	long value;
+	char *p;
+	p = (char *)serial_buff[serial] + text_data_pos[serial];
+	
+	Alfasscanfb(&p, &subIndex);
+	Alfasscanfl(&p, &value);
+	
+	currSDOFrame = frame_val[serial];
+	
+	AlfacolSDOVariable(serial, subIndex, value);
+	
+	return TRUE;
+	
+}
+
+bool AlfacolSDOVariable(byte serial, byte subIndex, long value)
+{
+	long size;
+	
+	
+	if (cmd_type[serial] == eAlfaRead)
+	{
+		SDOCommandUpload(numStation[serial], currSDOFrame, subIndex);
+		
+	}
+	else 
+	{					
+		
+		SDOCommandDownload(numStation[serial], (byte *)&value, currSDOFrame, subIndex, 4);									
+	}
+}
 bool AlfacolRoute(byte serial)
 {
 	char *p;
