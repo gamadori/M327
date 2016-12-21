@@ -348,7 +348,7 @@ byte AlfacolDecode(byte c, byte serial)
 		// Gets Type of Command
 		switch (c)
 		{
-		case eAlfaComand:
+		case eAlfaCommand:
 		case eAlfaReply:
 		case eAlfaError:
 		case eAlfaComNoReply:
@@ -431,8 +431,8 @@ byte AlfacolDecode(byte c, byte serial)
 					{
 						// The destination of the received string is the slave 
 						//AlfacolSendBuffer(SCI1, SCI0);
-						serial_buff[serial][dec_state[serial] + 1] = ALFACOL_END;	
-						serial_buff[serial][dec_state[serial] + 2] = 0;	
+						serial_buff[serial][dec_state[serial] -1] = 0;	
+							
 						AlfacolSDO(serial);							
 						//AlfacolRoute(serial);
 						//TMR_RS_DELAY = MSEC(1);
@@ -882,7 +882,7 @@ bool AlfacolExecute(byte serial)
 			st =  AlfacolRDWR(serial, (serial_buff[serial] + text_data_pos[serial]));	
 			break;
 			
-		case eAlfaComand:
+		case eAlfaCommand:
 			st = AlfacolCmd(serial, (serial_buff[serial] + text_data_pos[serial]), &reply);
 			break;
 	}
@@ -1083,15 +1083,16 @@ bool AlfacolSDOVariable(byte serial, byte subIndex, long value)
 	long size;
 	
 	
-	if (cmd_type[serial] == eAlfaRead)
+	switch (cmd_type[serial] == eAlfaRead)
 	{
+	case eAlfaRead:
 		SDOCommandUpload(numStation[serial], currSDOFrame, subIndex);
-		
-	}
-	else 
-	{					
-		
+		break;
+	
+	default:
 		SDOCommandDownload(numStation[serial], (byte *)&value, currSDOFrame, subIndex, 4);									
+		break;
+		
 	}
 }
 bool AlfacolRoute(byte serial)
@@ -1100,7 +1101,7 @@ bool AlfacolRoute(byte serial)
 	byte resp;
 	
 	p = (char *)serial_buff[serial] + text_data_pos[serial];
-	if (cmd_type[serial] == eAlfaComand)
+	if (cmd_type[serial] == eAlfaCommand)
 	{
 		resp = RouterFunction(numStation[serial], p, &frame_val[serial]);
 	}

@@ -90,6 +90,7 @@
 #include "CanOpen.h"
 #include "Can.h"
 #include "NMT.h"
+#include "Slave.h"
 
 #define faultInpEnable		((inputBuffer & BIT2) == BIT2)
 
@@ -130,7 +131,7 @@ void main(void)
 		SerialReceve();
 		CANOPENServer();
 		CurrServer();
-		
+		SlvServer();
 	}
 }
 

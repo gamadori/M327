@@ -53,7 +53,7 @@ enum eCodeAlfaCmd
 
 enum eAlfaCmdType
 {
-	eAlfaComand = '#',
+	eAlfaCommand = '#',
 	eAlfaRead = '?',
 	eAlfaWrite = '=',
 	eAlfaReply = '$',
