@@ -35,7 +35,7 @@
 #include "Current.h"
 #include "Sdo.h"
 #include "Slave.h"
-#include "Router.h"
+
 
 
 #define ALFACOL_NMAX_PARAM	16
@@ -58,8 +58,8 @@ typedef struct
 PtlRoadMap AlfaRoadMap[] =
 {
 	//	Address,							Type,	Size,				ReadOnly, EEprom, CMD
-		{&rpos,								Long,	NUM_AXES,			FALSE,	FALSE,	0x0001},
-		{&vpos,								Long,	NUM_AXES,			FALSE,	FALSE,	0x0002},
+		{&rpos,								Long,	MAC_NUM_AXIS,		FALSE,	FALSE,	0x0001},
+		{&vpos,								Long,	MAC_NUM_AXIS,		FALSE,	FALSE,	0x0002},
 		{slvPosReal,						Long,	SLAVES_NUM_AXIS,	TRUE, 	FALSE, 	0x0003},		
 		{slvPosVirt,						Long,	SLAVES_NUM_AXIS,	TRUE, 	FALSE, 	0x0004},
 		
@@ -1083,7 +1083,7 @@ bool AlfacolSDOVariable(byte serial, byte subIndex, long value)
 	long size;
 	
 	
-	switch (cmd_type[serial] == eAlfaRead)
+	switch (cmd_type[serial])
 	{
 	case eAlfaRead:
 		SDOCommandUpload(numStation[serial], currSDOFrame, subIndex);
@@ -1095,6 +1095,7 @@ bool AlfacolSDOVariable(byte serial, byte subIndex, long value)
 		
 	}
 }
+/*
 bool AlfacolRoute(byte serial)
 {
 	char *p;
@@ -1123,7 +1124,7 @@ bool AlfacolRoute(byte serial)
 	default:
 		return FALSE;
 	}	
-}
+}*/
 
 void AlfacolCanCommand(byte serial)
 {
@@ -1137,17 +1138,4 @@ void AlfacolCanCommand(byte serial)
 	SDOCommandDownload(numStation[serial], (byte *)lValue, currSDOFrame, subIndex, 4);
 }
 
-/*
- * Determina se si tratta di un comando di lettura (get) o scrittura (set)
- */
-char AlfacolGetTypeOp(byte cmd)
-{
-	switch (cmd)
-	{
-		
-	case eAlfaWrite:
-		return opSet;
-	default:
-		return opGet;
-	}		
-}
+

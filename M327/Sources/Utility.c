@@ -100,8 +100,8 @@ void CopyDataToCAN(byte *buffOr, byte *buffDest, word size)
 {
 	short i;
 	
-	for (i = 0; i < 8; ++i)
-		buffDest[i] = 0;
+	//for (i = 0; i < 8; ++i)
+	//	buffDest[i] = 0;
 	
 	if (!size)
 	{

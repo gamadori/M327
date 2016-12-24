@@ -10,6 +10,7 @@
 
 #define NUM_SLAVES			1
 #define SLAVES_NUM_AXIS		1
+#define MAC_NUM_AXIS		NUM_AXES + SLAVES_NUM_AXIS
 
 #include "Drive.h"
 
@@ -26,8 +27,8 @@ extern long slvPosVirt[];
 
 extern word bus_AxisStatusWord[];
 extern word bus_AxisControlWord[];
-extern word bus_AxisOperation[];
-extern word bus_AxisModeOperDisplay[];
+extern byte bus_AxisOperation[];
+extern byte bus_AxisModeOperDisplay[];
 extern word bus_AxisProfile[];
 extern t_pid_axe_state bus_AxisStatusWordAlarm[];
 
@@ -120,7 +121,7 @@ void SlvStopAsse(short asse);
 void SlvStopAllAxes();
 
 bool SlvHomeAsse(short asse);
-void SET_MODE_OPERATION(int asse, int valore);
+void SET_MODE_OPERATION(int asse, byte valore);
 
 word CHECK_MODE_OPERATION(int asse, int valore);
 

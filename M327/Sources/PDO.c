@@ -103,6 +103,9 @@ void PDOTransmitServer()
 	firstTime = FALSE;	
 }
 
+
+	
+
 void processSendPDO(word idBoard, short typeBoard, short nGroup)
 {	
 	byte psp_i, psp_j, psp_k;
@@ -114,12 +117,13 @@ void processSendPDO(word idBoard, short typeBoard, short nGroup)
 	
 	byte  *pMappingCount; // number of available mapping parameters
 	byte *pMappedAppObject; // e.g. 60000108
+	dword mappedAppObject;
 	byte *pObject; // the object to send (the pointer to the object)
 	byte *pwCobId; // cob-id of the variable
 
 	byte *pbTransmissionType; // e.g. 255
-	word *pbCommParamCount; // count of pdo communication parameter (subindex 0)
-	word *inhibitTime;
+	byte *pbCommParamCount; // count of pdo communication parameter (subindex 0)
+	byte *inhibitTime;
   	word inhibit;
 	pSize = &size;
 
@@ -143,9 +147,11 @@ void processSendPDO(word idBoard, short typeBoard, short nGroup)
 					// gets the mapping parameter e.g. 0x60000108
 					if (getODEntry((word)0x1A00 | (byte)psp_i, (byte)((byte)psp_k + (byte)0x01), (byte **)&pMappedAppObject, pSize, &nByte) == (byte)SUCCESSFUL)
 					{
+						mappedAppObject = *((dword *)pMappedAppObject);
+						
 						// gets the value of the process var...
-						if (getODEntry((word)((*pMappedAppObject & 0xFFFF0000) >> 16),
-							(byte)((*pMappedAppObject & 0x0000FF00) >> 8), (byte **)&pObject, pSize, &nByte) == SUCCESSFUL)
+						if (getODEntry((word)((mappedAppObject & 0xFFFF0000) >> 16),
+							(byte)((mappedAppObject & 0x0000FF00) >> 8), (byte **)&pObject, pSize, &nByte) == SUCCESSFUL)
 						{
 							pObject = pObject + ((nGroup) * *pSize); 
 						 
@@ -225,12 +231,12 @@ void processSendPDO(word idBoard, short typeBoard, short nGroup)
 				}
 				else
 				{					
-					inhibit = MSEC(*inhibitTime);
+					inhibit = MSEC(*((word *)inhibitTime));
 				}
 				if ((TxPDOTransferTable[idBoard - 1][psp_i].sent == FALSE) && (TxPDOTransferTable[idBoard - 1][psp_i].transmissionType == (byte)255) && 
 					(dword)(timerSys - TxPDOTransferTable[idBoard - 1][psp_i].txTimer) >= inhibit)
 				{ 
-					CanTransmitPush(PDORxChannels[psp_i], &TxPDOTransferTable[idBoard - 1][psp_i].canMessage);
+					CanTransmitPush(PDOTxChannels[psp_i], &TxPDOTransferTable[idBoard - 1][psp_i].canMessage);
 		
 					TxPDOTransferTable[idBoard - 1][psp_i].txTimer = timerSys;
 					TxPDOTransferTable[idBoard - 1][psp_i].sent = TRUE;

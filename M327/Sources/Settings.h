@@ -12,7 +12,7 @@
 
 #define MIN_16 (Word16)0x8000
 
-#define NUM_AXES		2
+#define NUM_AXES		1
 
 #define NUM_ENCODERS	2
 

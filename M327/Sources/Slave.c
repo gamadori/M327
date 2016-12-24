@@ -25,8 +25,8 @@ char ChkTimeOut[SLAVES_NUM_AXIS];
 //Status assi
 word bus_AxisStatusWord[SLAVES_NUM_AXIS];
 word bus_AxisControlWord[SLAVES_NUM_AXIS];
-word bus_AxisOperation[SLAVES_NUM_AXIS];
-word bus_AxisModeOperDisplay[SLAVES_NUM_AXIS];
+byte bus_AxisOperation[SLAVES_NUM_AXIS];
+byte bus_AxisModeOperDisplay[SLAVES_NUM_AXIS];
 word bus_AxisProfile[SLAVES_NUM_AXIS];
 t_pid_axe_state bus_AxisStatusWordAlarm[SLAVES_NUM_AXIS];
 
@@ -196,6 +196,7 @@ void SlvJogServer()
 			case 4:
 				SET_MODE_OPERATION(asse, moJogModeNeg);
 				RESET_ControlWordBit(asse, CtrlWord_STOP);
+				slvCmdJog[asse] = 0;
 				break;
 		}
 	}
@@ -258,6 +259,8 @@ void SlvJogPos(short asse)
 		
 	SET_MODE_OPERATION(asse, moJogModePos);
 	RESET_ControlWordBit(asse, CtrlWord_STOP);
+	
+	SlvCmdJogPos(asse);
 }
 
 void SlvJogNeg(short asse)
@@ -265,6 +268,7 @@ void SlvJogNeg(short asse)
 	SET_MODE_OPERATION(asse, moJogModeNeg);
 	RESET_ControlWordBit(asse, CtrlWord_STOP);
 	
+	SlvCmdJogNeg(asse);
 }
 
 
@@ -317,10 +321,10 @@ bool SlvHomeAsse(short asse)
 }
 
 //------------------------------------------
-void SET_MODE_OPERATION(int asse, int valore)
+void SET_MODE_OPERATION(int asse, byte valore)
 {
 	if (asse < SLAVES_NUM_AXIS)
-		bus_AxisOperation[asse] = (word)valore;
+		bus_AxisOperation[asse] = (byte)valore;
 }
 
 word CHECK_MODE_OPERATION(int asse, int valore)

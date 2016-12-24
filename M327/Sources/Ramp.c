@@ -12,6 +12,7 @@
 #include "Utility.h"
 #include "Tuning.h"
 #include "drive.h"
+#include "Slave.h"
 #include "Ramp.h"
 
 
@@ -26,7 +27,7 @@
 #define RAMP_SHIFT		7
 
 
-long vpos[NUM_AXES];						// Virtual Position
+long vpos[MAC_NUM_AXIS];						// Virtual Position
 
 
 long rvel[NUM_AXES];	// Actual Speed
@@ -524,6 +525,11 @@ bool RampRSJog(char *param, short index)
 			
 		return TRUE;
 	}
+	else if (index < MAC_NUM_AXIS)
+	{
+		SlvJogAsse(index - NUM_AXES, speed, acc);
+		return TRUE;
+	}
 	else
 		return FALSE;
 }
@@ -554,6 +560,10 @@ bool RampRSMove(char *param, short index, bool tuning)
 			
 		return TRUE;
 	}
+	else if (index < MAC_NUM_AXIS)
+	{
+		 SlvPosAsse(index - NUM_AXES, speed, pos, acc, 0);
+	}
 	else
 		return FALSE;
 }
@@ -575,6 +585,10 @@ bool RampRSStop(char *param, short index)
 		RampStopCommand((byte)index, acc);
 			
 		return TRUE;
+	}
+	else if (index < MAC_NUM_AXIS)
+	{
+		SlvStopAsse(index);
 	}
 	else
 		return FALSE;

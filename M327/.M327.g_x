@@ -86,14 +86,14 @@
       <File Name="Generated_Code/CSPot.c" FileDate="2016-12-19, 09:50:37" FileAge="1482137437649" FileType="45637" CompNumb="101" />
       <File Name="Generated_Code/SM1.c" FileDate="2016-12-19, 09:50:37" FileAge="1482137437487" FileType="45637" CompNumb="9" />
       <File Name="Generated_Code/Out7.c" FileDate="2016-12-19, 09:50:37" FileAge="1482137437202" FileType="45637" CompNumb="20" />
-      <File Name="Documentation/M327_SIGNALS.txt" FileDate="2016-12-20, 11:36:26" FileAge="1482230186510" FileType="3072" />
+      <File Name="Documentation/M327_SIGNALS.txt" FileDate="2016-12-24, 13:04:22" FileAge="1482581062973" FileType="3072" />
       <File Name="Generated_Code/Out6.h" FileDate="2016-12-19, 09:50:37" FileAge="1482137437175" FileType="45637" CompNumb="19" />
       <File Name="Generated_Code/Out6.c" FileDate="2016-12-19, 09:50:37" FileAge="1482137437192" FileType="45637" CompNumb="19" />
       <File Name="Generated_Code/Out5.h" FileDate="2016-12-19, 09:50:37" FileAge="1482137437653" FileType="45637" CompNumb="18" />
       <File Name="Project_Settings/Linker_Files/FLASH_SDM.cmd" FileDate="2016-12-19, 09:50:37" FileAge="1482137437580" FileType="8" CompNumb="2" />
       <File Name="Generated_Code/Out5.c" FileDate="2016-12-19, 09:50:37" FileAge="1482137437646" FileType="45637" CompNumb="18" />
       <File Name="Generated_Code/Out4.h" FileDate="2016-12-19, 09:50:37" FileAge="1482137437668" FileType="45637" CompNumb="17" />
-      <File Name="Sources/main.c" FileDate="2016-12-19, 09:50:37" FileAge="1482137437152" FileType="128" />
+      <File Name="Sources/main.c" FileDate="2016-12-21, 00:49:32" FileAge="1482277772313" FileType="128" />
       <File Name="Generated_Code/CSInput.h" FileDate="2016-12-19, 09:50:37" FileAge="1482137437201" FileType="45637" CompNumb="10" />
       <File Name="Generated_Code/Out4.c" FileDate="2016-12-19, 09:50:37" FileAge="1482137437671" FileType="45637" CompNumb="17" />
       <File Name="Generated_Code/CSInput.c" FileDate="2016-12-19, 09:50:37" FileAge="1482137437187" FileType="45637" CompNumb="10" />
@@ -118,5 +118,5 @@
       <File Name="Generated_Code/port.h" FileDate="2016-12-19, 09:50:37" FileAge="1482137437640" FileType="45637" CompNumb="38" />
     </GeneratedByPE>
   </GeneratedFilesList>
-  <CodeGenReference>183</CodeGenReference>
+  <CodeGenReference>185</CodeGenReference>
 </CodeGenerationInfo>

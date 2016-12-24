@@ -5,11 +5,14 @@
  *      Author: gianluca
  */
 #include "cpu.h"
+#include "Settings.h"
 #include "CanDic.h"
 #include "CanObjects.h"
 #include "Can402Objects.h"
 #include "Drive.h"
 #include "Slave.h"
+#include "Encoder.h"
+#include "Ramp.h"
 
 td_subIndex Index6040[] = 
 {
@@ -34,13 +37,13 @@ td_subIndex Index6061[] =
 
 td_subIndex Index6063[] = 
 {
-	{dicRO, tINTEGER32, SIZEOFW_DWORD, (void *)slvPosReal}
+	{dicRO, tINTEGER32, SIZEOFW_DWORD, (void *)(rpos + NUM_AXES)}
 };
 
 
 td_subIndex Index6064[] = 
 {
-	{dicRO, tINTEGER32, SIZEOFW_DWORD, (void *)slvPosVirt}
+	{dicRO, tINTEGER32, SIZEOFW_DWORD, (void *)(vpos + NUM_AXES)}
 };
 
 td_subIndex Index6065[] = 

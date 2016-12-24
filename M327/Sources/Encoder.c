@@ -9,9 +9,11 @@
 #include "Enc1.h"
 #include "Enc2.h"
 #include "Settings.h"
+#include "Slave.h"
 #include "Encoder.h"
 
-long rpos[NUM_AXES];						// Actual Position
+
+long rpos[MAC_NUM_AXIS];						// Actual Position
 
 short encCount[NUM_AXES];					// Valore del contatore
 

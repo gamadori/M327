@@ -300,7 +300,7 @@ td_subIndex Index1800[] =
 {
 	{dicRW, tUNSIGNED8, 	SIZEOFW_BYTE, 	(void *)&TxPDO1.count},
 	{dicRW, tUNSIGNED32,	SIZEOFW_DWORD,	(void *)&TxPDO1.cob_id},
-	{dicRW, tUNSIGNED32,	SIZEOFW_DWORD,	(void *)&TxPDO1.type},
+	{dicRW, tUNSIGNED8,		SIZEOFW_BYTE,	(void *)&TxPDO1.type},
 	{dicRW, tUNSIGNED16,	SIZEOFW_WORD,	(void *)&TxPDO1.inhibit_time}
 };
 
@@ -309,7 +309,7 @@ td_subIndex Index1801[] =
 {
 	{dicRW, tUNSIGNED8, 	SIZEOFW_BYTE,	(void *)&TxPDO2.count },
 	{dicRW, tUNSIGNED32, 	SIZEOFW_DWORD,	(void *)&TxPDO2.cob_id },
-	{dicRW, tUNSIGNED32, 	SIZEOFW_DWORD,	(void *)&TxPDO2.type },
+	{dicRW, tUNSIGNED8, 	SIZEOFW_BYTE,	(void *)&TxPDO2.type },
 	{dicRW, tUNSIGNED16,	SIZEOFW_WORD, 	(void *)&TxPDO2.inhibit_time}
 };
 
@@ -320,7 +320,7 @@ td_subIndex Index1802[] =
 {
 	{dicRW, tUNSIGNED8,		SIZEOFW_BYTE, 	(void *)&TxPDO3.count },
 	{dicRW, tUNSIGNED32,	SIZEOFW_DWORD,	(void *)&TxPDO3.cob_id },
-	{dicRW, tUNSIGNED32,	SIZEOFW_DWORD,	(void *)&TxPDO3.type },
+	{dicRW, tUNSIGNED8,	SIZEOFW_BYTE,	(void *)&TxPDO3.type },
 	{dicRW, tUNSIGNED16,	SIZEOFW_WORD, 	(void *)&TxPDO3.inhibit_time}
 };
 
@@ -329,7 +329,7 @@ td_subIndex Index1803[] =
 {
 	{dicRO, tUNSIGNED8,		SIZEOFW_BYTE, 	(void *)&TxPDO4.count},
 	{dicRO, tUNSIGNED32, 	SIZEOFW_DWORD,	(void *)&TxPDO4.cob_id},
-	{dicRO, tUNSIGNED32, 	SIZEOFW_DWORD,	(void *)&TxPDO4.type},
+	{dicRO, tUNSIGNED8, 	SIZEOFW_BYTE,	(void *)&TxPDO4.type},
 	{dicRW, tUNSIGNED16,	SIZEOFW_WORD,	(void *)&TxPDO4.inhibit_time}
 };
 
@@ -432,7 +432,7 @@ const td_indexTable RxPDOMappingTable[] =
 
 #define FILL_DATA_S_PDO_MAPPING 0, 0, 0, 0
 
-td_pdo_mapping TxMap1 = { 3, 0x60400010, 0x60600010, 	0x607A0020, 0 };	// ControlWord, ModeOperation, Posizione Desiderata
+td_pdo_mapping TxMap1 = { 3, 0x60400010, 0x60600008, 	0x607A0020, 0 };	// ControlWord, ModeOperation, Posizione Desiderata
 td_pdo_mapping TxMap2 = { 2, 0x60810020, 0x60830020, 	0, 			0 };	// Velocità desiderata, Accelerazione Desiderata
 td_pdo_mapping TxMap3 = { 2, 0x60860010, 0x60FE0010, 	0, 			0 };	// Profilodel pozionamento, Output
 td_pdo_mapping TxMap4 = { 0, 0, 		 0, 			0, 			0 };
