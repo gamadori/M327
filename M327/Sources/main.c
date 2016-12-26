@@ -91,6 +91,7 @@
 #include "Can.h"
 #include "NMT.h"
 #include "Slave.h"
+#include "Bus.h"
 
 #define faultInpEnable		((inputBuffer & BIT2) == BIT2)
 
@@ -116,6 +117,7 @@ void main(void)
 	CanInit();	
 	NMTInit();
 	AnalogicInit();
+	BusInit();
 	
 	CAN1_Enable();
 	
@@ -132,6 +134,7 @@ void main(void)
 		CANOPENServer();
 		CurrServer();
 		SlvServer();
+		BusServer();
 	}
 }
 

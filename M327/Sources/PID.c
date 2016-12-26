@@ -41,6 +41,9 @@ short pidCurrTimeOut[NUM_AXES];
 short currentPIDState[NUM_AXES];
 long pidErrPos[NUM_AXES];
 
+acc32_t pidKiBackup[NUM_AXES];
+bool	pidKiBackupped[NUM_AXES];
+
 void PidCurrentServer(byte axe);
 
 void PidInit()
@@ -59,6 +62,8 @@ void PidInit()
 		GFLIB_CtrlPIpAWInit_F16(f16CurrentInitVal[i], pidCurrentParam + i);		
 		
 		currentPIDState[i] = 0;
+		
+		pidKiBackupped[i] = FALSE;
 	}
 	
 	
@@ -74,6 +79,7 @@ void PidReset(byte axe)
 	f16CurrentInitVal[axe] = FRAC16(0.0);
 	GFLIB_CtrlPIpAWInit_F16(f16CurrentInitVal[axe], pidCurrentParam + axe);	
 }
+
 
 #pragma interrupt called
 void PidServer(byte axe)
@@ -170,3 +176,26 @@ void PidCurrentServer(byte axe)
 	
 	
 }
+
+
+void PidLoadHomingParam(byte axe)
+{
+	
+	
+	if (!pidKiBackupped[axe])
+		pidKiBackup[axe] = pidCurrentParam[axe].a32IGain;
+	
+	pidCurrentParam[axe].a32IGain = 0;
+	
+	pidKiBackupped[axe] = TRUE;
+}
+
+
+void PidUploadHomingParam(byte axe)
+{
+	if (pidKiBackupped[axe])
+		pidCurrentParam[axe].a32IGain = pidKiBackup[axe];
+		
+	pidKiBackupped[axe] = FALSE;
+}
+

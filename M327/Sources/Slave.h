@@ -81,16 +81,22 @@ enum ModesOperation
 #define StatusWord_Error		BIT13
 
 #define SlvBitAxeInPos			BIT0
-
 #define SlvBitAxeHomed			BIT1
+#define SlvBitAxeStopped		BIT2
 
 #define SlvAxeInPos(axe, state)		(state) ? (slvStatusRegister[axe] |= SlvBitAxeInPos) : (slvStatusRegister[axe] &= ~SlvBitAxeInPos)
 
 #define SlvAxeHomed(axe, state)		(state) ? (slvStatusRegister[axe] |= SlvBitAxeHomed) : (slvStatusRegister[axe] &= ~SlvBitAxeHomed)
 
+#define SlvAxeStopped(axe, state)	(state) ? (slvStatusRegister[axe] |= SlvBitAxeStopped) : (slvStatusRegister[axe] &= ~SlvBitAxeStopped)
+
+
 #define SlvIsAxeInPos(axe)			((slvStatusRegister[axe] & SlvBitAxeInPos) == SlvBitAxeInPos)
 
 #define SlvIsAxeHomed(axe)			((slvStatusRegister[axe] & SlvBitAxeHomed) == SlvBitAxeHomed)
+
+#define SlvIsAxeStopped(axe)		((slvStatusRegister[axe] & SlvBitAxeStopped) == SlvBitAxeStopped)
+
 
 void SlvServer();
 
@@ -116,7 +122,7 @@ void SlvJogAsse(short asse, long vel, short acc);
 
 void SlvJogPos(short asse);
 
-void SlvStopAsse(short asse);
+void SlvStopAsse(short asse, short acc);
 
 void SlvStopAllAxes();
 

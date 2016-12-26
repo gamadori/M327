@@ -20,6 +20,9 @@ enum eAxeCommands
 	cONOFF
 };
 
+#define RampAxeGetCmd(axe, cmd) (command[axe] == cmd)
+
+
 extern long vpos[];						// Virtual Position
 
 extern long rvel[];
@@ -38,6 +41,9 @@ extern long srvErrorDynamic[];
 
 extern word srvErrorTimeOut[];
 
+extern short command[];
+
+
 void RampInit();
 
 void RampReset(byte axe);
@@ -55,12 +61,6 @@ void RampStopCommand(byte axe, word dec);
 void RampJogCommand(byte axe, long speed, short acc);
 
 void RampMoveCommand(byte axe, long pos, long speed, short acc, bool tuning);
-
-bool RampRSJog(char *param, short index);
-
-bool RampRSMove(char *param, short index, bool tuning);
-
-bool RampRSStop(char *param, short index);
 
 void RampSrvError(byte axe);
 

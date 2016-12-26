@@ -273,11 +273,10 @@ void SlvJogNeg(short asse)
 
 
 
-void SlvStopAsse(short asse)
+void SlvStopAsse(short asse, short acc)
 {
 	bus_AxisVel[asse] = 0;
-	bus_AxisAcc[asse] = 0;
-
+	bus_AxisAcc[asse] = acc;
 	RESET_ControlWordBit(asse, CtrlWord_MOVE);
 	RESET_ControlWordBit(asse, CtrlWord_HOME);
 	
@@ -292,7 +291,7 @@ void SlvStopAllAxes()
 	
 	for (i = 0; i < SLAVES_NUM_AXIS; ++i)
 	{
-		SlvStopAsse(i);
+		SlvStopAsse(i, 0);
 	}
 }
 /*

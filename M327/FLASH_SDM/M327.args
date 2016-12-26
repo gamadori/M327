@@ -54,6 +54,7 @@
 "./Sources/PDO_c.obj"
 "./Sources/NMT_c.obj"
 "./Sources/I2C_c.obj"
+"./Sources/Homing_c.obj"
 "./Sources/Events_c.obj"
 "./Sources/Encoder_c.obj"
 "./Sources/EEprom_c.obj"
@@ -66,6 +67,7 @@
 "./Sources/Can402Objects_c.obj"
 "./Sources/CANOpen_c.obj"
 "./Sources/CAN_c.obj"
+"./Sources/Bus_c.obj"
 "./Sources/Bits_c.obj"
 "./Sources/Alfacol_c.obj"
 -msgstyle parseable

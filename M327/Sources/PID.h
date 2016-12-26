@@ -41,4 +41,8 @@ void PidReset(byte axe);
 
 void PidServer(byte axe);
 
+void PidLoadHomingParam(byte axe);
+
+void PidUploadHomingParam(byte axe);
+
 #endif /* PID_H_ */

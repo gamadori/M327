@@ -453,11 +453,18 @@ void RampNextPosition(byte axe)
  ****************************/
 void RampStopCommand(byte axe, word dec)
 {
-	if (dec < RAMP_MIN_DEC)
-		dec = RAMP_MIN_DEC;
-	
-	dacc[axe] = dec;
-	command[axe] = cSTOP;	
+	if (!dec)
+	{
+		PidStopRapidCommand(axe);
+	}
+	else
+	{
+		if (dec < RAMP_MIN_DEC)
+			dec = RAMP_MIN_DEC;
+		
+		dacc[axe] = dec;
+		command[axe] = cSTOP;
+	}
 }
 
 /****************************
@@ -505,94 +512,7 @@ void RampJogCommand(byte axe, long speed, short acc)
 	
 }
 	
-/*
- * Comando di Jog dalla seriale
- */
-bool RampRSJog(char *param, short index)
-{
-	long speed;
-	short acc;
-	
-	if (index == -1)
-		Alfasscanfs((char **)&param, &index);
-	
-	Alfasscanfl((char **)&param, &speed);
-	Alfasscanfs((char **)&param, &acc);
-				
-	if (index < NUM_AXES)
-	{							
-		RampJogCommand((byte)index, speed, acc);
-			
-		return TRUE;
-	}
-	else if (index < MAC_NUM_AXIS)
-	{
-		SlvJogAsse(index - NUM_AXES, speed, acc);
-		return TRUE;
-	}
-	else
-		return FALSE;
-}
 
-bool RampRSMove(char *param, short index, bool tuning)
-{
-	long pos;
-	long speed;
-	short acc;
-	
-	if (index == -1)
-			Alfasscanfs((char **)&param, &index);
-		
-	Alfasscanfl((char **)&param, &pos);
-	Alfasscanfl((char **)&param, &speed);
-	Alfasscanfs((char **)&param, &acc);
-	
-	if (tuning)
-	{
-		Alfasscanfs((char **)&param, &tngVar);
-		Alfasscanfs((char **)&param, &tngFrq);
-		Alfasscanfs((char **)&param, &tngTime);
-	}
-	
-	if (index < NUM_AXES)
-	{							
-		RampMoveCommand((byte)index, pos, speed, acc, tuning);
-			
-		return TRUE;
-	}
-	else if (index < MAC_NUM_AXIS)
-	{
-		 SlvPosAsse(index - NUM_AXES, speed, pos, acc, 0);
-	}
-	else
-		return FALSE;
-}
-/*
- * Comando di Stop dalla seriale
- */
-bool RampRSStop(char *param, short index)
-{
-	
-	short acc;
-	
-	if (index == -1)
-		Alfasscanfs((char **)&param, &index);
-		
-	Alfasscanfs((char **)&param, &acc);
-				
-	if (index < NUM_AXES)
-	{							
-		RampStopCommand((byte)index, acc);
-			
-		return TRUE;
-	}
-	else if (index < MAC_NUM_AXIS)
-	{
-		SlvStopAsse(index);
-	}
-	else
-		return FALSE;
-}
 
 /*
  * Check Servo Error

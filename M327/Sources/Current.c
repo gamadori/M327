@@ -121,7 +121,7 @@ void CurrServer()
 	reg[2] = getReg16(PWMA_SM2DISMAP0);
 	
 	
-	if (IsInHoming)
+	if (IsInHoming(0))
 	{
 		if (cmdNominalCurr || !currentInHoming)
 		{

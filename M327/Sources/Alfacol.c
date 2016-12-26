@@ -35,8 +35,8 @@
 #include "Current.h"
 #include "Sdo.h"
 #include "Slave.h"
-
-
+#include "Bus.h"
+#include "Homing.h"
 
 #define ALFACOL_NMAX_PARAM	16
 
@@ -103,8 +103,21 @@ PtlRoadMap AlfaRoadMap[] =
 		{thresholdCurrMaxSup,				Short,	NUM_AXES,			FALSE,	TRUE,	0x0069},
 		{pidCurrTimeOut,					Short,	NUM_AXES,			FALSE,	TRUE,	0x006A},
 		
-		{reg,								Short,	3,					FALSE,	FALSE,	0x06E},
-		{&faultOccors,						Byte,	1,					FALSE,	FALSE,	0x06F},
+		{reg,								Short,	3,					FALSE,	FALSE,	0x006E},
+		{&faultOccors,						Byte,	1,					FALSE,	FALSE,	0x006F},
+		
+		{hmDir,								Short,	NUM_AXES,			FALSE,	TRUE,	0x0070},
+		{hmOffset,							Long,	NUM_AXES,			FALSE,	TRUE,	0x0071},
+		{hmSrvErrBatt,						Long,	NUM_AXES,			FALSE,	TRUE,	0x0072},
+		{hmMaxSrvErrBatt,					Long,	NUM_AXES,			FALSE,	TRUE,	0x0073},
+		{hmMaxErrBatt,						Long,	NUM_AXES,			FALSE,	TRUE,	0x0074},
+		{hmDistBatt,						Long,	NUM_AXES,			FALSE,	TRUE,	0x0075},
+		{hmPosAfterHome,					Long,	NUM_AXES,			FALSE,	TRUE,	0x0076},
+		{hmSpeedH,							Long,	NUM_AXES,			FALSE,	TRUE,	0x0077},
+		{hmSpeedL,							Long,	NUM_AXES,			FALSE,	TRUE,	0x0078},
+		{hmAcc,								Short,	NUM_AXES,			FALSE,	TRUE,	0x0079},
+		
+		{busDec,							Short,	MAC_NUM_AXIS,		FALSE,	TRUE,	0x007F},
 		
 		{rvel,								Long,	NUM_AXES,			TRUE,	FALSE,	0x0100},
 		{dvel,								Long,	NUM_AXES,			TRUE,	FALSE,	0x0101},
@@ -628,16 +641,16 @@ bool AlfacolCmd(byte serial, byte *param, bool *reply)
 			
 		case 0x0003:
 			// Stop Command
-			return RampRSStop((char *)param, index);
+			return BusRSStop((char *)param, index);
 			
 			
 		case 0x0004:
 			// Jog Command
-			return RampRSJog((char *)param, index);
+			return BusRSJog((char *)param, index);
 			
 		case 0x0005:
 			// Move Command
-			return RampRSMove((char *)param, index, FALSE);
+			return BusRSMove((char *)param, index, FALSE);
 			
 		case 0x0007:
 			CmdNominalCurr();
@@ -647,10 +660,13 @@ bool AlfacolCmd(byte serial, byte *param, bool *reply)
 			CmdMaxCurr();
 			return TRUE;
 			
+		case 0x0009:		
+			return BusRSHome((char *)param, index);
+				
 		case 0x0010:
 			// Move Command Tuning
 			*reply = FALSE;
-			return RampRSMove((char *)param, index, TRUE);
+			return BusRSMove((char *)param, index, TRUE);
 			
 			
 		case 0xFF:
