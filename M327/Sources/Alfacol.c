@@ -37,6 +37,8 @@
 #include "Slave.h"
 #include "Bus.h"
 #include "Homing.h"
+#include "CanOpen.h"
+
 
 #define ALFACOL_NMAX_PARAM	16
 
@@ -127,6 +129,8 @@ PtlRoadMap AlfaRoadMap[] =
 		{f16Result,							Short,	NUM_AXES,			TRUE,	FALSE,	0x0105},
 		{f16CurrentResult,					Short,	NUM_AXES,			TRUE,	FALSE,	0x0106},
 		{f16CurrentInErr,					Short,	NUM_AXES,			TRUE,	FALSE,	0x0107},
+		{&debugMachine,						Short,	1,					FALSE,	FALSE,	0x0108},
+		
 		
 		{&tngTime,							Short,	1,					FALSE,	TRUE,	0x0110},		
 		{&tngFrq,							Short,	1,					FALSE,	TRUE,	0x0111},
@@ -242,15 +246,15 @@ void AlfacolSaveInEeprom()
 			switch (AlfaRoadMap[i].type)
 			{
 			case Byte:
-				EepromSetByte(*((byte *)AlfaRoadMap[i].pAddress));
+				EepromSetByteBuff((byte *)AlfaRoadMap[i].pAddress, AlfaRoadMap[i].size);
 				break;
 				
 			case Short:
-				EepromSetWord(*((word *)AlfaRoadMap[i].pAddress));
+				EepromSetWordBuff((word *)AlfaRoadMap[i].pAddress, AlfaRoadMap[i].size);
 				break;
 					
 			case Long:
-				EepromSetLong(*((dword *)AlfaRoadMap[i].pAddress));
+				EepromSetLongBuff((dword *)AlfaRoadMap[i].pAddress, AlfaRoadMap[i].size);
 				break;
 			}			
 		}	
@@ -291,15 +295,15 @@ void AlfacolGetFromEeprom()
 			switch (AlfaRoadMap[i].type)
 			{
 			case Byte:
-				EepromGetByte((byte *)AlfaRoadMap[i].pAddress);
+				EepromGetByteBuff((byte *)AlfaRoadMap[i].pAddress, AlfaRoadMap[i].size);
 				break;
 							
 			case Short:
-				EepromGetWord((word *)AlfaRoadMap[i].pAddress);
+				EepromGetWordBuff((word *)AlfaRoadMap[i].pAddress, AlfaRoadMap[i].size);
 				break;
 								
 			case Long:
-				EepromGetLong((dword *)AlfaRoadMap[i].pAddress);
+				EepromGetLongBuff((dword *)AlfaRoadMap[i].pAddress, AlfaRoadMap[i].size);
 				break;
 			}	
 		}
@@ -1086,11 +1090,16 @@ bool AlfacolSDO(byte serial)
 	Alfasscanfb(&p, &subIndex);
 	Alfasscanfl(&p, &value);
 	
-	currSDOFrame = frame_val[serial];
+	if (frame_val[serial] > 0x0FFF)
+	{
+		currSDOFrame = frame_val[serial];
 	
-	AlfacolSDOVariable(serial, subIndex, value);
-	
-	return TRUE;
+		AlfacolSDOVariable(serial, subIndex, value);
+		
+		return TRUE;
+	}
+	else
+		return FALSE;
 	
 }
 

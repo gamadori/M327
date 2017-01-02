@@ -35,4 +35,16 @@ byte EepromSetWord(word data);
 
 byte EepromSetLong(dword data);
 
+short EepromGetByteBuff(byte *data, short len);
+
+short EepromGetWordBuff(word *data, short len);
+
+short EepromGetLongBuff(dword *data, short len);
+
+short EepromSetByteBuff(byte *data, short len);
+
+short EepromSetWordBuff(word *data, short len);
+
+short EepromSetLongBuff(dword *data, short len);
+
 #endif /* EEPROM_H_ */

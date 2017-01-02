@@ -9,7 +9,7 @@
 #include "Bits.h"
 #include "Drive.h"
 #include "Slave.h"
-
+#include "Timer.h"
 
 long slvPosReal[SLAVES_NUM_AXIS];	// Posizione Reale degli assi
 long slvPosVirt[SLAVES_NUM_AXIS];	// Posizione Virtuale degli assi
@@ -144,12 +144,14 @@ void SlvPositionsServer()
 				RESET_ControlWordBit(asse, CtrlWord_STOP);
 				RESET_ControlWordBit(asse, CtrlWord_MOVE);
 				
+				tmrTestPDO = MSEC(5);
+				
 				slvStepCmdPos[asse]++;
 				
 				break;
 				
 			case 2://Command received
-				if (CHECK_MODE_OPERATION(asse, moProfilePositionMode) && !CHECK_StatusWordBit(asse, StatusWord_ACK))
+				if (!tmrTestPDO && CHECK_MODE_OPERATION(asse, moProfilePositionMode) && !CHECK_StatusWordBit(asse, StatusWord_ACK))
 				{
 					SET_ControlWordBit(asse, CtrlWord_MOVE);
 					slvStepCmdPos[asse]++;
@@ -159,6 +161,7 @@ void SlvPositionsServer()
 			case 3://Command Completed
 				if (CHECK_StatusWordBit(asse, StatusWord_ACK))
 				{
+					
 					RESET_ControlWordBit(asse, CtrlWord_MOVE);
 					slvStepCmdPos[asse] = 0;
 				}
@@ -206,7 +209,7 @@ void SlvJogServer()
 void SlvCmdPos(short asse)
 {
 	
-	SlvAxeHomed(asse, FALSE);
+	SlvAxeInPos(asse, FALSE);
 	
 	slvCmdPos[asse] = 1;
 	
@@ -276,7 +279,7 @@ void SlvJogNeg(short asse)
 void SlvStopAsse(short asse, short acc)
 {
 	bus_AxisVel[asse] = 0;
-	bus_AxisAcc[asse] = acc;
+	bus_AxisAcc[asse] = 0;
 	RESET_ControlWordBit(asse, CtrlWord_MOVE);
 	RESET_ControlWordBit(asse, CtrlWord_HOME);
 	

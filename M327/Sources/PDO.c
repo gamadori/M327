@@ -236,8 +236,8 @@ void processSendPDO(word idBoard, short typeBoard, short nGroup)
 				if ((TxPDOTransferTable[idBoard - 1][psp_i].sent == FALSE) && (TxPDOTransferTable[idBoard - 1][psp_i].transmissionType == (byte)255) && 
 					(dword)(timerSys - TxPDOTransferTable[idBoard - 1][psp_i].txTimer) >= inhibit)
 				{ 
-					CanTransmitPush(PDOTxChannels[psp_i], &TxPDOTransferTable[idBoard - 1][psp_i].canMessage);
-		
+					//CanTransmitPush(PDOTxChannels[psp_i], &TxPDOTransferTable[idBoard - 1][psp_i].canMessage);
+					CanTrasmit(PDOTxChannels[psp_i], &TxPDOTransferTable[idBoard - 1][psp_i].canMessage);
 					TxPDOTransferTable[idBoard - 1][psp_i].txTimer = timerSys;
 					TxPDOTransferTable[idBoard - 1][psp_i].sent = TRUE;
 					

@@ -112,10 +112,37 @@ void CanServerTrasmit()
 				state = CAN1_GetStateTX();
 				
 			}while (!(state & CanFifoMbMask[i]) && delay--);
+			
+			if (!delay)
+			{
+				delay++;
+			}
 		}
 	}	
 }
 
+void CanTrasmit(byte channel, CanMessage *msg)
+{
+	dword delay;
+	word state;
+	
+	if (CanFifoMbDir[channel] == MBTransmit)	
+	{
+		CAN1_SendFrame(channel, msg->cob_id, DATA_FRAME, msg->len, msg->data, FALSE);
+					
+		delay = 15000;
+		do
+		{
+			state = CAN1_GetStateTX();
+			
+		}while (!(state & CanFifoMbMask[channel]) && delay--);
+		
+		if (!delay)
+		{
+			delay++;
+		}
+	}
+}
 /*
  * Push the data on Received Can Queue 
  */

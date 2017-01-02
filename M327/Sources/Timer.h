@@ -36,7 +36,9 @@
 
 #define tmrSDO				tmrs[8]
 
-#define TmrPidCurr(axe)		tmrs[9 + axe]
+#define tmrTestPDO			tmrs[9]
+
+#define TmrPidCurr(axe)		tmrs[10 + axe]
 
 
 extern dword tmrs[];

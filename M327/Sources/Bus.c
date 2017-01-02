@@ -107,7 +107,7 @@ bool BusStop(byte axe, short acc)
 	}
 	else if (axe < MAC_NUM_AXIS)
 	{
-		SlvStopAsse(axe, acc);
+		SlvStopAsse(axe - NUM_AXES, acc);
 		return TRUE;
 	}
 	else
@@ -134,7 +134,7 @@ bool BusHome(byte axe)
 	}
 	else if (axe < MAC_NUM_AXIS)
 	{
-		return SlvHomeAsse(axe);
+		return SlvHomeAsse(axe - NUM_AXES);
 	}
 	else
 		return FALSE;

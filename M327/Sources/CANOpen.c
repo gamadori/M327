@@ -46,7 +46,7 @@ void CANOPENServer()
 	
 		case PRE_OPERATIONAL:
 			
-			if (NMTSlaveRdy(&stato) || debugMachine)
+			if (NMTSlaveRdy(&stato))
 			{
 				CANOpenSendState(START_REMOTE_NODE);
 				

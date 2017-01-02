@@ -32,6 +32,8 @@ extern byte stateMachine;
 
 extern word canIDBoards[];
 
+extern short debugMachine;
+
 void CANOPENServer();
 
 #endif /* CANOPEN_H_ */

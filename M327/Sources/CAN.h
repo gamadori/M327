@@ -74,6 +74,8 @@ void CanInit();
 
 void CanServerTrasmit();
 
+void CanTrasmit(byte channel, CanMessage *msg);
+
 bool CanReceivedPop(byte channel, CanMessage *m);
 
 void CanReceivedPush(byte channel, word id, byte len,  byte *buff);

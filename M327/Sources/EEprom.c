@@ -57,6 +57,44 @@ void FlashVariableServer()
 }
 
 
+short EepromGetByteBuff(byte *data, short len)
+{
+	short i;
+	short num = 0;
+	
+	for (i = 0; i < len; ++i)
+	{
+		if  (EepromGetByte(data++) == ERR_OK)
+			num++;		
+	}
+	return num;
+}
+
+short EepromGetWordBuff(word *data, short len)
+{
+	short i;
+	short num = 0;
+	
+	for (i = 0; i < len; ++i)
+	{
+		if  (EepromGetWord(data++) == ERR_OK)
+			num++;		
+	}
+	return num;
+}
+
+short EepromGetLongBuff(dword *data, short len)
+{
+	short i;
+	short num = 0;
+	
+	for (i = 0; i < len; ++i)
+	{
+		if  (EepromGetLong(data++) == ERR_OK)
+			num++;		
+	}
+	return num;
+}
 
 /*
  ** @brief
@@ -96,6 +134,45 @@ byte EepromGetLong(dword *data)
 	return Err;
 }
 
+short EepromSetByteBuff(byte *data, short len)
+{
+	short i;
+	short num = 0;
+	
+	for (i = 0; i < len; ++i)
+	{
+		if  (EepromSetByte(*data++) == ERR_OK)
+			num++;		
+	}
+	return num;
+}
+
+short EepromSetWordBuff(word *data, short len)
+{
+	short i;
+	short num = 0;
+	
+	for (i = 0; i < len; ++i)
+	{
+		if  (EepromSetWord(*data++) == ERR_OK)
+			num++;		
+	}
+	return num;
+}
+
+short EepromSetLongBuff(dword *data, short len)
+{
+	short i;
+	short num = 0;
+	
+	for (i = 0; i < len; ++i)
+	{
+		if  (EepromSetLong(*data++) == ERR_OK)
+			num++;		
+	}
+	return num;
+}
+
 /*
  ** @brief
  ** 	Writes a byte in the virtual page.
@@ -108,6 +185,8 @@ byte EepromSetByte(byte data)
 			
 	return Err;
 }
+
+
 
 /*
  ** @brief
