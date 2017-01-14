@@ -30,6 +30,7 @@ frac16_t f16InErrPrev[NUM_AXES];
 bool_t pidStopFlag[NUM_AXES]; 		// PID Flag stop	
 GFLIB_CTRL_PID_P_AW_T_A32 pidParam[NUM_AXES];	// PID Parameters
 
+
 frac16_t f16CurrentResult[NUM_AXES];		// PID Output value
 frac16_t f16CurrentInitVal[NUM_AXES];		// PID initial value
 frac16_t f16CurrentInErr[NUM_AXES];		// Input error for PI
@@ -38,6 +39,7 @@ GFLIB_CTRL_PI_P_AW_T_A32 pidCurrentParam[NUM_AXES];	// PID Current Parameters
 word thresholdCurrMaxSup[NUM_AXES];
 word thresholdCurrMaxInf[NUM_AXES];
 short pidCurrTimeOut[NUM_AXES];
+
 short currentPIDState[NUM_AXES];
 long pidErrPos[NUM_AXES];
 

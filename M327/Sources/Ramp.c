@@ -35,6 +35,7 @@ long dvel[NUM_AXES];	// Target Speed
 short dacc[NUM_AXES];	// acceleration
 long dpos[NUM_AXES];	//Target Position
 
+short maxAcc[NUM_AXES];
 
 long kvel[NUM_AXES];		// Per la gestione dei decimali
 

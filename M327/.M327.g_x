@@ -85,22 +85,22 @@
       <File Name="Generated_Code/Out7.h" FileDate="2016-12-19, 09:50:37" FileAge="1482137437166" FileType="45637" CompNumb="20" />
       <File Name="Generated_Code/CSPot.c" FileDate="2016-12-19, 09:50:37" FileAge="1482137437649" FileType="45637" CompNumb="101" />
       <File Name="Generated_Code/SM1.c" FileDate="2016-12-19, 09:50:37" FileAge="1482137437487" FileType="45637" CompNumb="9" />
+      <File Name="Documentation/M327_SIGNALS.txt" FileDate="2017-01-13, 12:16:44" FileAge="1484306204946" FileType="3072" />
       <File Name="Generated_Code/Out7.c" FileDate="2016-12-19, 09:50:37" FileAge="1482137437202" FileType="45637" CompNumb="20" />
-      <File Name="Documentation/M327_SIGNALS.txt" FileDate="2017-01-02, 19:09:28" FileAge="1483380568364" FileType="3072" />
       <File Name="Generated_Code/Out6.h" FileDate="2016-12-19, 09:50:37" FileAge="1482137437175" FileType="45637" CompNumb="19" />
       <File Name="Generated_Code/Out6.c" FileDate="2016-12-19, 09:50:37" FileAge="1482137437192" FileType="45637" CompNumb="19" />
       <File Name="Generated_Code/Out5.h" FileDate="2016-12-19, 09:50:37" FileAge="1482137437653" FileType="45637" CompNumb="18" />
       <File Name="Project_Settings/Linker_Files/FLASH_SDM.cmd" FileDate="2016-12-19, 09:50:37" FileAge="1482137437580" FileType="8" CompNumb="2" />
       <File Name="Generated_Code/Out5.c" FileDate="2016-12-19, 09:50:37" FileAge="1482137437646" FileType="45637" CompNumb="18" />
-      <File Name="Generated_Code/Out4.h" FileDate="2016-12-19, 09:50:37" FileAge="1482137437668" FileType="45637" CompNumb="17" />
       <File Name="Sources/main.c" FileDate="2017-01-01, 23:35:25" FileAge="1483310125726" FileType="128" />
+      <File Name="Generated_Code/Out4.h" FileDate="2016-12-19, 09:50:37" FileAge="1482137437668" FileType="45637" CompNumb="17" />
       <File Name="Generated_Code/CSInput.h" FileDate="2016-12-19, 09:50:37" FileAge="1482137437201" FileType="45637" CompNumb="10" />
       <File Name="Generated_Code/Out4.c" FileDate="2016-12-19, 09:50:37" FileAge="1482137437671" FileType="45637" CompNumb="17" />
-      <File Name="Generated_Code/CSInput.c" FileDate="2016-12-19, 09:50:37" FileAge="1482137437187" FileType="45637" CompNumb="10" />
       <File Name="Generated_Code/Out3.h" FileDate="2016-12-19, 09:50:37" FileAge="1482137437277" FileType="45637" CompNumb="16" />
+      <File Name="Generated_Code/CSInput.c" FileDate="2016-12-19, 09:50:37" FileAge="1482137437187" FileType="45637" CompNumb="10" />
       <File Name="Generated_Code/PE_Const.h" FileDate="2016-12-19, 09:50:37" FileAge="1482137437244" FileType="45637" />
-      <File Name="Generated_Code/Out3.c" FileDate="2016-12-19, 09:50:37" FileAge="1482137437280" FileType="45637" CompNumb="16" />
       <File Name="Generated_Code/AD1.h" FileDate="2016-12-19, 09:50:37" FileAge="1482137437066" FileType="45637" CompNumb="131" />
+      <File Name="Generated_Code/Out3.c" FileDate="2016-12-19, 09:50:37" FileAge="1482137437280" FileType="45637" CompNumb="16" />
       <File Name="Generated_Code/Out2.h" FileDate="2016-12-19, 09:50:37" FileAge="1482137437273" FileType="45637" CompNumb="15" />
       <File Name="Generated_Code/AD1.c" FileDate="2016-12-19, 09:50:37" FileAge="1482137437083" FileType="45637" CompNumb="131" />
       <File Name="Generated_Code/Out2.c" FileDate="2016-12-19, 09:50:37" FileAge="1482137437281" FileType="45637" CompNumb="15" />
@@ -109,8 +109,8 @@
       <File Name="Generated_Code/Out0.h" FileDate="2016-12-19, 09:50:37" FileAge="1482137437685" FileType="45637" CompNumb="13" />
       <File Name="Generated_Code/Out0.c" FileDate="2016-12-19, 09:50:37" FileAge="1482137437675" FileType="45637" CompNumb="13" />
       <File Name="Generated_Code/SDA.h" FileDate="2016-12-19, 09:50:37" FileAge="1482137437079" FileType="45637" CompNumb="96" />
-      <File Name="Generated_Code/SDA.c" FileDate="2016-12-19, 09:50:37" FileAge="1482137437064" FileType="45637" CompNumb="96" />
       <File Name="Generated_Code/PWMA.h" FileDate="2016-12-19, 09:50:37" FileAge="1482137437554" FileType="45637" CompNumb="81" />
+      <File Name="Generated_Code/SDA.c" FileDate="2016-12-19, 09:50:37" FileAge="1482137437064" FileType="45637" CompNumb="96" />
       <File Name="Generated_Code/IFsh1.h" FileDate="2016-12-19, 09:50:37" FileAge="1482137437542" FileType="45637" CompNumb="56" />
       <File Name="Project_Settings/Startup_Code/56F83x_init.asm" FileDate="2016-12-19, 09:50:37" FileAge="1482137437274" FileType="16384" CompNumb="2" />
       <File Name="Generated_Code/PWMA.c" FileDate="2016-12-19, 09:50:37" FileAge="1482137437525" FileType="45637" CompNumb="81" />
@@ -118,5 +118,5 @@
       <File Name="Generated_Code/port.h" FileDate="2016-12-19, 09:50:37" FileAge="1482137437640" FileType="45637" CompNumb="38" />
     </GeneratedByPE>
   </GeneratedFilesList>
-  <CodeGenReference>191</CodeGenReference>
+  <CodeGenReference>198</CodeGenReference>
 </CodeGenerationInfo>

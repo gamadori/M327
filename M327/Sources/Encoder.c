@@ -15,9 +15,11 @@
 
 long rpos[MAC_NUM_AXIS];						// Actual Position
 
-short encCount[NUM_AXES];					// Valore del contatore
+long encPos[NUM_ENCODERS];
 
-short encVel[NUM_AXES];
+short encCount[NUM_ENCODERS];					// Valore del contatore
+
+short encVel[NUM_ENCODERS];
 
 void InitEncoder()
 {
@@ -50,7 +52,12 @@ void GetEncoders()
 		}
 		tmp = count - encCount[id];
 		encCount[id] = (short)count;
-		rpos[id] -= tmp;
+		encPos[id] -= tmp;
 		encVel[id] = -tmp;
+	}
+	
+	for (id = 0; id < NUM_AXES; ++id)
+	{
+		rpos[id] = encPos[id];
 	}
 }

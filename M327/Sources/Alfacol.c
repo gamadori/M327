@@ -38,7 +38,7 @@
 #include "Bus.h"
 #include "Homing.h"
 #include "CanOpen.h"
-
+#include "Router.h"
 
 #define ALFACOL_NMAX_PARAM	16
 
@@ -65,7 +65,8 @@ PtlRoadMap AlfaRoadMap[] =
 		{slvPosReal,						Long,	SLAVES_NUM_AXIS,	TRUE, 	FALSE, 	0x0003},		
 		{slvPosVirt,						Long,	SLAVES_NUM_AXIS,	TRUE, 	FALSE, 	0x0004},
 		
-		{&flashCmdVar,						Short,	1,					FALSE,	FALSE,	0x0021},  
+		{&flashCmdVar,						Short,	1,					FALSE,	FALSE,	0x0021}, 
+		{bus_IO_Output,						Short,	NUM_SLAVES,			FALSE,	FALSE,	0x0022},
 		{&outputBuffer,						Long,	1,					TRUE,	FALSE,	0x0024},
 		{&outValue,							Long,	1,					TRUE,	FALSE,	0x0025},	
 		{&outFrz,							Long,	1,					FALSE,	FALSE,	0x0026},
@@ -91,6 +92,7 @@ PtlRoadMap AlfaRoadMap[] =
 		{srvErrorStatic,					Long,	NUM_AXES,			FALSE,	TRUE,	0x0050},
 		{srvErrorDynamic,					Long,	NUM_AXES,			FALSE,	TRUE,	0x0051},
 		{srvErrorTimeOut,					Short,	NUM_AXES,			FALSE,	TRUE,	0x0052},
+		{maxAcc,							Short,	NUM_AXES,			FALSE,	TRUE,	0x0055},
 		
 		{&currentNominal,					Short,	1,					FALSE,	TRUE,	0x0060},
 		{&currentMax,						Short,	1,					FALSE,	TRUE,	0x0061},
@@ -444,6 +446,7 @@ byte AlfacolDecode(byte c, byte serial)
 						serial_buff[serial][dec_state[serial] - 1] = 0;
 						return AlfacolExecute(serial);
 					}	
+					
 					else
 					{
 						// The destination of the received string is the slave 
@@ -451,8 +454,7 @@ byte AlfacolDecode(byte c, byte serial)
 						serial_buff[serial][dec_state[serial] -1] = 0;	
 							
 						AlfacolSDO(serial);							
-						//AlfacolRoute(serial);
-						//TMR_RS_DELAY = MSEC(1);
+						
 					}									
 				}
 				else if (serial == SCI1)
@@ -1096,10 +1098,12 @@ bool AlfacolSDO(byte serial)
 	
 		AlfacolSDOVariable(serial, subIndex, value);
 		
-		return TRUE;
+		
 	}
 	else
-		return FALSE;
+		AlfacolRoute(serial);		
+	
+	return TRUE;
 	
 }
 
@@ -1120,7 +1124,7 @@ bool AlfacolSDOVariable(byte serial, byte subIndex, long value)
 		
 	}
 }
-/*
+
 bool AlfacolRoute(byte serial)
 {
 	char *p;
@@ -1133,9 +1137,7 @@ bool AlfacolRoute(byte serial)
 	}
 	else
 	{
-		
-		resp = RouterVariable(numStation[serial], p, &frame_val[serial], AlfacolGetTypeOp(cmd_type[serial]));
-			
+		resp = RouterVariable(numStation[serial], p, &frame_val[serial], AlfacolGetTypeOp(cmd_type[serial]));		
 	}
 	
 	switch (resp)
@@ -1149,7 +1151,7 @@ bool AlfacolRoute(byte serial)
 	default:
 		return FALSE;
 	}	
-}*/
+}
 
 void AlfacolCanCommand(byte serial)
 {
@@ -1163,4 +1165,18 @@ void AlfacolCanCommand(byte serial)
 	SDOCommandDownload(numStation[serial], (byte *)lValue, currSDOFrame, subIndex, 4);
 }
 
+/*
+ * Determina se si tratta di un comando di lettura (get) o scrittura (set)
+ */
+char AlfacolGetTypeOp(byte cmd)
+{
+	switch (cmd)
+	{
+		
+	case eAlfaWrite:
+		return opSet;
+	default:
+		return opGet;
+	}		
+}
 

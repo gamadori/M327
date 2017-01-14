@@ -48,6 +48,7 @@
 "./Sources/Slave_c.obj"
 "./Sources/Serial_c.obj"
 "./Sources/SDO_c.obj"
+"./Sources/Router_c.obj"
 "./Sources/Ramp_c.obj"
 "./Sources/Plc_c.obj"
 "./Sources/PID_c.obj"

@@ -43,6 +43,7 @@ extern word srvErrorTimeOut[];
 
 extern short command[];
 
+extern short maxAcc[];
 
 void RampInit();
 
