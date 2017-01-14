@@ -36,6 +36,8 @@
 #include "Current.h"
 #include "Can.h"
 
+byte pdoBuff[8];
+
 /* User includes (#include below this line is not maintained by Processor Expert) */
 
 /*
@@ -370,7 +372,7 @@ void PWMC1_OnFault0(void)
 #pragma interrupt called
 void CAN1_OnFullRxBuffer(void)
 {
-	short i;
+	short i, j;
 	dword ID;
 	byte type, len;
 	byte buff[8];
@@ -389,6 +391,12 @@ void CAN1_OnFullRxBuffer(void)
 			
 			
 			CAN1_ReadFrame(i, &ID, &type, &frameFormat, &len, buff);
+			
+			if (i == 5)
+			{
+				for (j = 0; j < len; ++j)
+					pdoBuff[j] = buff[j];
+			}
 			CanReceivedPush(i, ID, len, buff);
 		}
 	}

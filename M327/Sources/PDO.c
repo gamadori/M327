@@ -174,7 +174,7 @@ void processSendPDO(word idBoard, short typeBoard, short nGroup)
 							if (getODEntry((word)0x1800 | (byte)psp_i, (byte)2, (byte **)&pbTransmissionType, pSize, &nByte) == SUCCESSFUL) // gets the tranmission type
 								TxPDOTransferTable[idBoard - 1][psp_i].transmissionType = *((dword *)pbTransmissionType);
 							
-							TxPDOTransferTable[idBoard - 1][psp_i].sent = TRUE; // normally this command will be executed (except the first time)
+							//TxPDOTransferTable[idBoard - 1][psp_i].sent = TRUE; // normally this command will be executed (except the first time)
 
 							if (firstTime == FALSE)
 							{
