@@ -16,6 +16,7 @@
 #include "BldcUser.h"
 #include "Tuning.h"
 #include "Drive.h"
+#include "Slave.h"
 
 static const bool drvEnabled[] = {TRUE, FALSE};
 static const long drvInpBitEnable[] = {BIT0, BIT1};
@@ -24,7 +25,7 @@ static const long drvInpBitEnable[] = {BIT0, BIT1};
 
 byte drvAxeStatus[NUM_AXES];				// Axe Status
 byte drvOldAxeStatus[NUM_AXES];				// Previous axe state
-t_pid_axe_state drvAxeRegState[NUM_AXES];	// Axe Status Register
+t_pid_axe_state drvAxeRegState[MAC_NUM_AXIS];	// Axe Status Register
 
 void DrvEventAxeInEnable(byte axe);
 
@@ -75,6 +76,7 @@ void DriveServer()
 			drvAxeStatus[i] = cNotUsed;
 		
 		BldcSetStatus(i, drvAxeStatus[i] == cEnabled);
+		drvAxeRegState[i].axeStatus = drvAxeStatus[i];
 		
 	}
 	TngServer();

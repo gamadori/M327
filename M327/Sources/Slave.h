@@ -30,7 +30,7 @@ extern word bus_AxisControlWord[];
 extern byte bus_AxisOperation[];
 extern byte bus_AxisModeOperDisplay[];
 extern word bus_AxisProfile[];
-extern t_pid_axe_state bus_AxisStatusWordAlarm[];
+
 
 extern word bus_IO_Input[];
 extern word bus_IO_InputForz[];

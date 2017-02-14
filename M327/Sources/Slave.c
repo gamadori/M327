@@ -28,7 +28,7 @@ word bus_AxisControlWord[SLAVES_NUM_AXIS];
 byte bus_AxisOperation[SLAVES_NUM_AXIS];
 byte bus_AxisModeOperDisplay[SLAVES_NUM_AXIS];
 word bus_AxisProfile[SLAVES_NUM_AXIS];
-t_pid_axe_state bus_AxisStatusWordAlarm[SLAVES_NUM_AXIS];
+
 
 
 //Gestione Schede Input/output CAN-OPEN

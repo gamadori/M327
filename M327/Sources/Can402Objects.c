@@ -48,7 +48,7 @@ td_subIndex Index6064[] =
 
 td_subIndex Index6065[] = 
 {
-	{dicRO, tINTEGER16, SIZEOFW_WORD, (void *)bus_AxisStatusWordAlarm}
+	{dicRO, tINTEGER16, SIZEOFW_WORD, (void *)(drvAxeRegState + NUM_AXES)}
 };
 
 td_subIndex Index607A[] = 

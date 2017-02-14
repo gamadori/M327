@@ -10,15 +10,15 @@
 
 enum eAxeStatus
 {
-	cDisable,
-	cWaitAlmFromPwr,
-	cSendEnableToPwr,
-	cWaitRdyFromDrive,
-	cEnableDrive,
-	cEnabled,
-	cWaitDisable,
-	cDriveAlarm,
-	cNotUsed
+	cDisable,			// 0
+	cWaitAlmFromPwr,	// 1
+	cSendEnableToPwr,	// 2
+	cWaitRdyFromDrive,	// 3
+	cEnableDrive,		// 4
+	cEnabled,			// 5
+	cWaitDisable,		// 6
+	cDriveAlarm,		// 7
+	cNotUsed			// 8
 };
 
 // 3 bits Axe Alarm Code
@@ -40,6 +40,7 @@ typedef struct
 	word alarm:	 	3;		// Alarm Code
 	word limSwMin:	1;		// Minimum Software Limit reached
 	word limSwMax:	1;		// Maximum Software Limit reached
+	word axeStatus:	3;		// Stato dell'asse
 }t_pid_axe_state;
 
 

@@ -78,7 +78,7 @@ PtlRoadMap AlfaRoadMap[] =
 		{&inpFrzValue,						Long,	1,					FALSE,	FALSE,	0x002B},		
 		{bldcSensoresState,					Byte,	NUM_AXES,			TRUE,	FALSE,	0x002F},
 		
-		{drvAxeRegState,					Short,	NUM_AXES,			TRUE,	FALSE,	0x0030},
+		{drvAxeRegState,					Short,	MAC_NUM_AXIS,		TRUE,	FALSE,	0x0030},
 		{drvAxeStatus,						Byte,	NUM_AXES,			TRUE,	FALSE,	0x0031},
 		
 		{ADCValues,							Short,	NUM_ANALOGIC,		FALSE,	FALSE,	0x003F},
