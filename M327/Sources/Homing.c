@@ -13,7 +13,13 @@
 #include "Ramp.h"
 #include "Encoder.h"
 #include "Homing.h"
+#include "Timer.h"
 
+enum HomingMethods
+{
+	DoubleBumper,
+	Sensor
+};
 
 short hmDir[NUM_AXES];				// Direzione per cercare la battuta 1 Positiva 0 Negativa
 long hmOffset[NUM_AXES];			// Offset dalla battuta 
@@ -29,6 +35,7 @@ short hmAcc[NUM_AXES];
 short hmBattNum[NUM_AXES];	// Numero di battute finora eseguite con successo
 short hmStep[NUM_AXES];
 long hmBattPos[NUM_AXES];	// Posizione in cui si e' trovata la battuta
+byte hmMethod[NUM_AXES];
 
 void HomeIncSrvBatt(byte axe);
 
@@ -55,9 +62,11 @@ void HomeServer(byte axe)
 		// muovo alla ricerca della battuta
 	
 	case 1:
-		
-		BusJog(axe, hmDir[axe] * hmSpeedH[axe], hmAcc[axe]);
-		hmStep[axe]++;
+		if (!TmrHome)
+		{
+			BusJog(axe, hmDir[axe] * hmSpeedH[axe], hmAcc[axe]);
+			hmStep[axe]++;
+		}
 		break;
 		
 	case 2:
@@ -80,7 +89,7 @@ void HomeServer(byte axe)
 				// E' la prima volta che trovo la battuta devo provarci un'altra volta
 				hmBattPos[axe] = rpos[axe];
 				BusMove(axe, rpos[axe] - hmDir[axe] * hmDistBatt[axe], hmSpeedH[axe], hmAcc[axe], 0);				
-			
+				hmBattNum[axe]++;
 				hmStep[axe]++;
 			}
 			else
@@ -92,36 +101,56 @@ void HomeServer(byte axe)
 				if (errPos < -hmMaxErrBatt[axe] || errPos > hmMaxErrBatt[axe])
 				{
 					// Le posizioni non coincidono provo ad aumentare il srvError
-					if (hmSrvErrBatt[axe] < hmMaxSrvErrBatt[axe])
-					{
-						HomeIncSrvBatt(axe);
-					}
-					else
-					{
+					//if (hmSrvErrBatt[axe] < hmMaxSrvErrBatt[axe])
+					//{
+					//	HomeIncSrvBatt(axe);
+					//}
+					//else
+					//{
 						drvAxeRegState[axe].alarm = AxeAlHoming;
 						hmStep[axe] = 10;
 						PidUploadHomingParam(axe);
-					}
+					//}
 				}
 				else 
 				{
 					BusMove(axe, rpos[axe] - hmDir[axe] * hmOffset[axe], hmSpeedH[axe], hmAcc[axe], 0);
-					hmStep[axe]++;
+					hmStep[axe] += 2;
 				}
 			}
 		}
 		break;
 		
 	case 4:
-		if (vpos[axe] == dpos[axe])
+			if (vpos[axe] == dpos[axe])
+			{
+				TmrHome = MSEC(100);
+				hmStep[axe] = 1;
+			}
+			break;
+		
+		
+	
+	case 5:
+		if (!TmrHome)
 		{
+			
+			TmrHome = MSEC(100);
+			hmStep[axe] ++;
+		}
+		break;
+		
+	case 6:
+		if (!TmrHome)
+		{
+			
 			rpos[axe] = vpos[axe] = dpos[axe] = hmPosAfterHome[axe];							
 			drvAxeRegState[axe].homed = 1;
 			PidUploadHomingParam(axe);
 			hmStep[axe] ++;
 		}
 		break;
-	
+				
 	}
 }
 
@@ -137,6 +166,6 @@ void HomeIncSrvBatt(byte axe)
 
 bool IsInHoming(byte axe)
 {
-	return hmStep[axe] > 0;
+	return hmStep[axe] > 0 && hmStep[axe] <= 6;
 }
 

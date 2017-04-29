@@ -492,6 +492,53 @@ void CAN1_OnError(void)
   /* Write your code here ... */
 }
 
+/*
+** ===================================================================
+**     Event       :  CAN1_OnTransmitterWarning (module Events)
+**
+**     Component   :  CAN1 [FreescaleCAN]
+**     Description :
+**         This event is called when the CAN controller goes into
+**         warning status due to the transmit error counter exceeding
+**         96 and neither an error status nor a BusOff status are
+**         present. The event is available only if Interrupt
+**         service/event is enabled.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+/* Comment following line if the appropriate 'Interrupt preserve registers' property */
+/* is set to 'yes' (#pragma interrupt saveall is generated before the ISR)           */
+#pragma interrupt called
+void CAN1_OnTransmitterWarning(void)
+{
+	//setReg32(CAN_ESR1, CAN_ESR1_TXWRN_MASK); /* Clear the interrupt pending flag */
+	setReg32Bits(CAN_ESR1, CAN_ESR1_TWRNINT_MASK);
+}
+
+/*
+** ===================================================================
+**     Event       :  CAN1_OnReceiverWarning (module Events)
+**
+**     Component   :  CAN1 [FreescaleCAN]
+**     Description :
+**         This event is called when the CAN controller goes into a
+**         warning status due to the receive error counter exceeding 96
+**         and neither an error status nor a BusOff status are present.
+**         The event is available only if Interrupt service/event is
+**         enabled.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+/* Comment following line if the appropriate 'Interrupt preserve registers' property */
+/* is set to 'yes' (#pragma interrupt saveall is generated before the ISR)           */
+#pragma interrupt called
+void CAN1_OnReceiverWarning(void)
+{
+	setReg32Bits(CAN_ESR1, CAN_ESR1_RWRNINT_MASK);
+}
+
 /* END Events */
 
 /*!

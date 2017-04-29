@@ -33,6 +33,10 @@
 dword inputBuffer;
 dword outputBuffer;
 
+dword inputPrevious;
+
+dword inputFiltered;
+
 dword outValue;
 dword outFrz;
 dword outFrzValue;
@@ -49,10 +53,13 @@ bool ioWorked = FALSE;
 
 word ADCValues[NUM_ANALOGIC];
 
+word inpFilter[NUM_INPUTS];
+
 void PlcSetOutpts();
 
 void PlcInit()
 {
+	inputPrevious = 0;
 	inputBuffer = 0;
 	outputBuffer = 0;
 	outValue = 0;
@@ -177,3 +184,47 @@ void AnalogicServer()
 	
 	}
 }
+
+void FilterInputs()
+{ 
+	word tmp;
+	short i;
+	
+	tmp = (word)~(inputPrevious ^ inputBuffer);
+	
+	
+	for (i = 0; i < NUM_INPUTS; ++i)
+	{
+		
+		if (inpFilter[i])
+		{
+			if (!(tmp & Bits[i]))
+			{
+				tmrsPlc[i] = MSEC(inpFilter[i]);
+			}
+			else if (!tmrsPlc[i])
+			{
+				
+				if (inputBuffer & Bits[i])
+					inputFiltered |= Bits[i];
+				
+				else
+					inputFiltered &= ~Bits[i];
+				
+			}
+		}
+		else 
+		{
+			if ((inputBuffer & Bits[i]) == Bits[i])
+				inputFiltered |= Bits[i];
+			
+			else
+				inputFiltered &= ~Bits[i];
+			
+		}
+			
+	}
+	
+	inputPrevious = inputBuffer;
+}
+

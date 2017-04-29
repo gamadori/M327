@@ -16,6 +16,8 @@ void BusInit();
 
 void BusServer();
 
+void BusEmergency();
+
 bool BusJog(byte axe, long speed, short acc);
 
 bool BusMove(byte axe, long pos, long speed, short acc, bool tuning);

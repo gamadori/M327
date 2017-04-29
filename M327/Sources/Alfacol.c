@@ -39,6 +39,7 @@
 #include "Homing.h"
 #include "CanOpen.h"
 #include "Router.h"
+#include "Current.h"
 
 #define ALFACOL_NMAX_PARAM	16
 
@@ -67,6 +68,7 @@ PtlRoadMap AlfaRoadMap[] =
 		
 		{&flashCmdVar,						Short,	1,					FALSE,	FALSE,	0x0021}, 
 		{bus_IO_Output,						Short,	NUM_SLAVES,			FALSE,	FALSE,	0x0022},
+		{&inputFiltered,					Long,	1,					TRUE,	FALSE,	0x0023},
 		{&outputBuffer,						Long,	1,					TRUE,	FALSE,	0x0024},
 		{&outValue,							Long,	1,					TRUE,	FALSE,	0x0025},	
 		{&outFrz,							Long,	1,					FALSE,	FALSE,	0x0026},
@@ -75,7 +77,8 @@ PtlRoadMap AlfaRoadMap[] =
 		{&inputBuffer,						Long,	1,					TRUE,	FALSE,	0x0028},
 		{&inpValue,							Long,	1,					TRUE,	FALSE,	0x0029},
 		{&inpFrz,							Long,	1,					FALSE,	FALSE,	0x002A},
-		{&inpFrzValue,						Long,	1,					FALSE,	FALSE,	0x002B},		
+		{&inpFrzValue,						Long,	1,					FALSE,	FALSE,	0x002B},	
+		{inpFilter,							Short,	NUM_INPUTS,			FALSE,	TRUE,	0x002C},
 		{bldcSensoresState,					Byte,	NUM_AXES,			TRUE,	FALSE,	0x002F},
 		
 		{drvAxeRegState,					Short,	MAC_NUM_AXIS,		TRUE,	FALSE,	0x0030},
@@ -110,19 +113,25 @@ PtlRoadMap AlfaRoadMap[] =
 		{reg,								Short,	3,					FALSE,	FALSE,	0x006E},
 		{&faultOccors,						Byte,	1,					FALSE,	FALSE,	0x006F},
 		
-		{hmDir,								Short,	NUM_AXES,			FALSE,	TRUE,	0x0070},
-		{hmOffset,							Long,	NUM_AXES,			FALSE,	TRUE,	0x0071},
-		{hmSrvErrBatt,						Long,	NUM_AXES,			FALSE,	TRUE,	0x0072},
-		{hmMaxSrvErrBatt,					Long,	NUM_AXES,			FALSE,	TRUE,	0x0073},
-		{hmMaxErrBatt,						Long,	NUM_AXES,			FALSE,	TRUE,	0x0074},
-		{hmDistBatt,						Long,	NUM_AXES,			FALSE,	TRUE,	0x0075},
-		{hmPosAfterHome,					Long,	NUM_AXES,			FALSE,	TRUE,	0x0076},
-		{hmSpeedH,							Long,	NUM_AXES,			FALSE,	TRUE,	0x0077},
-		{hmSpeedL,							Long,	NUM_AXES,			FALSE,	TRUE,	0x0078},
-		{hmAcc,								Short,	NUM_AXES,			FALSE,	TRUE,	0x0079},
+		
+		{hmOffset,							Long,	NUM_AXES,			FALSE,	TRUE,	0x0070},
+		{hmSrvErrBatt,						Long,	NUM_AXES,			FALSE,	TRUE,	0x0071},
+		{hmMaxSrvErrBatt,					Long,	NUM_AXES,			FALSE,	TRUE,	0x0072},
+		{hmMaxErrBatt,						Long,	NUM_AXES,			FALSE,	TRUE,	0x0073},
+		{hmDistBatt,						Long,	NUM_AXES,			FALSE,	TRUE,	0x0074},
+		{hmPosAfterHome,					Long,	NUM_AXES,			FALSE,	TRUE,	0x0075},
+		{hmSpeedH,							Long,	NUM_AXES,			FALSE,	TRUE,	0x0076},
+		{hmSpeedL,							Long,	NUM_AXES,			FALSE,	TRUE,	0x0077},
+		{hmAcc,								Short,	NUM_AXES,			FALSE,	TRUE,	0x0078},		
+		{hmMethod,							Byte,	NUM_AXES,			FALSE,	TRUE,	0x0079},
+		{hmDir,								Short,	NUM_AXES,			FALSE,	TRUE,	0x007A},
 		
 		{busDec,							Short,	MAC_NUM_AXIS,		FALSE,	TRUE,	0x007F},
 		
+		{&currentMaxHoming,					Short,	1,					FALSE,	TRUE,	0x0080},
+		{&currentNominalHoming,				Short,	1,					FALSE,	TRUE,	0x0081},
+				
+				
 		{rvel,								Long,	NUM_AXES,			TRUE,	FALSE,	0x0100},
 		{dvel,								Long,	NUM_AXES,			TRUE,	FALSE,	0x0101},
 		{dacc,								Short,	NUM_AXES,			TRUE,	FALSE,	0x0102},

@@ -15,11 +15,12 @@
 #include "Plc.h"
 #include "BldcUser.h"
 #include "Tuning.h"
+
 #include "Drive.h"
 #include "Slave.h"
 
 static const bool drvEnabled[] = {TRUE, FALSE};
-static const long drvInpBitEnable[] = {BIT0, BIT1};
+static const long drvInpBitEnable[] = {BIT15, BIT1};
 
 #define drvInpEnable(axe)		((inputBuffer & drvInpBitEnable[axe]) == drvInpBitEnable[axe])
 

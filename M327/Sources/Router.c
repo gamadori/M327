@@ -51,6 +51,10 @@ MapRouter sdoTableRouter[] =
 		{0x0050,	0x2,	IDX_BLASE,		0x60F9,		6,				0},			// Static Servo Error, Dynamic Servo Error, Time Out Servo Error
 		{0x0055,	0x0,	IDX_BLASE,		0x6087,		0,				0},
 		{0x0060,	0xA,	IDX_BLASE,		0x60F9,		9,				0},			// Nominal Current, Max Current, Time Out Current, Time Out Fault
+		{0x0070,	0x5,	IDX_BLASE,		0x607C,		1,				0},			// Homing Offsets
+		{0x0076,	0x1,	IDX_BLASE,		0x6099,		1,				0},			// Homing Speeds
+		{0x0078,	0x0,	IDX_BLASE,		0x609A,		0,				0},			// Homing Acceleration
+		{0x0079,	0x1,	IDX_BLASE,		0x6098,		1,				0},			// Homing Dir and Method
 		
 		{0,			0,		0,				0,			0,				0}
 };

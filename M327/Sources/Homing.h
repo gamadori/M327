@@ -8,6 +8,8 @@
 #ifndef HOMING_H_
 #define HOMING_H_
 
+extern short hmStep[];
+
 extern short hmDir[];
 
 extern long hmOffset[]; 
@@ -27,6 +29,8 @@ extern long hmSpeedH[];
 extern long hmSpeedL[];
 
 extern short hmAcc[];
+
+extern byte hmMethod[];
 
 bool IsInHoming(byte axe);
 

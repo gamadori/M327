@@ -38,7 +38,11 @@
 
 #define tmrTestPDO			tmrs[9]
 
-#define TmrPidCurr(axe)		tmrs[10 + axe]
+#define TmrHome				tmrs[10]
+
+#define TmrPwr				tmrs[11]
+
+#define TmrPidCurr(axe)		tmrs[12 + axe]
 
 
 extern dword tmrs[];
@@ -46,6 +50,8 @@ extern dword tmrs[];
 extern dword timerSys;
 
 extern dword tmrsCan[];
+
+extern dword tmrsPlc[];
 
 void TimersInit();
 		

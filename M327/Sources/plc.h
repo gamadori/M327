@@ -33,6 +33,7 @@ bool bitSelected(dword field, byte bit);
 
 extern dword inputBuffer;
 extern dword outputBuffer;
+extern dword inputFiltered;
 
 extern dword outValue;
 extern dword outFrz;
@@ -47,6 +48,8 @@ extern word busInputs[];
 extern word busOutputs[];
 
 extern word ADCValues[];
+
+extern word inpFilter[];
 
 void PlcInit();
 

@@ -443,6 +443,40 @@ void CAN1_OnError(void);
 ** ===================================================================
 */
 
+void CAN1_OnTransmitterWarning(void);
+/*
+** ===================================================================
+**     Event       :  CAN1_OnTransmitterWarning (module Events)
+**
+**     Component   :  CAN1 [FreescaleCAN]
+**     Description :
+**         This event is called when the CAN controller goes into
+**         warning status due to the transmit error counter exceeding
+**         96 and neither an error status nor a BusOff status are
+**         present. The event is available only if Interrupt
+**         service/event is enabled.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+void CAN1_OnReceiverWarning(void);
+/*
+** ===================================================================
+**     Event       :  CAN1_OnReceiverWarning (module Events)
+**
+**     Component   :  CAN1 [FreescaleCAN]
+**     Description :
+**         This event is called when the CAN controller goes into a
+**         warning status due to the receive error counter exceeding 96
+**         and neither an error status nor a BusOff status are present.
+**         The event is available only if Interrupt service/event is
+**         enabled.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+
 /* END Events */
 #endif /* __Events_H*/
 

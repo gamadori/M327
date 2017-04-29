@@ -102,11 +102,12 @@ bool BusStop(byte axe, short acc)
 	if (axe < NUM_AXES)
 	{							
 		RampStopCommand((byte)axe, acc);
-			
+		
 		return TRUE;
 	}
 	else if (axe < MAC_NUM_AXIS)
 	{
+		
 		SlvStopAsse(axe - NUM_AXES, acc);
 		return TRUE;
 	}
@@ -139,6 +140,16 @@ bool BusHome(byte axe)
 	else
 		return FALSE;
 	
+}
+
+void BusEmergency()
+{
+	short axe;
+	
+	for (axe = 0; axe < MAC_NUM_AXIS; ++axe)
+	{
+		busCmd[axe] = MacCmdNull;
+	}
 }
 /*
  * Comando di Jog dalla seriale

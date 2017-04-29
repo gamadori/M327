@@ -92,6 +92,7 @@
 #include "NMT.h"
 #include "Slave.h"
 #include "Bus.h"
+#include "Cycle.h"
 
 #define faultInpEnable		((inputBuffer & BIT2) == BIT2)
 
@@ -125,6 +126,8 @@ void main(void)
 	for(;;)
 	{
 	
+		CycleServer();
+		
 		CanServerTrasmit();
 		
 		FlashVariableServer();

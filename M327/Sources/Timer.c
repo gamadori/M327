@@ -6,6 +6,7 @@
  */
 #include "cpu.h"
 #include "CanSettings.h"
+#include "Plc.h"
 #include "Timer.h"
 
 #define	TIMER_TICK	1
@@ -16,6 +17,7 @@
 dword tmrs[NUM_TIMERS];
 dword timerSys = 0;
 dword tmrsCan[NUM_CAN_BOARDS];
+dword tmrsPlc[NUM_INPUTS];
 
 void TimersInit()
 {
@@ -30,6 +32,10 @@ void TimersInit()
 		tmrsCan[i] = 0;
 	}
 	
+	for (i = 0; i < NUM_INPUTS; ++i)
+	{
+		tmrsPlc[i] = 0;
+	}
 }
 
 
@@ -56,6 +62,13 @@ void TimerServer()
 		
 	}
 	
+	for (i = 0; i < NUM_INPUTS; ++i)
+	{
+		if (tmrsPlc[i] >= TIMER_TICK)
+			tmrsPlc[i] -= TIMER_TICK;
+		else
+			tmrsPlc[i] = 0;
+	}
 	
 	timerSys++;
 }
