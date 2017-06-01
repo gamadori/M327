@@ -50,6 +50,9 @@ extern t_pid_axe_state drvAxeRegState[];	// Axe Status Register
 
 extern t_pid_axe_state drvAxeRegState[];	// Axe Status Register
 
+extern long swLimitPos[];
+
+extern long swLimitNeg[];
 
 void DriveInit();
 

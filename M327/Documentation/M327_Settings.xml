@@ -3883,8 +3883,14 @@ autoselected pull
         <Event_procedure_name v="CAN1_OnBusOff" />
         <Priority v="same as interrupt" />
       </event>
-      <event name="OnTransmitterWarning" v="don&amp;apos;t generate code" />
-      <event name="OnReceiverWarning" v="don&amp;apos;t generate code" />
+      <event name="OnTransmitterWarning" v="generate code">
+        <Event_procedure_name v="CAN1_OnTransmitterWarning" />
+        <Priority v="same as interrupt" />
+      </event>
+      <event name="OnReceiverWarning" v="generate code">
+        <Event_procedure_name v="CAN1_OnReceiverWarning" />
+        <Priority v="same as interrupt" />
+      </event>
       <event name="OnWakeup" v="don&amp;apos;t generate code" />
       <event name="OnError" v="generate code">
         <Event_procedure_name v="CAN1_OnError" />

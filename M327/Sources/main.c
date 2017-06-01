@@ -125,7 +125,8 @@ void main(void)
 	
 	for(;;)
 	{
-	
+		FilterInputs();
+		
 		CycleServer();
 		
 		CanServerTrasmit();

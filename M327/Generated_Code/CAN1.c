@@ -6,7 +6,7 @@
 **     Component   : FreescaleCAN
 **     Version     : Component 02.366, Driver 01.03, CPU db: 3.50.001
 **     Compiler    : CodeWarrior DSP C Compiler
-**     Date/Time   : 2016-12-19, 11:12, # CodeGen: 180
+**     Date/Time   : 2017-04-12, 13:57, # CodeGen: 207
 **     Abstract    :
 **         This component "FreescaleCAN" implements a CAN serial channel.
 **     Settings    :
@@ -726,6 +726,7 @@ void CAN1_InterruptTxWarning(void)
 {
   setReg32(CAN_ESR1, CAN_ESR1_TXWRN_MASK); /* Clear the interrupt pending flag */
   ErrFlag |= CAN_ESR1_TXWRN_MASK;      /* Set Tx warning internal error flag */
+  CAN1_OnTransmitterWarning();         /* If yes then invoke user event */
 }
 
 /*
@@ -743,6 +744,7 @@ void CAN1_InterruptRxWarning(void)
 {
   setReg32(CAN_ESR1, CAN_ESR1_RXWRN_MASK); /* Clear the interrupt pending flag */
   ErrFlag |= CAN_ESR1_RXWRN_MASK;      /* Set Rx warning internal error flag */
+  CAN1_OnReceiverWarning();            /* If yes then invoke user event */
 }
 
 /*

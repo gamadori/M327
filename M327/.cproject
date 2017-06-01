@@ -64,6 +64,8 @@
 									<listOptionValue builtIn="false" value="&quot;${MCUToolsBaseDir}/M56800E Support&quot;"/>
 								</option>
 								<option id="com.freescale.dsc.cdt.toolchain.compiler.processor.generates56800EX.232816262" name="Generates elf file for 56800EX core" superClass="com.freescale.dsc.cdt.toolchain.compiler.processor.generates56800EX" value="true" valueType="boolean"/>
+								<option id="com.freescale.dsc.cdt.toolchain.compiler.warnings.warningsFlag.hidden.adjusted.868068491.adjusted.247711081" superClass="com.freescale.dsc.cdt.toolchain.compiler.warnings.warningsFlag.hidden.adjusted.868068491" value="false" valueType="boolean"/>
+								<option id="com.freescale.dsc.cdt.toolchain.compiler.warnings.enableWarnings.hidden.adjusted.2057631295.adjusted.1021080736" superClass="com.freescale.dsc.cdt.toolchain.compiler.warnings.enableWarnings.hidden.adjusted.2057631295" value="com.freescale.dsc.cdt.toolchain.warnings.enableWarnings.custom.hidden" valueType="enumerated"/>
 								<inputType id="com.freescale.dsc.cdt.toolchain.compiler.inputType.c.245975382" name="DSC C Compiler Input" superClass="com.freescale.dsc.cdt.toolchain.compiler.inputType.c"/>
 								<inputType id="com.freescale.dsc.cdt.toolchain.compiler.inputType.cpp.1770061106" name="DSC C++ Compiler Input" superClass="com.freescale.dsc.cdt.toolchain.compiler.inputType.cpp"/>
 							</tool>

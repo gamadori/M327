@@ -46,6 +46,7 @@ MapRouter sdoTableRouter[] =
 		{0x0002,	0x0,	IDX_BLASE,		0x6064,		0,				0},			// Virtual Position
 		
 		{0x0021,	0x0,	IDX_BLASE,		0x1021,		1,				0},			// Scrittura sulla slave
+		{0x002C,	0x0,	IDX_BLASE,		0x60FD,		6,				0},			// Inputs Filter
 		{0x0030,	0x0,	IDX_BLASE,		0x6065,		0,				0},			// Lettura Allarme Assi
 		{0x0040,	0x4,	IDX_BLASE,		0x60F9,		1,				0},			// Proportional Gain/Integral Gain/Derived Gain/Upper Limit/Lower Limit
 		{0x0050,	0x2,	IDX_BLASE,		0x60F9,		6,				0},			// Static Servo Error, Dynamic Servo Error, Time Out Servo Error
@@ -55,7 +56,7 @@ MapRouter sdoTableRouter[] =
 		{0x0076,	0x1,	IDX_BLASE,		0x6099,		1,				0},			// Homing Speeds
 		{0x0078,	0x0,	IDX_BLASE,		0x609A,		0,				0},			// Homing Acceleration
 		{0x0079,	0x1,	IDX_BLASE,		0x6098,		1,				0},			// Homing Dir and Method
-		
+		{0x0080,	0x1,	IDX_BLASE,		0x60F9,		20,				0},			// currentMaxHoming, currentNominalHoming
 		{0,			0,		0,				0,			0,				0}
 };
 
@@ -145,7 +146,7 @@ byte RouteGetCmds(MapRouter *map, word frame, word index, word *pFrame, word *pI
 			{
 				offset = frame - map[i].cmd;
 				*pFrame = map[i].sdo;
-				*pIdx = map[i].sdoIndex + offset;
+				*pIdx = map[i].sdoIndex + offset + index;
 				return cmdSDO;
 			}
 			else

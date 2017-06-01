@@ -61,6 +61,7 @@
 "./Sources/EEprom_c.obj"
 "./Sources/Drive_c.obj"
 "./Sources/DS1855_c.obj"
+"./Sources/Cycle_c.obj"
 "./Sources/Current_c.obj"
 "./Sources/CanObjects_c.obj"
 "./Sources/CanFifo_c.obj"

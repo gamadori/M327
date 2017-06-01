@@ -29,6 +29,8 @@ enum StatusIO
 
 #define inpDipSwitchStation			((inputBuffer & 0xFF00) >> 8) 
 
+#define inpPwrFiltered				((inputFiltered & BIT15) == BIT15)
+
 bool bitSelected(dword field, byte bit);
 
 extern dword inputBuffer;
@@ -58,4 +60,7 @@ void PlcServer();
 void AnalogicInit();
 
 void AnalogicServer();
+
+void FilterInputs();
+
 #endif /* PLC_H_ */

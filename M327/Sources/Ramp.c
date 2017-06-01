@@ -51,6 +51,9 @@ word srvErrorTimeOut[NUM_AXES];			// Time Out Static Servo Error
 word srvTimer[NUM_AXES];
 word srvStep[NUM_AXES];
 
+long swLimitPos[NUM_AXES];
+
+long swLimitNeg[NUM_AXES];
 
 // Dichiarazioni di funzioni
 void RampJogPos(byte axe);
@@ -275,6 +278,7 @@ void RampStopRapid(byte axe)
 	cmdStatus[axe] = cSTOP_RAPID;
 
 }
+
 
 /*************************************************************************************
  * void PidProfilator(word axe)

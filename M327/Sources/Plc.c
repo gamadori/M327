@@ -59,6 +59,7 @@ void PlcSetOutpts();
 
 void PlcInit()
 {
+	inputFiltered = 0;
 	inputPrevious = 0;
 	inputBuffer = 0;
 	outputBuffer = 0;

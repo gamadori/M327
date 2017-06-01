@@ -14,58 +14,17 @@
 #include "Bus.h"
 #include "Timer.h"
 
-#define inpPwrOn		((inputBuffer & BIT15) == BIT15)
-
-short cycleStatus;
 
 void CycleServer()
 {
 	short axe;
 	
-	switch (cycleStatus)
+	if (!inpPwrFiltered)
 	{
-	case 0:
-	
-		for (axe = 0; axe < NUM_AXES; ++axe)
-		{
-			hmStep[axe] = 0;
-		}
-		
 		BusStopAll();
-		
 		BusEmergency();
-		
-		
-		if (inpPwrOn)
-		{
-			cycleStatus++;
-			TmrPwr = MSEC(100);
-		}
-		break;
-
-		
-	case 1:
-		if (!inpPwrOn)
-			cycleStatus = 0;
-		else if (!TmrPwr)
-			cycleStatus++;
-		break;
-		
-	case 2:
-		if (!inpPwrOn)
-		{
-			cycleStatus++;
-			TmrPwr = MSEC(100);
-		}
-		break;
-
-	case 3:
-		if (inpPwrOn)
-			cycleStatus = 2;
-		else if (!TmrPwr)
-			cycleStatus = 0;
-		break;
 	}
+	
 }
 	
 

@@ -22,6 +22,7 @@ enum eAxeCommands
 
 #define RampAxeGetCmd(axe, cmd) (command[axe] == cmd)
 
+#define RampAxeGetCmdExecuted(axe, cmd) (cmdStatus[axe] == cmd)
 
 extern long vpos[];						// Virtual Position
 
@@ -42,6 +43,8 @@ extern long srvErrorDynamic[];
 extern word srvErrorTimeOut[];
 
 extern short command[];
+
+extern short cmdStatus[];	
 
 extern short maxAcc[];
 

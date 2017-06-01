@@ -148,7 +148,7 @@ void BusEmergency()
 	
 	for (axe = 0; axe < MAC_NUM_AXIS; ++axe)
 	{
-		busCmd[axe] = MacCmdNull;
+		busCmd[axe] = MacCmdStop;
 	}
 }
 /*

@@ -10,6 +10,8 @@
 
 extern long rpos[];						// Actual Position
 
+extern long encPos[];
+
 extern short encVel[];
 
 

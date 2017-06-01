@@ -87,11 +87,13 @@
       <GenEventModules lines_count="1">
         <Line>Events</Line>
       </GenEventModules>
-      <GenMethodsInEvents lines_count="17">
+      <GenMethodsInEvents lines_count="19">
         <Line>AD1_OnEnd</Line>
         <Line>CAN1_OnFreeTxBuffer</Line>
         <Line>CAN1_OnFullRxBuffer</Line>
         <Line>CAN1_OnBusOff</Line>
+        <Line>CAN1_OnTransmitterWarning</Line>
+        <Line>CAN1_OnReceiverWarning</Line>
         <Line>CAN1_OnError</Line>
         <Line>IFsh1_OnWriteEnd</Line>
         <Line>TI1_OnInterrupt</Line>
@@ -195,7 +197,7 @@
     </GenFiles>
     <SignalListFile>Documentation\M327_SIGNALS.txt</SignalListFile>
     <DestinationCompiler>MetrowerksDSP</DestinationCompiler>
-    <ProjectModificationStamp>168</ProjectModificationStamp>
+    <ProjectModificationStamp>172</ProjectModificationStamp>
   </Options>
   <CpuID_2>
     <Generated>true</Generated>
@@ -3793,7 +3795,7 @@
     <GenDriverVersion>01.03</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
     <HeaderAge>1234393485</HeaderAge>
-    <CodeAge>1234393485</CodeAge>
+    <CodeAge>1250717477</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>26</GenNumMethods>
     <Enable>true</Enable>
@@ -3838,10 +3840,10 @@
     <OnBusOff_Selected>3</OnBusOff_Selected>
     <OnBusOff_Name>CAN1_OnBusOff</OnBusOff_Name>
     <OnBusOff_Priority>same as interrupt</OnBusOff_Priority>
-    <OnTransmitterWarning_Selected>1</OnTransmitterWarning_Selected>
+    <OnTransmitterWarning_Selected>3</OnTransmitterWarning_Selected>
     <OnTransmitterWarning_Name>CAN1_OnTransmitterWarning</OnTransmitterWarning_Name>
     <OnTransmitterWarning_Priority>same as interrupt</OnTransmitterWarning_Priority>
-    <OnReceiverWarning_Selected>1</OnReceiverWarning_Selected>
+    <OnReceiverWarning_Selected>3</OnReceiverWarning_Selected>
     <OnReceiverWarning_Name>CAN1_OnReceiverWarning</OnReceiverWarning_Name>
     <OnReceiverWarning_Priority>same as interrupt</OnReceiverWarning_Priority>
     <OnWakeup_Selected>0</OnWakeup_Selected>
@@ -4069,21 +4071,21 @@
       <MethodType>internal_method</MethodType>
       <ModuleType>Code</ModuleType>
       <LineBeg>713</LineBeg>
-      <LineEnd>729</LineEnd>
+      <LineEnd>730</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos31>InterruptRxWarning</MethodPos31>
       <MethodType>internal_method</MethodType>
       <ModuleType>Code</ModuleType>
-      <LineBeg>730</LineBeg>
-      <LineEnd>746</LineEnd>
+      <LineBeg>731</LineBeg>
+      <LineEnd>748</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos32>Init</MethodPos32>
       <MethodType>internal_method</MethodType>
       <ModuleType>Code</ModuleType>
-      <LineBeg>747</LineBeg>
-      <LineEnd>833</LineEnd>
+      <LineBeg>749</LineBeg>
+      <LineEnd>835</LineEnd>
     </MethodPos>
     <GenExtraFilesCount>0</GenExtraFilesCount>
   </ComponentID_119>
@@ -4372,117 +4374,119 @@
     <SrcFile146>Drivers\Common\SynchroMasterOnTxChar.inc=1116866294</SrcFile146>
     <SrcFile147>Drivers\56800\Init_PMC_56800.prg=1124477581</SrcFile147>
     <SrcFile148>Drivers\Common\FreescaleCANAbstract.inc=1116866294</SrcFile148>
-    <SrcFile149>Drivers\Common\GeneralParametersNone.inc=1116866294</SrcFile149>
-    <SrcFile150>Drivers\Common\IntFLASHGetLongFlash.inc=1120688458</SrcFile150>
-    <SrcFile151>Drivers\Common\ADCMeasure.inc=1146382935</SrcFile151>
-    <SrcFile152>Drivers\Common\GeneralInternalGlobal.inc=1116866294</SrcFile152>
-    <SrcFile153>Drivers\Common\PE_MisraEnableRules.prg=1116866294</SrcFile153>
-    <SrcFile154>Drivers\SynchroMaster.src=1122284138</SrcFile154>
-    <SrcFile155>Drivers\Common\GeneralInternalDescription.prg=1116866294</SrcFile155>
-    <SrcFile156>Drivers\Common\PulseAccumulatorSettings.inc=1116866294</SrcFile156>
-    <SrcFile157>Drivers\Common\GeneralParameters.inc=1116866294</SrcFile157>
-    <SrcFile158>Drivers\Common\AsynchroSerialOnRxChar.inc=1116866294</SrcFile158>
-    <SrcFile159>Drivers\TimerInt.src=1122284138</SrcFile159>
-    <SrcFile160>Drivers\Common\IntFLASHDataPtr2Addr.inc=1116866294</SrcFile160>
-    <SrcFile161>Drivers\Common\AsynchroSerialOnFullRxBuf.inc=1116866294</SrcFile161>
-    <SrcFile162>Drivers\Common\PWMMCLoad.inc=1116866294</SrcFile162>
-    <SrcFile163>Drivers\Common\DataHeader.End=1116866294</SrcFile163>
-    <SrcFile164>Drivers\Common\FreescaleCANSetBufferCode.inc=1116866294</SrcFile164>
-    <SrcFile165>Drivers\Common\InitReg16.prg=1116866294</SrcFile165>
-    <SrcFile166>Drivers\Common\DSP56800SetWaitMode.inc=1116866294</SrcFile166>
-    <SrcFile167>Drivers\BitIO.src=1122284138</SrcFile167>
-    <SrcFile168>Drivers\Common\UsedAsynchroPins.inc=1116866294</SrcFile168>
-    <SrcFile169>Drivers\Common\AsynchroSerialSettings.inc=1116866294</SrcFile169>
-    <SrcFile170>Drivers\Common\GenReg16InitInfo.prg=1116866294</SrcFile170>
-    <SrcFile171>Drivers\ADC.src=1122284138</SrcFile171>
-    <SrcFile172>Drivers\Common\OneBitIOAbstract.inc=1116866294</SrcFile172>
-    <SrcFile173>Drivers\56800\PWMMC_eFlexPWM.drv=1116866294</SrcFile173>
-    <SrcFile174>Drivers\56800\Init_eFlexPWM_56800.drv=1146382935</SrcFile174>
-    <SrcFile175>Drivers\Common\EBGNSupport\StringLib.prg=1146382935</SrcFile175>
-    <SrcFile176>Drivers\Common\GeneralDamage.inc=1116866294</SrcFile176>
-    <SrcFile177>Drivers\Common\Init_eFlexPWM_56800Init.inc=1116866294</SrcFile177>
-    <SrcFile178>Drivers\56800\SDK\prototypeH.prg=1116866294</SrcFile178>
-    <SrcFile179>Drivers\Common\InitISRimplement.inc=1116866294</SrcFile179>
-    <SrcFile180>Drivers\Common\ADCGetValue.inc=1146382935</SrcFile180>
-    <SrcFile181>Drivers\IntFLASH.src=1122284138</SrcFile181>
-    <SrcFile182>Drivers\Common\PE_Limitations.inc=1116866294</SrcFile182>
-    <SrcFile183>Drivers\Common\PE_MisraDisableRules.prg=1116866294</SrcFile183>
-    <SrcFile184>Drivers\Common\HeaderGeneral.c=1116866294</SrcFile184>
-    <SrcFile185>Drivers\Common\IntFLASHDisableEvent.inc=1120688458</SrcFile185>
-    <SrcFile186>Drivers\Common\UsedPin.inc=1116866294</SrcFile186>
-    <SrcFile187>Drivers\VAR\InitPin.prg=1116866294</SrcFile187>
-    <SrcFile188>Drivers\Common\PWMMCOutputPadDisable.inc=1116866294</SrcFile188>
-    <SrcFile189>Drivers\Common\SynchroMasterOnError.inc=1116866294</SrcFile189>
-    <SrcFile190>Drivers\56800\SDK\BldcH.prg=1116866294</SrcFile190>
-    <SrcFile191>Drivers\Common\AsynchroSerialRecvChar.inc=1116866294</SrcFile191>
-    <SrcFile192>Drivers\Common\PulseAccumulatorEnable.inc=1116866294</SrcFile192>
-    <SrcFile193>Drivers\56800\FlexCAN32bits.drv=1146382935</SrcFile193>
-    <SrcFile194>Drivers\Common\OneBitIOSetVal.inc=1116866294</SrcFile194>
-    <SrcFile195>Drivers\Common\PE_ErrorAbstract.inc=1116866294</SrcFile195>
-    <SrcFile196>Drivers\Common\SetRegBits32.prg=1127381294</SrcFile196>
-    <SrcFile197>Drivers\Common\AsynchroSerialAbstract.inc=1116866294</SrcFile197>
-    <SrcFile198>Drivers\Common\PWMMCSettings.inc=1116866294</SrcFile198>
-    <SrcFile199>Drivers\56800\Init_TMR_56800.drv=1116866294</SrcFile199>
-    <SrcFile200>lib\doxygen\pex.doxyfile=1213137465</SrcFile200>
-    <SrcFile201>Drivers\Common\InitReg16Block.prg=1116866294</SrcFile201>
-    <SrcFile202>Drivers\Common\FreescaleCANGetStateTX_DSP.inc=1116866294</SrcFile202>
-    <SrcFile203>Drivers\Common\SynchroMasterOnRxChar.inc=1116866294</SrcFile203>
-    <SrcFile204>Drivers\Common\FreescaleCANGetStateRX_DSP.inc=1116866294</SrcFile204>
-    <SrcFile205>Drivers\Common\GeneralEvent.inc=1116866294</SrcFile205>
-    <SrcFile206>Drivers\Common\PE_MisraRuleToDocumentation_56800.prg=1116866294</SrcFile206>
-    <SrcFile207>Drivers\Common\SynchroMasterSettings.inc=1116866294</SrcFile207>
-    <SrcFile208>Drivers\Common\CommonRegInitialization.prg=1116866294</SrcFile208>
-    <SrcFile209>Drivers\Common\IntFLASHSetWordFlash.inc=1120688458</SrcFile209>
-    <SrcFile210>Drivers\Common\PE_MisraDisableRuleForSymbol.prg=1116866294</SrcFile210>
-    <SrcFile211>Drivers\Common\OneBitIOGetVal.inc=1116866294</SrcFile211>
-    <SrcFile212>Drivers\PWMMC.src=1122284138</SrcFile212>
-    <SrcFile213>Drivers\Common\AsynchroSerialGetCharsInTxBuf.inc=1116866294</SrcFile213>
-    <SrcFile214>Drivers\Common\Init_eFlexPWM_56800Settings.inc=1128496915</SrcFile214>
-    <SrcFile215>Drivers\Common\DoxyGenCpuDoc.prg=1129740155</SrcFile215>
-    <SrcFile216>Drivers\Common\SetRegBits16_Rst.prg=1122284138</SrcFile216>
-    <SrcFile217>Drivers\56800\PE_Types.drv=1116866294</SrcFile217>
-    <SrcFile218>Drivers\Common\ADCSettings.inc=1151162642</SrcFile218>
-    <SrcFile219>Drivers\Common\SynchroMasterGetError.inc=1116866294</SrcFile219>
-    <SrcFile220>Drivers\Common\SetReg16.prg=1127381294</SrcFile220>
-    <SrcFile221>Drivers\Common\CheckRegBits32_Rst.prg=1116866294</SrcFile221>
-    <SrcFile222>Drivers\Common\Header.doxy=1119183099</SrcFile222>
-    <SrcFile223>Drivers\Common\UsedSynchroPins.inc=1116866294</SrcFile223>
-    <SrcFile224>Drivers\Common\PE_TypesAbstract.inc=1116866294</SrcFile224>
-    <SrcFile225>Drivers\Common\Init_TMR_56800Settings.inc=1116866294</SrcFile225>
-    <SrcFile226>Drivers\Common\SynchroMasterSendBlock.inc=1116866294</SrcFile226>
-    <SrcFile227>Drivers\56800\PE_Error.inc=1116866294</SrcFile227>
-    <SrcFile228>Drivers\Common\ToolChain_Settings.prg=1146382935</SrcFile228>
-    <SrcFile229>Drivers\56800\Init_GPIOF_56800.prg=1116866294</SrcFile229>
-    <SrcFile230>Drivers\56800\BeforeEventContent.prg=1120165960</SrcFile230>
-    <SrcFile231>Drivers\56800\Init_MCM_CoreFault_56800.prg=1124477581</SrcFile231>
-    <SrcFile232>Drivers\56800\Init_FMC_56800.prg=1129740155</SrcFile232>
-    <SrcFile233>Drivers\Common\TimerIntOnInterrupt.inc=1116866294</SrcFile233>
-    <SrcFile234>Drivers\56800\MC56F84789VLLh.prg=1146382935</SrcFile234>
-    <SrcFile235>Drivers\Common\ADCAbstract.inc=1116866294</SrcFile235>
-    <SrcFile236>Drivers\Common\DSP56800Abstract.inc=1116866294</SrcFile236>
-    <SrcFile237>Drivers\56800\FreescaleCAN.drv=1116866294</SrcFile237>
-    <SrcFile238>Drivers\Common\AsynchroSerialOnTxChar.inc=1116866294</SrcFile238>
-    <SrcFile239>Drivers\Common\SynchroMasterGetCharsInRxBuf.inc=1116866294</SrcFile239>
-    <SrcFile240>Drivers\Common\CommonEnabling.prg=1116866294</SrcFile240>
-    <SrcFile241>Drivers\56800\DSP56800EX.drv=1160012938</SrcFile241>
-    <SrcFile242>Drivers\56800\SDK\BldcdrvH.prg=1116866294</SrcFile242>
-    <SrcFile243>Drivers\Common\CreateIntSection.prg=1116866294</SrcFile243>
-    <SrcFile244>Drivers\Common\DSP56800DisableInt.inc=1116866294</SrcFile244>
-    <SrcFile245>Drivers\Common\Doxy_CollectRegInitInfo.prg=1116866294</SrcFile245>
-    <SrcFile246>Drivers\Common\DSP56800EnableInt.inc=1116866294</SrcFile246>
-    <SrcFile247>Drivers\Common\DeclareISR.prg=1146382935</SrcFile247>
-    <SrcFile248>Drivers\Common\ADCOnEnd.inc=1116866294</SrcFile248>
-    <SrcFile249>Drivers\Common\IO_MapSettings.inc=1116866294</SrcFile249>
-    <SrcFile250>Drivers\Common\SetRegBits16.prg=1128496915</SrcFile250>
-    <SrcFile251>Drivers\Common\TimerIntAbstract.inc=1116866294</SrcFile251>
-    <SrcFile252>Drivers\56800\ADC_803x.drv=1151171659</SrcFile252>
-    <SrcFile253>Drivers\Common\IntFLASHGetWordFlash.inc=1120688458</SrcFile253>
-    <SrcFile254>Drivers\Common\GeneralReturnNothing.inc=1116866294</SrcFile254>
-    <SrcFile255>Drivers\Common\UsedBaudModes.inc=1116866294</SrcFile255>
-    <SrcFile256>Drivers\PulseAccumulator.src=1122284138</SrcFile256>
-    <SrcFile257>Drivers\56800\PE_Const.drv=1119249131</SrcFile257>
-    <SrcFile258>Drivers\56800\SDK\McH.prg=1116866294</SrcFile258>
-    <SrcFile259>Drivers\56800\IO_Map.drv=1119248706</SrcFile259>
-    <SrcFile260>Drivers\56800\SDK\DSP56800E\prototype.h=1116866294</SrcFile260>
+    <SrcFile149>Drivers\Common\FreescaleCANOnReceiverWarning.inc=1116866294</SrcFile149>
+    <SrcFile150>Drivers\Common\GeneralParametersNone.inc=1116866294</SrcFile150>
+    <SrcFile151>Drivers\Common\IntFLASHGetLongFlash.inc=1120688458</SrcFile151>
+    <SrcFile152>Drivers\Common\ADCMeasure.inc=1146382935</SrcFile152>
+    <SrcFile153>Drivers\Common\GeneralInternalGlobal.inc=1116866294</SrcFile153>
+    <SrcFile154>Drivers\Common\PE_MisraEnableRules.prg=1116866294</SrcFile154>
+    <SrcFile155>Drivers\SynchroMaster.src=1122284138</SrcFile155>
+    <SrcFile156>Drivers\Common\GeneralInternalDescription.prg=1116866294</SrcFile156>
+    <SrcFile157>Drivers\Common\PulseAccumulatorSettings.inc=1116866294</SrcFile157>
+    <SrcFile158>Drivers\Common\GeneralParameters.inc=1116866294</SrcFile158>
+    <SrcFile159>Drivers\Common\AsynchroSerialOnRxChar.inc=1116866294</SrcFile159>
+    <SrcFile160>Drivers\TimerInt.src=1122284138</SrcFile160>
+    <SrcFile161>Drivers\Common\IntFLASHDataPtr2Addr.inc=1116866294</SrcFile161>
+    <SrcFile162>Drivers\Common\AsynchroSerialOnFullRxBuf.inc=1116866294</SrcFile162>
+    <SrcFile163>Drivers\Common\PWMMCLoad.inc=1116866294</SrcFile163>
+    <SrcFile164>Drivers\Common\DataHeader.End=1116866294</SrcFile164>
+    <SrcFile165>Drivers\Common\FreescaleCANSetBufferCode.inc=1116866294</SrcFile165>
+    <SrcFile166>Drivers\Common\InitReg16.prg=1116866294</SrcFile166>
+    <SrcFile167>Drivers\Common\DSP56800SetWaitMode.inc=1116866294</SrcFile167>
+    <SrcFile168>Drivers\BitIO.src=1122284138</SrcFile168>
+    <SrcFile169>Drivers\Common\UsedAsynchroPins.inc=1116866294</SrcFile169>
+    <SrcFile170>Drivers\Common\AsynchroSerialSettings.inc=1116866294</SrcFile170>
+    <SrcFile171>Drivers\Common\GenReg16InitInfo.prg=1116866294</SrcFile171>
+    <SrcFile172>Drivers\ADC.src=1122284138</SrcFile172>
+    <SrcFile173>Drivers\Common\OneBitIOAbstract.inc=1116866294</SrcFile173>
+    <SrcFile174>Drivers\56800\PWMMC_eFlexPWM.drv=1116866294</SrcFile174>
+    <SrcFile175>Drivers\56800\Init_eFlexPWM_56800.drv=1146382935</SrcFile175>
+    <SrcFile176>Drivers\Common\EBGNSupport\StringLib.prg=1146382935</SrcFile176>
+    <SrcFile177>Drivers\Common\GeneralDamage.inc=1116866294</SrcFile177>
+    <SrcFile178>Drivers\Common\Init_eFlexPWM_56800Init.inc=1116866294</SrcFile178>
+    <SrcFile179>Drivers\56800\SDK\prototypeH.prg=1116866294</SrcFile179>
+    <SrcFile180>Drivers\Common\InitISRimplement.inc=1116866294</SrcFile180>
+    <SrcFile181>Drivers\Common\ADCGetValue.inc=1146382935</SrcFile181>
+    <SrcFile182>Drivers\IntFLASH.src=1122284138</SrcFile182>
+    <SrcFile183>Drivers\Common\PE_Limitations.inc=1116866294</SrcFile183>
+    <SrcFile184>Drivers\Common\PE_MisraDisableRules.prg=1116866294</SrcFile184>
+    <SrcFile185>Drivers\Common\HeaderGeneral.c=1116866294</SrcFile185>
+    <SrcFile186>Drivers\Common\IntFLASHDisableEvent.inc=1120688458</SrcFile186>
+    <SrcFile187>Drivers\Common\UsedPin.inc=1116866294</SrcFile187>
+    <SrcFile188>Drivers\VAR\InitPin.prg=1116866294</SrcFile188>
+    <SrcFile189>Drivers\Common\PWMMCOutputPadDisable.inc=1116866294</SrcFile189>
+    <SrcFile190>Drivers\Common\SynchroMasterOnError.inc=1116866294</SrcFile190>
+    <SrcFile191>Drivers\56800\SDK\BldcH.prg=1116866294</SrcFile191>
+    <SrcFile192>Drivers\Common\AsynchroSerialRecvChar.inc=1116866294</SrcFile192>
+    <SrcFile193>Drivers\Common\PulseAccumulatorEnable.inc=1116866294</SrcFile193>
+    <SrcFile194>Drivers\56800\FlexCAN32bits.drv=1146382935</SrcFile194>
+    <SrcFile195>Drivers\Common\OneBitIOSetVal.inc=1116866294</SrcFile195>
+    <SrcFile196>Drivers\Common\PE_ErrorAbstract.inc=1116866294</SrcFile196>
+    <SrcFile197>Drivers\Common\SetRegBits32.prg=1127381294</SrcFile197>
+    <SrcFile198>Drivers\Common\AsynchroSerialAbstract.inc=1116866294</SrcFile198>
+    <SrcFile199>Drivers\Common\PWMMCSettings.inc=1116866294</SrcFile199>
+    <SrcFile200>Drivers\56800\Init_TMR_56800.drv=1116866294</SrcFile200>
+    <SrcFile201>lib\doxygen\pex.doxyfile=1213137465</SrcFile201>
+    <SrcFile202>Drivers\Common\InitReg16Block.prg=1116866294</SrcFile202>
+    <SrcFile203>Drivers\Common\FreescaleCANGetStateTX_DSP.inc=1116866294</SrcFile203>
+    <SrcFile204>Drivers\Common\SynchroMasterOnRxChar.inc=1116866294</SrcFile204>
+    <SrcFile205>Drivers\Common\FreescaleCANGetStateRX_DSP.inc=1116866294</SrcFile205>
+    <SrcFile206>Drivers\Common\GeneralEvent.inc=1116866294</SrcFile206>
+    <SrcFile207>Drivers\Common\PE_MisraRuleToDocumentation_56800.prg=1116866294</SrcFile207>
+    <SrcFile208>Drivers\Common\SynchroMasterSettings.inc=1116866294</SrcFile208>
+    <SrcFile209>Drivers\Common\CommonRegInitialization.prg=1116866294</SrcFile209>
+    <SrcFile210>Drivers\Common\IntFLASHSetWordFlash.inc=1120688458</SrcFile210>
+    <SrcFile211>Drivers\Common\PE_MisraDisableRuleForSymbol.prg=1116866294</SrcFile211>
+    <SrcFile212>Drivers\Common\OneBitIOGetVal.inc=1116866294</SrcFile212>
+    <SrcFile213>Drivers\PWMMC.src=1122284138</SrcFile213>
+    <SrcFile214>Drivers\Common\AsynchroSerialGetCharsInTxBuf.inc=1116866294</SrcFile214>
+    <SrcFile215>Drivers\Common\Init_eFlexPWM_56800Settings.inc=1128496915</SrcFile215>
+    <SrcFile216>Drivers\Common\DoxyGenCpuDoc.prg=1129740155</SrcFile216>
+    <SrcFile217>Drivers\Common\SetRegBits16_Rst.prg=1122284138</SrcFile217>
+    <SrcFile218>Drivers\56800\PE_Types.drv=1116866294</SrcFile218>
+    <SrcFile219>Drivers\Common\ADCSettings.inc=1151162642</SrcFile219>
+    <SrcFile220>Drivers\Common\SynchroMasterGetError.inc=1116866294</SrcFile220>
+    <SrcFile221>Drivers\Common\SetReg16.prg=1127381294</SrcFile221>
+    <SrcFile222>Drivers\Common\CheckRegBits32_Rst.prg=1116866294</SrcFile222>
+    <SrcFile223>Drivers\Common\Header.doxy=1119183099</SrcFile223>
+    <SrcFile224>Drivers\Common\UsedSynchroPins.inc=1116866294</SrcFile224>
+    <SrcFile225>Drivers\Common\PE_TypesAbstract.inc=1116866294</SrcFile225>
+    <SrcFile226>Drivers\Common\Init_TMR_56800Settings.inc=1116866294</SrcFile226>
+    <SrcFile227>Drivers\Common\SynchroMasterSendBlock.inc=1116866294</SrcFile227>
+    <SrcFile228>Drivers\56800\PE_Error.inc=1116866294</SrcFile228>
+    <SrcFile229>Drivers\Common\ToolChain_Settings.prg=1146382935</SrcFile229>
+    <SrcFile230>Drivers\56800\Init_GPIOF_56800.prg=1116866294</SrcFile230>
+    <SrcFile231>Drivers\56800\BeforeEventContent.prg=1120165960</SrcFile231>
+    <SrcFile232>Drivers\56800\Init_MCM_CoreFault_56800.prg=1124477581</SrcFile232>
+    <SrcFile233>Drivers\56800\Init_FMC_56800.prg=1129740155</SrcFile233>
+    <SrcFile234>Drivers\Common\FreescaleCANOnTransmitterWarning.inc=1116866294</SrcFile234>
+    <SrcFile235>Drivers\Common\TimerIntOnInterrupt.inc=1116866294</SrcFile235>
+    <SrcFile236>Drivers\56800\MC56F84789VLLh.prg=1146382935</SrcFile236>
+    <SrcFile237>Drivers\Common\ADCAbstract.inc=1116866294</SrcFile237>
+    <SrcFile238>Drivers\Common\DSP56800Abstract.inc=1116866294</SrcFile238>
+    <SrcFile239>Drivers\56800\FreescaleCAN.drv=1116866294</SrcFile239>
+    <SrcFile240>Drivers\Common\AsynchroSerialOnTxChar.inc=1116866294</SrcFile240>
+    <SrcFile241>Drivers\Common\SynchroMasterGetCharsInRxBuf.inc=1116866294</SrcFile241>
+    <SrcFile242>Drivers\Common\CommonEnabling.prg=1116866294</SrcFile242>
+    <SrcFile243>Drivers\56800\DSP56800EX.drv=1160012938</SrcFile243>
+    <SrcFile244>Drivers\56800\SDK\BldcdrvH.prg=1116866294</SrcFile244>
+    <SrcFile245>Drivers\Common\CreateIntSection.prg=1116866294</SrcFile245>
+    <SrcFile246>Drivers\Common\DSP56800DisableInt.inc=1116866294</SrcFile246>
+    <SrcFile247>Drivers\Common\Doxy_CollectRegInitInfo.prg=1116866294</SrcFile247>
+    <SrcFile248>Drivers\Common\DSP56800EnableInt.inc=1116866294</SrcFile248>
+    <SrcFile249>Drivers\Common\DeclareISR.prg=1146382935</SrcFile249>
+    <SrcFile250>Drivers\Common\ADCOnEnd.inc=1116866294</SrcFile250>
+    <SrcFile251>Drivers\Common\IO_MapSettings.inc=1116866294</SrcFile251>
+    <SrcFile252>Drivers\Common\SetRegBits16.prg=1128496915</SrcFile252>
+    <SrcFile253>Drivers\Common\TimerIntAbstract.inc=1116866294</SrcFile253>
+    <SrcFile254>Drivers\56800\ADC_803x.drv=1151171659</SrcFile254>
+    <SrcFile255>Drivers\Common\IntFLASHGetWordFlash.inc=1120688458</SrcFile255>
+    <SrcFile256>Drivers\Common\GeneralReturnNothing.inc=1116866294</SrcFile256>
+    <SrcFile257>Drivers\Common\UsedBaudModes.inc=1116866294</SrcFile257>
+    <SrcFile258>Drivers\PulseAccumulator.src=1122284138</SrcFile258>
+    <SrcFile259>Drivers\56800\PE_Const.drv=1119249131</SrcFile259>
+    <SrcFile260>Drivers\56800\SDK\McH.prg=1116866294</SrcFile260>
+    <SrcFile261>Drivers\56800\IO_Map.drv=1119248706</SrcFile261>
+    <SrcFile262>Drivers\56800\SDK\DSP56800E\prototype.h=1116866294</SrcFile262>
   </UsedSrcFiles>
 </GenerationInfo_G_C>

@@ -22,7 +22,7 @@
 static const bool drvEnabled[] = {TRUE, FALSE};
 static const long drvInpBitEnable[] = {BIT15, BIT1};
 
-#define drvInpEnable(axe)		((inputBuffer & drvInpBitEnable[axe]) == drvInpBitEnable[axe])
+#define drvInpEnable(axe)		inpPwrFiltered
 
 byte drvAxeStatus[NUM_AXES];				// Axe Status
 byte drvOldAxeStatus[NUM_AXES];				// Previous axe state

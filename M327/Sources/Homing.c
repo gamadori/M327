@@ -114,7 +114,8 @@ void HomeServer(byte axe)
 				}
 				else 
 				{
-					BusMove(axe, rpos[axe] - hmDir[axe] * hmOffset[axe], hmSpeedH[axe], hmAcc[axe], 0);
+					TmrHome = MSEC(100);
+					//BusMove(axe, rpos[axe] - hmDir[axe] * hmOffset[axe], hmSpeedH[axe], hmAcc[axe], 0);
 					hmStep[axe] += 2;
 				}
 			}
@@ -124,7 +125,7 @@ void HomeServer(byte axe)
 	case 4:
 			if (vpos[axe] == dpos[axe])
 			{
-				TmrHome = MSEC(100);
+				TmrHome = MSEC(10);
 				hmStep[axe] = 1;
 			}
 			break;
@@ -132,19 +133,19 @@ void HomeServer(byte axe)
 		
 	
 	case 5:
-		if (!TmrHome)
+		if (!TmrHome && RampAxeGetCmdExecuted(axe, cSTOP_RAPID))
 		{
+			BusMove(axe, rpos[axe] - hmDir[axe] * hmOffset[axe], hmSpeedH[axe], hmAcc[axe], 0);
 			
-			TmrHome = MSEC(100);
 			hmStep[axe] ++;
 		}
 		break;
 		
 	case 6:
-		if (!TmrHome)
+		if (vpos[axe] == dpos[axe])
 		{
 			
-			rpos[axe] = vpos[axe] = dpos[axe] = hmPosAfterHome[axe];							
+			encPos[axe] = vpos[axe] = dpos[axe] = hmPosAfterHome[axe];							
 			drvAxeRegState[axe].homed = 1;
 			PidUploadHomingParam(axe);
 			hmStep[axe] ++;

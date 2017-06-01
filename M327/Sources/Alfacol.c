@@ -130,7 +130,9 @@ PtlRoadMap AlfaRoadMap[] =
 		
 		{&currentMaxHoming,					Short,	1,					FALSE,	TRUE,	0x0080},
 		{&currentNominalHoming,				Short,	1,					FALSE,	TRUE,	0x0081},
-				
+		
+		{&swLimitPos,						Long,	NUM_AXES,			FALSE,	TRUE,	0x0082},
+		{&swLimitNeg,						Long,	NUM_AXES,			FALSE,	TRUE,	0x0083},
 				
 		{rvel,								Long,	NUM_AXES,			TRUE,	FALSE,	0x0100},
 		{dvel,								Long,	NUM_AXES,			TRUE,	FALSE,	0x0101},
