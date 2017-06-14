@@ -52,7 +52,6 @@ word srvTimer[NUM_AXES];
 word srvStep[NUM_AXES];
 
 long swLimitPos[NUM_AXES];
-
 long swLimitNeg[NUM_AXES];
 
 // Dichiarazioni di funzioni
@@ -558,4 +557,28 @@ void RampSrvError(byte axe)
 	}
 }
 
+void RampSwLimit(byte axe)
+{
+	if (drvAxeRegState[axe].homed)
+	{
+		drvAxeRegState[axe].limSwMin = (vpos[axe] < swLimitNeg[axe]);
+		
+		if (drvAxeRegState[axe].limSwMin && rvel[axe] < 0)	// Minimum Software Limit reached
+		{
+			
+			RampStopCommand(axe, 0);
+		}
+		drvAxeRegState[axe].limSwMax = (vpos[axe] > swLimitPos[axe]);
+		
+		if (drvAxeRegState[axe].limSwMax && rvel[axe] > 0)	// Maximun Software Limit reached
+		{
+			RampStopCommand(axe, 0);
+		}
+	}
+	else
+	{
+		drvAxeRegState[axe].limSwMin = 0;	// Minimum Software Limit reached
+		drvAxeRegState[axe].limSwMax = 0;	// Maximun Software Limit reached
+	}
+}
 

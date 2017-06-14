@@ -56,7 +56,7 @@ MapRouter sdoTableRouter[] =
 		{0x0076,	0x1,	IDX_BLASE,		0x6099,		1,				0},			// Homing Speeds
 		{0x0078,	0x0,	IDX_BLASE,		0x609A,		0,				0},			// Homing Acceleration
 		{0x0079,	0x1,	IDX_BLASE,		0x6098,		1,				0},			// Homing Dir and Method
-		{0x0080,	0x1,	IDX_BLASE,		0x60F9,		20,				0},			// currentMaxHoming, currentNominalHoming
+		{0x0080,	0x3,	IDX_BLASE,		0x60F9,		20,				0},			// currentMaxHoming, currentNominalHoming, SwLimitPos, SwLimitNeg
 		{0,			0,		0,				0,			0,				0}
 };
 

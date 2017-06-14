@@ -85,7 +85,7 @@
       <File Name="Generated_Code/Out7.h" FileDate="2016-12-19, 09:50:37" FileAge="1482137437166" FileType="45637" CompNumb="20" />
       <File Name="Generated_Code/CSPot.c" FileDate="2016-12-19, 09:50:37" FileAge="1482137437649" FileType="45637" CompNumb="101" />
       <File Name="Generated_Code/SM1.c" FileDate="2016-12-19, 09:50:37" FileAge="1482137437487" FileType="45637" CompNumb="9" />
-      <File Name="Documentation/M327_SIGNALS.txt" FileDate="2017-06-02, 01:40:02" FileAge="1496360402327" FileType="3072" />
+      <File Name="Documentation/M327_SIGNALS.txt" FileDate="2017-06-14, 08:51:46" FileAge="1497423106315" FileType="3072" />
       <File Name="Generated_Code/Out7.c" FileDate="2016-12-19, 09:50:37" FileAge="1482137437202" FileType="45637" CompNumb="20" />
       <File Name="Generated_Code/Out6.h" FileDate="2016-12-19, 09:50:37" FileAge="1482137437175" FileType="45637" CompNumb="19" />
       <File Name="Generated_Code/Out6.c" FileDate="2016-12-19, 09:50:37" FileAge="1482137437192" FileType="45637" CompNumb="19" />
@@ -118,5 +118,5 @@
       <File Name="Generated_Code/port.h" FileDate="2016-12-19, 09:50:37" FileAge="1482137437640" FileType="45637" CompNumb="38" />
     </GeneratedByPE>
   </GeneratedFilesList>
-  <CodeGenReference>214</CodeGenReference>
+  <CodeGenReference>216</CodeGenReference>
 </CodeGenerationInfo>

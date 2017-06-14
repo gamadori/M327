@@ -106,6 +106,7 @@ void DrvEventAxeInDisable(byte axe)
 void DrvEventAxeEnabledEachStep(byte axe)
 {
 	RampSrvError(axe);
+	RampSwLimit(axe);
 	RampServer(axe);
 	PidServer(axe);	
 	

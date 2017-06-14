@@ -68,6 +68,8 @@ void RampMoveCommand(byte axe, long pos, long speed, short acc, bool tuning);
 
 void RampSrvError(byte axe);
 
+void RampSwLimit(byte axe);
+
 bool RampInMove(byte axe);
 
 #endif /* RAMP_H_ */
