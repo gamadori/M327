@@ -17,6 +17,10 @@ long rpos[MAC_NUM_AXIS];						// Actual Position
 
 long encPos[NUM_ENCODERS];
 
+long encPos0[NUM_ENCODERS];						// Posizione di zero
+
+long encPosRel[NUM_ENCODERS];					// Posizione Relativa allo zero
+
 short encCount[NUM_ENCODERS];					// Valore del contatore
 
 short encVel[NUM_ENCODERS];

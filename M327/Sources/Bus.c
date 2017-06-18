@@ -19,6 +19,7 @@ enum MacCmds
 	MacCmdNull,
 	MacCmdStop,
 	MacCmdHome,
+	MacCmdSearchMin,
 	MacCmdRun
 };
 
@@ -58,6 +59,10 @@ void BusServer()
 			
 		case MacCmdHome:
 			HomeServer(i);
+			break;
+			
+		case MacCmdSearchMin:
+			HomeSearchMinServer(i, -1);
 			break;
 		}
 	}
@@ -149,6 +154,15 @@ void BusEmergency()
 	for (axe = 0; axe < MAC_NUM_AXIS; ++axe)
 	{
 		busCmd[axe] = MacCmdStop;
+	}
+}
+
+void BusSearchMin(byte axe)
+{
+	if (axe < NUM_AXES)
+	{
+		HomeSearchMinStart(axe);
+		busCmd[axe] = MacCmdSearchMin;
 	}
 }
 /*

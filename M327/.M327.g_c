@@ -197,7 +197,7 @@
     </GenFiles>
     <SignalListFile>Documentation\M327_SIGNALS.txt</SignalListFile>
     <DestinationCompiler>MetrowerksDSP</DestinationCompiler>
-    <ProjectModificationStamp>172</ProjectModificationStamp>
+    <ProjectModificationStamp>174</ProjectModificationStamp>
   </Options>
   <CpuID_2>
     <Generated>true</Generated>

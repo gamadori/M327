@@ -49,6 +49,8 @@ extern word nmtGuardTime;
 
 extern byte nmtLifeTimeFactor;
 
+extern word nmtAllarmi[];
+
 /*	Functions' declare */
 
 void NMTInit();

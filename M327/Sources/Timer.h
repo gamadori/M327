@@ -53,6 +53,8 @@ extern dword tmrsCan[];
 
 extern dword tmrsPlc[];
 
+extern dword tmrsCycle[];
+
 void TimersInit();
 		
 void TimerServer();

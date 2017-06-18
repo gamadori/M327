@@ -36,4 +36,6 @@ bool BusRSHome(char *param, short index);
 
 void BusStopAll();
 
+void BusSearchMin(byte axe);
+
 #endif /* BUS_H_ */

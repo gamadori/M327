@@ -40,6 +40,8 @@ void HomeStart(byte axe);
 
 void HomeServer(byte axe);
 
+void HomeSearchMinServer(byte axe, short dir);
 
+void HomeSearchMinStart(byte axe);
 		
 #endif /* HOMING_H_ */

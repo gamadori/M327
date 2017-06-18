@@ -13,11 +13,14 @@
 
 #define NUM_TIMERS	20
 
+#define NUM_TIMERS_CYCLE	20
+
 
 dword tmrs[NUM_TIMERS];
 dword timerSys = 0;
 dword tmrsCan[NUM_CAN_BOARDS];
 dword tmrsPlc[NUM_INPUTS];
+dword tmrsCycle[NUM_TIMERS_CYCLE];
 
 void TimersInit()
 {
@@ -27,6 +30,12 @@ void TimersInit()
 	{
 		tmrs[i] = 0;
 	}
+	
+	for (i = 0; i < NUM_TIMERS_CYCLE; ++i)
+	{
+		tmrsCycle[i] = 0;
+	}
+	
 	for (i = 0; i < NUM_CAN_BOARDS; ++i)
 	{
 		tmrsCan[i] = 0;

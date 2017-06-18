@@ -363,7 +363,7 @@ const td_indexTable transmitPDOParameter[] =
 #define FILL_DATA_S_PDO_MAPPING 0, 0, 0, 0
 td_pdo_mapping RxMap1 = { 3, 0x60410010, 0x60610008, 0x60640020, 0 }; //{ 0, { FILL_DATA_S_PDO_MAPPING } };
 td_pdo_mapping RxMap2 = { 2, 0x60630020, 0x60650010, 0, 0};
-td_pdo_mapping RxMap3 = { 0, 0x60FD0010, 0, 		 0,	0 };		// Rd Encoder, 0, 0, 0
+td_pdo_mapping RxMap3 = { 0, 0x68650010, 0, 		 0,	0 };					// Rd Status Word Axe
 td_pdo_mapping RxMap4 = { 1, 0x60FD0010, 0, 		 0, 0 };					// Rd Ingressi, 0, 0, 0
 
 

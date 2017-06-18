@@ -40,22 +40,14 @@
 #include "CanOpen.h"
 #include "Router.h"
 #include "Current.h"
+#include "BM/BMAlfacol.h"
 
 #define ALFACOL_NMAX_PARAM	16
 
 #define ALFACOL_NMAX_CMDS	16
 
 
-typedef struct 
-{
-	void *pAddress;				// pointer to the memory area of the variable
-	short type;					// Variable data type
-	short size;					// Variable Length
-	bool readOnly;				// Read Only variable
-	bool eeprom;				// Save to EEprom
-	word CMD;					// Frame's Value in in hexadecimal
-	
-}PtlRoadMap;
+
 
 
 PtlRoadMap AlfaRoadMap[] =
@@ -151,6 +143,13 @@ PtlRoadMap AlfaRoadMap[] =
 		{NULL,								0,		0,					0,		0,		0}	
 };
 
+PtlRoadMap *pAlfaRoadMap[] = 
+{
+		AlfaRoadMap,
+		BMAlfaRoadMap,
+		NULL
+};
+
 byte boardStation = 0x00;		// Serial Station Number
 
 
@@ -184,9 +183,9 @@ bool AlfacolCmd(byte serial, byte *param, bool *repy);
 
 bool AlfacolRDWR(byte serial, byte *param);
 
-bool WriteCmd(short frame, char **p);
+bool WriteCmd(PtlRoadMap *pMap, char **p);
 
-bool ReadCmd(short frame, char *p);
+bool ReadCmd(PtlRoadMap* pMap, char *p);
 
 void AlfacolCreateResponse(byte serial, bool error);
 
@@ -249,30 +248,34 @@ void AlfacolSaveInEeprom()
 {
 	short i;
 	
+	PtlRoadMap *pMap;
 	
 	EEpromInit();
-	for (i = 0; AlfaRoadMap[i].pAddress != NULL; ++i)
+	
+	for (pMap = pAlfaRoadMap[0]; pMap != NULL; ++pMap)
 	{
-		if (AlfaRoadMap[i].eeprom)
+		for (i = 0; pMap[i].pAddress != NULL; ++i)
 		{
-			
-			switch (AlfaRoadMap[i].type)
+			if (pMap[i].eeprom)
 			{
-			case Byte:
-				EepromSetByteBuff((byte *)AlfaRoadMap[i].pAddress, AlfaRoadMap[i].size);
-				break;
 				
-			case Short:
-				EepromSetWordBuff((word *)AlfaRoadMap[i].pAddress, AlfaRoadMap[i].size);
-				break;
+				switch (pMap[i].type)
+				{
+				case Byte:
+					EepromSetByteBuff((byte *)pMap[i].pAddress, pMap[i].size);
+					break;
 					
-			case Long:
-				EepromSetLongBuff((dword *)AlfaRoadMap[i].pAddress, AlfaRoadMap[i].size);
-				break;
-			}			
-		}	
-		
-		
+				case Short:
+					EepromSetWordBuff((word *)pMap[i].pAddress, pMap[i].size);
+					break;
+						
+				case Long:
+					EepromSetLongBuff((dword *)pMap[i].pAddress, pMap[i].size);
+					break;
+				}			
+			}	
+			
+		}
 	}
 	
 	
@@ -298,29 +301,33 @@ void AlfacolSaveInEeprom()
 void AlfacolGetFromEeprom()
 {
 	short i;
-	
+	PtlRoadMap *pMap;
+		
 	EEpromInit();
 	
-	for (i = 0; AlfaRoadMap[i].pAddress != NULL; ++i)
+	for (pMap = pAlfaRoadMap[0]; pMap != NULL; ++pMap)
 	{
-		if (AlfaRoadMap[i].eeprom)
+		for (i = 0; pMap[i].pAddress != NULL; ++i)
 		{
-			switch (AlfaRoadMap[i].type)
+			if (pMap[i].eeprom)
 			{
-			case Byte:
-				EepromGetByteBuff((byte *)AlfaRoadMap[i].pAddress, AlfaRoadMap[i].size);
-				break;
-							
-			case Short:
-				EepromGetWordBuff((word *)AlfaRoadMap[i].pAddress, AlfaRoadMap[i].size);
-				break;
+				switch (pMap[i].type)
+				{
+				case Byte:
+					EepromGetByteBuff((byte *)pMap[i].pAddress, pMap[i].size);
+					break;
 								
-			case Long:
-				EepromGetLongBuff((dword *)AlfaRoadMap[i].pAddress, AlfaRoadMap[i].size);
-				break;
-			}	
+				case Short:
+					EepromGetWordBuff((word *)pMap[i].pAddress, pMap[i].size);
+					break;
+									
+				case Long:
+					EepromGetLongBuff((dword *)pMap[i].pAddress, pMap[i].size);
+					break;
+				}	
+			}
 		}
-	}	
+	}
 }
 
 /*======================================================
@@ -711,28 +718,28 @@ bool AlfacolRDWR(byte serial, byte *param)
 
 	byte *p;
 	short i;
-	short idxFound;
+	PtlRoadMap *pMap;
+	PtlRoadMap *pFound;
 	
 	p = param;
 	
-	i=0;
-	idxFound = -1;
-	
-	for (i = 0; AlfaRoadMap[i].pAddress != NULL && idxFound < 0; ++i)
+	for (pFound = NULL, pMap = pAlfaRoadMap[0]; pMap != NULL && pFound == NULL; ++pMap)
 	{
-		if (AlfaRoadMap[i].CMD == frame_val[serial])
-			idxFound = i;
+		for (i = 0; pMap[i].pAddress != NULL && pFound == NULL; ++i)
+		{
+			if (pMap[i].CMD == frame_val[serial])
+				pFound = pMap;
+		}
 	}
 	
-	
-	if (idxFound >= 0)
+	if (pFound != NULL)
 	{
-		if (cmd_type[serial] == eAlfaWrite && !AlfaRoadMap[idxFound].readOnly)
+		if (cmd_type[serial] == eAlfaWrite && !pFound->readOnly)
 		{
-			return WriteCmd(idxFound, (char **)&p);
+			return WriteCmd(pFound, (char **)&p);
 		}
 		else
-			return ReadCmd(idxFound, (char *)p);		
+			return ReadCmd(pFound, (char *)p);		
 	}
 	else
 		return FALSE;
@@ -751,7 +758,7 @@ bool AlfacolRDWR(byte serial, byte *param)
  **		true if the parameters are correct
  **		false otherwise
  *=============================================*/
-bool WriteCmd(short frame, char **p)
+bool WriteCmd(PtlRoadMap *pMap, char **p)
 {
 	char *pbValue;
 	long *plValue;
@@ -771,41 +778,41 @@ bool WriteCmd(short frame, char **p)
 		index = 0;
 	
 		
-	if (index > AlfaRoadMap[frame].size)
+	if (index > pMap->size)
 		return FALSE;	// Error Index		
 					
-	switch (AlfaRoadMap[frame].type)
+	switch (pMap->type)
 	{
 		case Byte:		
-			pbValue = (char *)AlfaRoadMap[frame].pAddress + index;
+			pbValue = (char *)pMap->pAddress + index;
 						
 			Alfasscanfb((char **)p, pbValue);			
 		
 			break;
 			
 		case Short:
-			pValue = (short *)AlfaRoadMap[frame].pAddress + index;
+			pValue = (short *)pMap->pAddress + index;
 						
 			index = Alfasscanfs((char **)p, pValue);			
 			
 			break;
 			
 		case Long:
-			plValue = (long *)AlfaRoadMap[frame].pAddress + index;
+			plValue = (long *)pMap->pAddress + index;
 			
 			Alfasscanfl((char **)p, plValue);			
 			
 			break;
 			
 		case Double:
-			pdValue = (double *)AlfaRoadMap[frame].pAddress + index;
+			pdValue = (double *)pMap->pAddress + index;
 			Alfasscanfd((char **)p, pdValue);
 			break;
 			
 		case String:
-			pString = (char *)AlfaRoadMap[frame].pAddress + index;
+			pString = (char *)pMap->pAddress + index;
 			
-			Alfasprints(*p, pString, AlfaRoadMap[frame].size);
+			Alfasprints(*p, pString, pMap->size);
 						
 			break;
 			
@@ -825,7 +832,7 @@ bool WriteCmd(short frame, char **p)
  **		true if the parameters are correct
  **		false otherwise
  *=============================================*/
-bool ReadCmd(short frame, char *p)
+bool ReadCmd(PtlRoadMap *pMap, char *p)
 {
 	double dvalue;
 	long value;
@@ -834,41 +841,41 @@ bool ReadCmd(short frame, char *p)
 	short size = 0;
 	short idx = 0;
 	
-	if (AlfaRoadMap[frame].size > 1)
+	if (pMap->size > 1)
 	{
 		// Gets Index 	
 		Alfasscanfs((char **)&buff, &index);
 			
-		if (index > AlfaRoadMap[frame].size)
+		if (index > pMap->size)
 			return FALSE;	// Index Error
 	}
 	else
 		index = 0;
 			
-		switch (AlfaRoadMap[frame].type)
+		switch (pMap->type)
 		{
 		
 			case Byte:
-				value = (long) *((char *)AlfaRoadMap[frame].pAddress + index);
+				value = (long) *((char *)pMap->pAddress + index);
 				break;
 				
 				
 			case Short:
-				value = (long) *((short *)AlfaRoadMap[frame].pAddress + index);						
+				value = (long) *((short *)pMap->pAddress + index);						
 						
 				break;
 				
 			case Long:
-				value = *((long *)AlfaRoadMap[frame].pAddress + index);
+				value = *((long *)pMap->pAddress + index);
 							
 				break;
 				
 			case Double:
-				dvalue = *((double *)AlfaRoadMap[frame].pAddress + index);
+				dvalue = *((double *)pMap->pAddress + index);
 				break;
 				
 			case String:
-				buff = (char *)((char *)AlfaRoadMap[frame].pAddress + index);
+				buff = (char *)((char *)pMap->pAddress + index);
 				break;
 				
 		}
@@ -876,14 +883,14 @@ bool ReadCmd(short frame, char *p)
 		if (idx >= 1)
 			*p++ = ALFACOL_SEPARATOR;
 		
-		switch (AlfaRoadMap[frame].type)
+		switch (pMap->type)
 		{
 			case Double:
 				Alfasprintfd((char *)p, dvalue);
 				break;
 				
 			case String:
-				Alfasprints(buff, (char *)p, AlfaRoadMap[frame].size);
+				Alfasprints(buff, (char *)p, pMap->size);
 				break;
 				
 			default:

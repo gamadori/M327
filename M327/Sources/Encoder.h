@@ -15,6 +15,10 @@ extern long encPos[];
 extern short encVel[];
 
 
+extern long encPos0[];						// Posizione di zero
+
+extern long encPosRel[];					// Posizione Relativa allo zero
+
 void InitEncoder();
 
 void GetEncoders();

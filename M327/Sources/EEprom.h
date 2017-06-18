@@ -47,4 +47,6 @@ short EepromSetWordBuff(word *data, short len);
 
 short EepromSetLongBuff(dword *data, short len);
 
+void EepromSave();
+
 #endif /* EEPROM_H_ */

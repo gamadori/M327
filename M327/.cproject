@@ -82,9 +82,20 @@
 							<tool errorParsers="" id="com.freescale.dsc.cdt.toolchain.disassembler.899074143" name="DSC Disassembler" superClass="com.freescale.dsc.cdt.toolchain.disassembler"/>
 						</toolChain>
 					</folderInfo>
+					<fileInfo id="com.freescale.dsc.cdt.toolchain.config.debug.1819452214.576040313" name="Bus.h" rcbsApplicability="disable" resourcePath="Sources/Bus.h" toolsToInvoke=""/>
+					<fileInfo id="com.freescale.dsc.cdt.toolchain.config.debug.1819452214.2034308150" name="CAN.h" rcbsApplicability="disable" resourcePath="Sources/CAN.h" toolsToInvoke=""/>
+					<folderInfo id="com.freescale.dsc.cdt.toolchain.config.debug.1819452214.1722162931" name="/" resourcePath="Sources/BM">
+						<toolChain id="com.freescale.dsc.cdt.toolchain.debug.1340585903" name="DSC Toolchain" superClass="com.freescale.dsc.cdt.toolchain.debug" unusedChildren="">
+							<tool id="com.freescale.dsc.cdt.toolchain.linker.972961796" name="DSC Linker" superClass="com.freescale.dsc.cdt.toolchain.linker.882457468"/>
+							<tool id="com.freescale.dsc.cdt.toolchain.compiler.1796436436" name="DSC Compiler" superClass="com.freescale.dsc.cdt.toolchain.compiler.648832106"/>
+							<tool id="com.freescale.dsc.cdt.toolchain.assembler.527750862" name="DSC Assembler" superClass="com.freescale.dsc.cdt.toolchain.assembler.1661031695"/>
+							<tool id="com.freescale.dsc.cdt.toolchain.preprocessor.1356803529" name="DSC Preprocessor" superClass="com.freescale.dsc.cdt.toolchain.preprocessor.857752805"/>
+							<tool id="com.freescale.dsc.cdt.toolchain.disassembler.541418315" name="DSC Disassembler" superClass="com.freescale.dsc.cdt.toolchain.disassembler.899074143"/>
+						</toolChain>
+					</folderInfo>
 					<fileInfo id="com.freescale.dsc.cdt.toolchain.config.debug.1819452214..settings/com.freescale.processorexpert.core.prefs" name="com.freescale.processorexpert.core.prefs" rcbsApplicability="disable" resourcePath=".settings/com.freescale.processorexpert.core.prefs" toolsToInvoke=""/>
 					<sourceEntries>
-						<entry excluding="Sources/Bus.h|Sources/CAN.h|Sources/fRamp.c|.settings/com.freescale.processorexpert.core.prefs" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="Sources/fRamp.c|.settings/com.freescale.processorexpert.core.prefs" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

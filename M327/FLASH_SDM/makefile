@@ -2,7 +2,7 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-#Progress monitor hint: 74
+#Progress monitor hint: 80
 first : all
 -include ../makefile.init
 
@@ -15,6 +15,7 @@ RM := "$(GNU_Make_Install_DirEnv)/rm" -f
 -include sources.mk
 -include subdir.mk
 -include Sources/subdir.mk
+-include Sources/BM/subdir.mk
 -include Project_Settings/Startup_Code/subdir.mk
 -include Generated_Code/subdir.mk
 -include objects.mk
@@ -56,13 +57,10 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-M327.elf \
 
 EXECUTABLES_QUOTED += \
-"M327.elf" \
 
 EXECUTABLES_OS_FORMAT += \
-M327.elf \
 
 
 # All Target
@@ -71,7 +69,7 @@ all: warning-messages explicit-dependencies M327.elf
 # Tool invocations
 M327.elf: $(OBJS) $(USER_OBJS) ../Project_Settings/Linker_Files/FLASH_SDM.cmd
 	@echo 'Building target: $@'
-	@echo 'Executing target #75 $@'
+	@echo 'Executing target #81 $@'
 	@echo 'Invoking: DSC Linker'
 	"$(DSC_ToolsDirEnv)/mwld56800e" -o "M327.elf" @@"M327.args"  $(USER_OBJS_QUOTED)
 	@echo 'Finished building target: $@'
@@ -79,7 +77,7 @@ M327.elf: $(OBJS) $(USER_OBJS) ../Project_Settings/Linker_Files/FLASH_SDM.cmd
 
 # Other Targets
 clean:
-	-$(RM) $(S_DEPS_QUOTED) $(CPP_DEPS_QUOTED) $(CC_DEPS_QUOTED) "./*/*.obj" "./*/*/*.obj"  $(S_UPPER_DEPS_QUOTED) $(CXX_DEPS_QUOTED) "./*/*/*.d"  $(ASM_UPPER_DEPS_QUOTED) $(C_UPPER_DEPS_QUOTED) $(C++_DEPS_QUOTED) $(EXECUTABLES_QUOTED) "./*/*.d"  $(ProjDirPath)/FLASH_SDM/M327.elf
+	-$(RM) $(S_DEPS_QUOTED) $(CPP_DEPS_QUOTED) $(CC_DEPS_QUOTED) "./*/*.obj" "./*/*/*.obj"  $(S_UPPER_DEPS_QUOTED) $(CXX_DEPS_QUOTED) "./*/*/*.d"  $(ASM_UPPER_DEPS_QUOTED) $(C_UPPER_DEPS_QUOTED) $(C++_DEPS_QUOTED) $(EXECUTABLES_QUOTED) "./*/*.d" "./*/*/*.d"  $(ProjDirPath)/FLASH_SDM/M327.elf
 	-@echo ' '
 
 .PHONY: all clean dependents explicit-dependencies warning-messages

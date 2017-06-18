@@ -56,7 +56,10 @@ void FlashVariableServer()
 	}	
 }
 
-
+void EepromSave()
+{
+	flashCmdVar = eFlashWrite;
+}
 short EepromGetByteBuff(byte *data, short len)
 {
 	short i;

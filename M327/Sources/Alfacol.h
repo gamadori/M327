@@ -31,6 +31,17 @@
 
 #define STATION_BROADCAST	0x00
 
+typedef struct 
+{
+	void *pAddress;				// pointer to the memory area of the variable
+	short type;					// Variable data type
+	short size;					// Variable Length
+	bool readOnly;				// Read Only variable
+	bool eeprom;				// Save to EEprom
+	word CMD;					// Frame's Value in in hexadecimal
+	
+}PtlRoadMap;
+
 struct AlfaCmd
 {
 	char *str;	

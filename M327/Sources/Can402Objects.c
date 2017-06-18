@@ -85,7 +85,10 @@ td_subIndex Index60FE[] =
 	{dicRO, tINTEGER16, SIZEOFW_WORD, (void *)(bus_IO_Output)}
 };
 
-
+td_subIndex Index6865[] = 
+{
+	{dicRO, tINTEGER16, SIZEOFW_WORD, (void *)&drvAxeRegState[1]}
+};
 
 
 

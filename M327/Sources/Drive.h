@@ -16,9 +16,8 @@ enum eAxeStatus
 	cWaitRdyFromDrive,	// 3
 	cEnableDrive,		// 4
 	cEnabled,			// 5
-	cWaitDisable,		// 6
-	cDriveAlarm,		// 7
-	cNotUsed			// 8
+	cNotUsed,			// 6
+	cDriveAlarm			// 7
 };
 
 // 3 bits Axe Alarm Code

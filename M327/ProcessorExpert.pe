@@ -3,8 +3,8 @@
   <Header>
     <Name>M327</Name>
     <SavedBy>info</SavedBy>
-    <ModificationStamp>171</ModificationStamp>
-    <Date>2017-06-14</Date>
+    <ModificationStamp>173</ModificationStamp>
+    <Date>2017-06-18</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.9.2.RT6_b1446-0504</PEversion>
   </Header>
@@ -29,7 +29,7 @@
     <UseExistingModules>true</UseExistingModules>
     <RenamePeripheries>false</RenamePeripheries>
     <Autodependency>true</Autodependency>
-    <ProjectCompNumb>159</ProjectCompNumb>
+    <ProjectCompNumb>163</ProjectCompNumb>
     <DelUnusedPreviouslyGenFiles>true</DelUnusedPreviouslyGenFiles>
     <GeneratedCodeFrozen>false</GeneratedCodeFrozen>
     <AssignInitComponentNameToPrph>true</AssignInitComponentNameToPrph>

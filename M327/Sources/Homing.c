@@ -49,9 +49,13 @@ void HomeStart(byte axe)
 	hmStep[axe] = 0;
 }
 
+
 void HomeServer(byte axe)
 {
+	
 	long errPos;
+
+	
 	switch (hmStep[axe])
 	{
 	case 0:
@@ -168,5 +172,113 @@ void HomeIncSrvBatt(byte axe)
 bool IsInHoming(byte axe)
 {
 	return hmStep[axe] > 0 && hmStep[axe] <= 6;
+}
+
+void HomeSearchMinServer(byte axe, short dir)
+{
+	long errPos;
+
+		
+		switch (hmStep[axe])
+		{
+		case 0:
+			if (dir < 0)
+				drvAxeRegState[axe].homedNeg = 0;
+			else
+				drvAxeRegState[axe].homedPos = 0;
+			
+			PidLoadHomingParam(axe);
+			hmBattNum[axe] = 0;
+			hmStep[axe]++;
+			// muovo alla ricerca della battuta
+		
+		case 1:
+			if (!TmrHome)
+			{
+				BusJog(axe, dir * hmSpeedH[axe], hmAcc[axe]);
+				hmStep[axe]++;
+			}
+			break;
+			
+		case 2:
+					
+			errPos = (vpos[axe] - rpos[axe]);
+					
+			if (errPos >= hmSrvErrBatt[axe] || errPos <= -hmSrvErrBatt[axe])
+			{
+				BusStop(axe, 0);
+				hmStep[axe]++;
+						
+			}
+			break;
+			
+		case 3:
+			if (RampAxeGetCmd(axe, cSTOP_RAPID))
+			{
+				if (!hmBattNum[axe])
+				{
+					// E' la prima volta che trovo la battuta devo provarci un'altra volta
+					hmBattPos[axe] = rpos[axe];
+					BusMove(axe, rpos[axe] - dir * hmDistBatt[axe], hmSpeedH[axe], hmAcc[axe], 0);				
+					hmBattNum[axe]++;
+					hmStep[axe]++;
+				}
+				else
+				{
+					// Verifico che le due posizioni di battuta individuata
+					// Coincidono
+					errPos = rpos[axe] - hmBattPos[axe];
+					
+					if (errPos < -hmMaxErrBatt[axe] || errPos > hmMaxErrBatt[axe])
+					{
+						// Le posizioni non coincidono provo ad aumentare il srvError
+						//if (hmSrvErrBatt[axe] < hmMaxSrvErrBatt[axe])
+						//{
+						//	HomeIncSrvBatt(axe);
+						//}
+						//else
+						//{
+							drvAxeRegState[axe].alarm = AxeAlHoming;
+							hmStep[axe] = 10;
+							PidUploadHomingParam(axe);
+						//}
+					}
+					else 
+					{
+						TmrHome = MSEC(100);
+						//BusMove(axe, rpos[axe] - hmDir[axe] * hmOffset[axe], hmSpeedH[axe], hmAcc[axe], 0);
+						hmStep[axe] += 2;
+					}
+				}
+			}
+			break;
+			
+		case 4:
+				if (vpos[axe] == dpos[axe])
+				{
+					TmrHome = MSEC(10);
+					hmStep[axe] = 1;
+				}
+				break;
+			
+			
+		
+		case 5:
+			if (!TmrHome && RampAxeGetCmdExecuted(axe, cSTOP_RAPID))
+			{
+				if (dir < 0)
+					drvAxeRegState[axe].homedNeg = 1;
+				else
+					drvAxeRegState[axe].homedPos = 1;
+				hmStep[axe] ++;
+			}
+			break;
+					
+		}
+}
+
+void HomeSearchMinStart(byte axe)
+{
+	hmStep[axe] = 0;
 }
 

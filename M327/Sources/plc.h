@@ -31,6 +31,7 @@ enum StatusIO
 
 #define inpPwrFiltered				((inputFiltered & BIT15) == BIT15)
 
+
 bool bitSelected(dword field, byte bit);
 
 extern dword inputBuffer;
